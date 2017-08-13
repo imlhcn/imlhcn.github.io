@@ -99,7 +99,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://lhhl.oschina.io/2017/08/13/改host免流量翻墙/" data-id="cj6akcao900074cq3nknfupvp" class="article-share-link">Share</a>
+      <a data-url="https://lhhl.oschina.io/2017/08/13/改host免流量翻墙/" data-id="cj6alanj20003b2q3upfhqejl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/翻墙/">翻墙</a></li></ul>
@@ -127,13 +127,19 @@
 <!-- 主页不要加载gitment -->
 
 <script>
+var oauths=[
+    {client_id: '86a83eca51c387bd8bcd',client_secret: '11a67817accab24ff17557c9fc07291ac836b287'},
+    {client_id: 'e8785d6202185803072a',client_secret: '608cd0b6cf221a80dbed4f3c3eeb1e1d63f49103'}
+    ]
+// 动态切换oauth应用 -_-!
+var oaIndex=0;
+if ("zeroim.github.io" == document.domain){
+    oaIndex=1;
+}
 var gitment = new Gitment({
-owner: 'zeroim',
-repo: 'zeroim.github.io',
-oauth: {
-client_id: 'e8785d6202185803072a',
-client_secret: '608cd0b6cf221a80dbed4f3c3eeb1e1d63f49103',
- },
+    owner: 'zeroim',
+    repo: 'zeroim.github.io',
+    oauth: oauth[oaIndex]
 })
 gitment.render('gitment')
 </script>
