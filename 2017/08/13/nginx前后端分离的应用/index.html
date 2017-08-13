@@ -109,7 +109,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://lhhl.oschina.io/2017/08/13/nginx前后端分离的应用/" data-id="cj6alzal800029pq3cpssp5t2" class="article-share-link">Share</a>
+      <a data-url="https://lhhl.oschina.io/2017/08/13/nginx前后端分离的应用/" data-id="cj6aymlmf000243q35zcvqica" class="article-share-link">Share</a>
+      
+        <a href="https://lhhl.oschina.io/2017/08/13/nginx前后端分离的应用/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
@@ -136,30 +138,14 @@
 </article>
 <!--
 
--->
-<div id="gitment"></div>
-<!-- 主页不要加载gitment -->
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
 
-<script>
-var oauths=[
-    {client_id: '86a83eca51c387bd8bcd',client_secret: '11a67817accab24ff17557c9fc07291ac836b287'},
-    {client_id: 'e8785d6202185803072a',client_secret: '608cd0b6cf221a80dbed4f3c3eeb1e1d63f49103'},
-    {client_id: '6c1d4ea3a0e50e7bef94',client_secret: 'e06f671acb03161d70782e836235f4cabdfe0038'}
-    ]
-// 由于github有个oauth回调问题，不同域名需要，动态切换oauth应用 -_-!
-var oaIndex=0;
-if ("zeroim.github.io" == document.domain){
-    oaIndex=1;
- }else if ("blog.imlh.cn" == document.domain){
-    oaIndex=2;
-}
-var gitment = new Gitment({
-    owner: 'zeroim',
-    repo: 'zeroim.github.io',
-    oauth: oauths[oaIndex]
-})
-gitment.render('gitment')
-</script>
+-->
+<!-- 主页不要加载gitment -->
 
 </section>
         
@@ -252,6 +238,20 @@ gitment.render('gitment')
   
 </nav>
     
+<script>
+  var disqus_shortname = 'imlh';
+  
+  var disqus_url = 'https://lhhl.oschina.io/2017/08/13/nginx前后端分离的应用/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
