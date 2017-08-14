@@ -76,7 +76,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="codecrop" />
+  <meta name="keywords" content="翻墙," />
 
 
 
@@ -93,13 +93,14 @@
 
 
 <meta name="description" content="SSH -D首先，还是要有一台没被墙的机:10.0.0.112345678910sshusage: ssh [-1246AaCfGgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]           [-D [bind_address:]port] [-E log_file] [-e escape_char]           [-F co">
+<meta name="keywords" content="翻墙">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ssh做socks5代理">
 <meta property="og:url" content="http://codecrop.cc/2017/08/14/ssh做socks5代理/index.html">
 <meta property="og:site_name" content="codecrop&#39;s blog">
 <meta property="og:description" content="SSH -D首先，还是要有一台没被墙的机:10.0.0.112345678910sshusage: ssh [-1246AaCfGgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]           [-D [bind_address:]port] [-E log_file] [-e escape_char]           [-F co">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-14T13:26:23.000Z">
+<meta property="og:updated_time" content="2017-08-14T13:33:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssh做socks5代理">
 <meta name="twitter:description" content="SSH -D首先，还是要有一台没被墙的机:10.0.0.112345678910sshusage: ssh [-1246AaCfGgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]           [-D [bind_address:]port] [-E log_file] [-e escape_char]           [-F co">
@@ -304,6 +305,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/独家分享/" itemprop="url" rel="index">
+                    <span itemprop="name">独家分享</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -343,13 +366,11 @@
 
       
         <h1 id="SSH-D"><a href="#SSH-D" class="headerlink" title="SSH -D"></a>SSH -D</h1><h2 id="首先，还是要有一台没被墙的机-10-0-0-1"><a href="#首先，还是要有一台没被墙的机-10-0-0-1" class="headerlink" title="首先，还是要有一台没被墙的机:10.0.0.1"></a>首先，还是要有一台没被墙的机:10.0.0.1</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">ssh</div><div class="line">usage: ssh [-1246AaCfGgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]</div><div class="line">           [-D [bind_address:]port] [-E log_file] [-e escape_char]</div><div class="line">           [-F configfile] [-I pkcs11] [-i identity_file]</div><div class="line">           [-J [user@]host[:port]] [-L address] [-l login_name] [-m mac_spec]</div><div class="line">           [-O ctl_cmd] [-o option] [-p port] [-Q query_option] [-R address]</div><div class="line">           [-S ctl_path] [-W host:port] [-w local_tun[:remote_tun]]</div><div class="line">           [user@]hostname [command]</div><div class="line"></div><div class="line">ssh -N -o ServerAliveInterval=180 -o ServerAliveCountMax=2 -D 7070 user@10.0.0.1 -i ~/.ssh/id_rsa</div></pre></td></tr></table></figure>
-<p>主要参数说明:<br>7070 为sock5的端口,user对应链接的用户,<br>简单的就是百度  “ssh免密登录”<br>id_rsa这个文件是标准的openssh 的sshkey,可以工具(ssh-keygen)生成，一般是一对的(id_rsa+id_rsa.pub)<br>需要把  id_rsa.pub的内容(单行的)放到 10.0.0.1 的  /home/user/.ssh/authorized_keys</p>
-<h2 id="在浏览器设置-socks5代理"><a href="#在浏览器设置-socks5代理" class="headerlink" title="在浏览器设置 socks5代理"></a>在浏览器设置 socks5代理</h2><p>参数 localhost:7070</p>
-<p>OK,可以利用 10.0.0.1的网络上网</p>
+<p>主要参数说明:<br>7070 为sock5的端口,user对应链接的用户,<br>简单的就是百度  “ssh免密登录”<br>id_rsa这个文件是标准的openssh 的sshkey,可以工具(ssh-keygen)生成，一般是一对的(id_rsa+id_rsa.pub)<br>需要把  id_rsa.pub的内容(单行的)放到 10.0.0.1 的  /home/user/.ssh/authorized_keys(注意 .ssh 和authorized_keys的权限644就好，太高了连不上)<br>连接有问题可以看看  /var/log/secure</p>
+<h2 id="在浏览器设置-socks5代理"><a href="#在浏览器设置-socks5代理" class="headerlink" title="在浏览器设置 socks5代理"></a>在浏览器设置 socks5代理</h2><p>参数 localhost:7070<br>OK,可以利用 10.0.0.1的网络上网</p>
 <h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><ul>
 <li>某些系统有IP白名单限制，把白名单放10.0.0.1 然后本地的代理到7070即可，愉快调试了</li>
 <li>某台机只开了22(ssh)端口，上面挂了一个3306(mysql)只允许localhost访问，那么留意一下MYSQL客户端的（SSH Tunnel)这种连接方式</li>
-<li></li>
 </ul>
 <h1 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h1><h2 id="某些软件只支持-http代理，怎么破？"><a href="#某些软件只支持-http代理，怎么破？" class="headerlink" title="某些软件只支持 http代理，怎么破？"></a>某些软件只支持 http代理，怎么破？</h2><p>有 privoxy 或proxychains 可以将socks转为http</p>
 
@@ -366,6 +387,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/翻墙/" rel="tag"># 翻墙</a>
+          
+        </div>
       
 
       
