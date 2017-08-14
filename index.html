@@ -3,7 +3,7 @@
 
 
 
-<html class="theme-next muse" lang="zh-Hans">
+<html class="theme-next mist" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -76,7 +76,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="imlh" />
 
 
 
@@ -106,7 +106,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -536,7 +536,7 @@
 <h1 id="配置服务器"><a href="#配置服务器" class="headerlink" title="配置服务器"></a>配置服务器</h1><p>写一个 ss.json 文件如下,文件详细解析 看考<a href="https://shadowsocks.org/en/config/quick-guide.html" target="_blank" rel="external">官方quick-guide</a><br>主要就是改改password server_port<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"server"</span>:<span class="string">"0.0.0.0"</span>,</div><div class="line">    <span class="attr">"server_port"</span>:<span class="number">10086</span>,</div><div class="line">    <span class="attr">"local_address"</span>: <span class="string">"127.0.0.1"</span>,</div><div class="line">    <span class="attr">"local_port"</span>:<span class="number">1080</span>,</div><div class="line">    <span class="attr">"password"</span>:<span class="string">"MiMa_password"</span>,</div><div class="line">    <span class="attr">"timeout"</span>:<span class="number">300</span>,</div><div class="line">    <span class="attr">"method"</span>:<span class="string">"aes-256-cfb"</span>,</div><div class="line">    <span class="attr">"fast_open"</span>: <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h1 id="运行服务器"><a href="#运行服务器" class="headerlink" title="运行服务器"></a>运行服务器</h1><p>除了用 -c ./ss.json 指定上面的json 外，还丰富了一些启动参数，所以写了个脚本<br>-d 是后台运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 一开始可以用  ssserver -c ./ss.json 前台运行看看</span></div><div class="line"><span class="built_in">cd</span> /home/henry/a/ss</div><div class="line">ssserver -c ./ss.json -d start --pid-file ./ss.pid --<span class="built_in">log</span>-file ./ss.log --user henry -v</div></pre></td></tr></table></figure></p>
 <h1 id="安装客户端"><a href="#安装客户端" class="headerlink" title="安装客户端"></a>安装客户端</h1><p>看是什么系统,看Mac 按git上面的 用brew装即可，Windows的有客户端，还是上官网下吧，主要说一下mac的<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># brew安装后的配置在这个地方,json的数据注意和服务端的配套即可</span></div><div class="line">vim /usr/<span class="built_in">local</span>/etc/shadowsocks-libev.json</div><div class="line">&#123;</div><div class="line">    <span class="string">"server"</span>:<span class="string">"1.2.3.4"</span>,</div><div class="line">    <span class="string">"server_port"</span>:10086,</div><div class="line">    <span class="string">"local_port"</span>:1080,</div><div class="line">    <span class="string">"password"</span>:<span class="string">"MiMa_password"</span>,</div><div class="line">    <span class="string">"timeout"</span>:600,</div><div class="line">    <span class="string">"method"</span>:<span class="string">"aes-256-cfb"</span></div><div class="line">&#125;</div><div class="line"><span class="comment"># 重启一下 ss</span></div><div class="line">brew services restart shadowsocks-libev</div><div class="line">Stopping `shadowsocks-libev`... (might take a <span class="keyword">while</span>)</div><div class="line">==&gt; Successfully stopped `shadowsocks-libev` (label: homebrew.mxcl.shadowsocks-libev)</div><div class="line">==&gt; Successfully started `shadowsocks-libev` (label: homebrew.mxcl.shadowsocks-libev)</div></pre></td></tr></table></figure></p>
-<p>这个时候，可以用 switchOmega给Chrome配上愉快地翻墙了，阿里云国际Youtube 1080p无压力啊</p>
+<p>这个时候，可以用 switchOmega给Chrome配上愉快地翻墙了，阿里云国际Youtube 1080p无压力<br><a href="https://github.com/FelisCatus/SwitchyOmega" target="_blank" rel="external">SwitchOmega Github</a><br><a href="https://github.com/gfwlist/gfwlist" target="_blank" rel="external">gfwlist</a></p>
 
           
         
@@ -707,6 +707,20 @@
 <h1 id="删插件"><a href="#删插件" class="headerlink" title="删插件"></a>删插件</h1><p>bundle exec rake redmine:plugins:migrate NAME=plugin_name VERSION=0 RAILS_ENV=production</p>
 <p>#<br><a href="https://github.com/centosadmin/redmine_activity_report.git" target="_blank" rel="external">https://github.com/centosadmin/redmine_activity_report.git</a><br>bundle exec whenever -c redmine_activity_report -f plugins/redmine_activity_report/config/schedule.rb</p>
 <h1 id="生产环境"><a href="#生产环境" class="headerlink" title="生产环境"></a>生产环境</h1><p>可用 passenter或webric或thin搭配nginx<br>这是 <a href="https://www.redmine.org/projects/redmine/wiki/HowTo_configure_Nginx_to_run_Redmine" target="_blank" rel="external">官方的thin教程</a></p>
+<h1 id="常用插件-贴一下"><a href="#常用插件-贴一下" class="headerlink" title="常用插件 贴一下"></a>常用插件 贴一下</h1><ul>
+<li>clipboard_image_paste</li>
+<li>easy_gantt</li>
+<li>issue_charts</li>
+<li>redmine_activity_report</li>
+<li>redmine_agile</li>
+<li>redmine_checklists</li>
+<li>redmine_mentions</li>
+<li>redmine_messenger</li>
+<li>redmine_work_time</li>
+<li>scrum</li>
+<li>time_logger</li>
+<li>timesheet</li>
+</ul>
 
           
         
@@ -1031,7 +1045,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 

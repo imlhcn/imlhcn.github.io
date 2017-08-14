@@ -3,7 +3,7 @@
 
 
 
-<html class="theme-next muse" lang="zh-Hans">
+<html class="theme-next mist" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="imlh&#39;s blog">
 <meta property="og:description" content="redmine + nginx + thinyum install git vim gem ruby-devel mysql-devel ImageMagickgem install bundler Step 1 下载redminegit clone https://github.com/redmine/redmine.gitcd redminegit checkout 3.3-stable St">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-13T06:04:14.000Z">
+<meta property="og:updated_time" content="2017-08-14T04:10:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redmine安装">
 <meta name="twitter:description" content="redmine + nginx + thinyum install git vim gem ruby-devel mysql-devel ImageMagickgem install bundler Step 1 下载redminegit clone https://github.com/redmine/redmine.gitcd redminegit checkout 3.3-stable St">
@@ -111,7 +111,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -393,6 +393,20 @@
 <h1 id="删插件"><a href="#删插件" class="headerlink" title="删插件"></a>删插件</h1><p>bundle exec rake redmine:plugins:migrate NAME=plugin_name VERSION=0 RAILS_ENV=production</p>
 <p>#<br><a href="https://github.com/centosadmin/redmine_activity_report.git" target="_blank" rel="external">https://github.com/centosadmin/redmine_activity_report.git</a><br>bundle exec whenever -c redmine_activity_report -f plugins/redmine_activity_report/config/schedule.rb</p>
 <h1 id="生产环境"><a href="#生产环境" class="headerlink" title="生产环境"></a>生产环境</h1><p>可用 passenter或webric或thin搭配nginx<br>这是 <a href="https://www.redmine.org/projects/redmine/wiki/HowTo_configure_Nginx_to_run_Redmine" target="_blank" rel="external">官方的thin教程</a></p>
+<h1 id="常用插件-贴一下"><a href="#常用插件-贴一下" class="headerlink" title="常用插件 贴一下"></a>常用插件 贴一下</h1><ul>
+<li>clipboard_image_paste</li>
+<li>easy_gantt</li>
+<li>issue_charts</li>
+<li>redmine_activity_report</li>
+<li>redmine_agile</li>
+<li>redmine_checklists</li>
+<li>redmine_mentions</li>
+<li>redmine_messenger</li>
+<li>redmine_work_time</li>
+<li>scrum</li>
+<li>time_logger</li>
+<li>timesheet</li>
+</ul>
 
       
     </div>
@@ -578,7 +592,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#redmine-nginx-thin"><span class="nav-number">1.</span> <span class="nav-text">redmine + nginx + thin</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-1-下载redmine"><span class="nav-number">2.</span> <span class="nav-text">Step 1 下载redmine</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-2-Mysql"><span class="nav-number">3.</span> <span class="nav-text">Step 2 Mysql</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-3-配置"><span class="nav-number">4.</span> <span class="nav-text">Step 3 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SMTP-server-at-example-com-using-PLAIN-authentication"><span class="nav-number">4.1.</span> <span class="nav-text">==== SMTP server at example.com using PLAIN authentication</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-4-依赖"><span class="nav-number">5.</span> <span class="nav-text">Step 4 依赖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-5-生成token"><span class="nav-number">6.</span> <span class="nav-text">Step 5  生成token</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-6-数据库见表"><span class="nav-number">7.</span> <span class="nav-text">Step 6　数据库见表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-7-默认数据"><span class="nav-number">8.</span> <span class="nav-text">Step 7 默认数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-8-文件权限"><span class="nav-number">9.</span> <span class="nav-text">Step 8 文件权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-10-登录"><span class="nav-number">10.</span> <span class="nav-text">Step 10 登录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#装插件"><span class="nav-number">11.</span> <span class="nav-text">装插件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删插件"><span class="nav-number">12.</span> <span class="nav-text">删插件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生产环境"><span class="nav-number">13.</span> <span class="nav-text">生产环境</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#redmine-nginx-thin"><span class="nav-number">1.</span> <span class="nav-text">redmine + nginx + thin</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-1-下载redmine"><span class="nav-number">2.</span> <span class="nav-text">Step 1 下载redmine</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-2-Mysql"><span class="nav-number">3.</span> <span class="nav-text">Step 2 Mysql</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-3-配置"><span class="nav-number">4.</span> <span class="nav-text">Step 3 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SMTP-server-at-example-com-using-PLAIN-authentication"><span class="nav-number">4.1.</span> <span class="nav-text">==== SMTP server at example.com using PLAIN authentication</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-4-依赖"><span class="nav-number">5.</span> <span class="nav-text">Step 4 依赖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-5-生成token"><span class="nav-number">6.</span> <span class="nav-text">Step 5  生成token</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-6-数据库见表"><span class="nav-number">7.</span> <span class="nav-text">Step 6　数据库见表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-7-默认数据"><span class="nav-number">8.</span> <span class="nav-text">Step 7 默认数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-8-文件权限"><span class="nav-number">9.</span> <span class="nav-text">Step 8 文件权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-10-登录"><span class="nav-number">10.</span> <span class="nav-text">Step 10 登录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#装插件"><span class="nav-number">11.</span> <span class="nav-text">装插件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删插件"><span class="nav-number">12.</span> <span class="nav-text">删插件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生产环境"><span class="nav-number">13.</span> <span class="nav-text">生产环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用插件-贴一下"><span class="nav-number">14.</span> <span class="nav-text">常用插件 贴一下</span></a></li></ol></div>
             
 
           </div>
@@ -616,7 +630,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 
