@@ -96,11 +96,11 @@
 <meta name="keywords" content="nginx,linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="redmine安装">
-<meta property="og:url" content="http://codecrop.cc/2017/08/13/redmine安装/index.html">
+<meta property="og:url" content="http://codecrop.cc/2017/08/13/dev/redmine安装/index.html">
 <meta property="og:site_name" content="codecrop&#39;s blog">
 <meta property="og:description" content="redmine + nginx + thinyum install git vim gem ruby-devel mysql-devel ImageMagickgem install bundler Step 1 下载redminegit clone https://github.com/redmine/redmine.gitcd redminegit checkout 3.3-stable St">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-14T06:43:01.000Z">
+<meta property="og:updated_time" content="2017-08-14T13:56:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redmine安装">
 <meta name="twitter:description" content="redmine + nginx + thinyum install git vim gem ruby-devel mysql-devel ImageMagickgem install bundler Step 1 下载redminegit clone https://github.com/redmine/redmine.gitcd redminegit checkout 3.3-stable St">
@@ -132,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="http://codecrop.cc/2017/08/13/redmine安装/"/>
+  <link rel="canonical" href="http://codecrop.cc/2017/08/13/dev/redmine安装/"/>
 
 
 
@@ -265,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://codecrop.cc/2017/08/13/redmine安装/">
+    <link itemprop="mainEntityOfPage" href="http://codecrop.cc/2017/08/13/dev/redmine安装/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="codecrop">
@@ -335,9 +335,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/08/13/redmine安装/#comments" itemprop="discussionUrl">
+                <a href="/2017/08/13/dev/redmine安装/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/13/redmine安装/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/08/13/dev/redmine安装/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -365,25 +365,25 @@
       
 
       
-        <h1 id="redmine-nginx-thin"><a href="#redmine-nginx-thin" class="headerlink" title="redmine + nginx + thin"></a>redmine + nginx + thin</h1><p>yum install git vim gem ruby-devel mysql-devel ImageMagick<br>gem install bundler</p>
-<h1 id="Step-1-下载redmine"><a href="#Step-1-下载redmine" class="headerlink" title="Step 1 下载redmine"></a>Step 1 下载redmine</h1><p>git clone <a href="https://github.com/redmine/redmine.git" target="_blank" rel="external">https://github.com/redmine/redmine.git</a><br>cd redmine<br>git checkout 3.3-stable</p>
-<h1 id="Step-2-Mysql"><a href="#Step-2-Mysql" class="headerlink" title="Step 2 Mysql"></a>Step 2 Mysql</h1><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> redmine <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8;</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">'redmine'</span>@<span class="string">'%'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'xxxxxxxxxxxxxxx'</span>;</div><div class="line"><span class="keyword">GRANT</span> ALL <span class="keyword">PRIVILEGES</span> <span class="keyword">ON</span> redmine.* <span class="keyword">TO</span> <span class="string">'redmine'</span>@<span class="string">'%'</span>;</div><div class="line">#GRANT ALL PRIVILEGES ON redmine.* TO 'redmine'@'localhost' IDENTIFIED BY 'my_password';</div></pre></td></tr></table></figure>
-<h1 id="Step-3-配置"><a href="#Step-3-配置" class="headerlink" title="Step 3 配置"></a>Step 3 配置</h1><p>cp config/database.yml.example config/database.yml<br>vim config/database.yml<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="attr">production:</span></div><div class="line"><span class="attr">  adapter:</span> <span class="string">mysql2</span></div><div class="line"><span class="attr">  database:</span> <span class="string">redmine</span></div><div class="line"><span class="attr">  host:</span> <span class="string">dxty.tech</span></div><div class="line"><span class="attr">  username:</span> <span class="string">redmine</span></div><div class="line"><span class="attr">  password:</span> <span class="string">xxxxxxxxxxxxxxx</span></div></pre></td></tr></table></figure></p>
-<h2 id="SMTP-server-at-example-com-using-PLAIN-authentication"><a href="#SMTP-server-at-example-com-using-PLAIN-authentication" class="headerlink" title="==== SMTP server at example.com using PLAIN authentication"></a>==== SMTP server at example.com using PLAIN authentication</h2><p>cp config/configuration.yml.example config/configuration.yml<br>vim config/configuration.yml<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="string">```yml</span></div><div class="line"><span class="attr">    email_delivery:</span></div><div class="line"><span class="attr">      delivery_method:</span> <span class="string">:smtp</span></div><div class="line"><span class="attr">      smtp_settings:</span></div><div class="line"><span class="attr">        address:</span> <span class="string">"smtp.mxhichina.com"</span></div><div class="line"><span class="attr">        port:</span> <span class="number">25</span></div><div class="line"><span class="attr">        authentication:</span> <span class="string">:plain</span></div><div class="line"><span class="attr">        domain:</span> <span class="string">'imlh.cn'</span></div><div class="line"><span class="attr">        user_name:</span> <span class="string">'dev@imlh.cn'</span></div><div class="line"><span class="attr">        password:</span> <span class="string">'sssssssssss'</span></div></pre></td></tr></table></figure></p>
-<h1 id="Step-4-依赖"><a href="#Step-4-依赖" class="headerlink" title="Step 4 依赖"></a>Step 4 依赖</h1><p>vim Gemfile 改为国内ruby源</p>
-<p>#bundle install –without development test<br>bundle install –without development test rmagick</p>
-<h1 id="Step-5-生成token"><a href="#Step-5-生成token" class="headerlink" title="Step 5  生成token"></a>Step 5  生成token</h1><p>bundle exec bin/rake generate_secret_token</p>
-<h1 id="Step-6-数据库见表"><a href="#Step-6-数据库见表" class="headerlink" title="Step 6　数据库见表"></a>Step 6　数据库见表</h1><p>RAILS_ENV=production bundle exec bin/rake db:migrate</p>
-<h1 id="Step-7-默认数据"><a href="#Step-7-默认数据" class="headerlink" title="Step 7 默认数据"></a>Step 7 默认数据</h1><p>RAILS_ENV=production bundle exec bin/rake redmine:load_default_dat</p>
-<h1 id="Step-8-文件权限"><a href="#Step-8-文件权限" class="headerlink" title="Step 8 文件权限"></a>Step 8 文件权限</h1><p>mkdir -p tmp tmp/pdf public/plugin_assets<br>sudo chown -R redmine:redmine files log tmp public/plugin_assets<br>sudo chmod -R 755 files log tmp public/plugin_assets</p>
-<h1 id="Step-9-测试安装"><a href="#Step-9-测试安装" class="headerlink" title="Step 9 测试安装"></a>Step 9 测试安装</h1><p>bundle exec bin/rails server -b 0.0.0.0 webrick -e production</p>
-<h1 id="Step-10-登录"><a href="#Step-10-登录" class="headerlink" title="Step 10 登录"></a>Step 10 登录</h1><p>login: admin<br>password: admin</p>
-<h1 id="装插件"><a href="#装插件" class="headerlink" title="装插件"></a>装插件</h1><p>git clone <a href="http://www.redmine.org/plugins/clipboard_image_paste" target="_blank" rel="external">http://www.redmine.org/plugins/clipboard_image_paste</a> plugin/clipboard_image_paste<br>git clone <a href="https://github.com/a-ono/redmine_ckeditor.git" target="_blank" rel="external">https://github.com/a-ono/redmine_ckeditor.git</a></p>
+        <h3 id="redmine-nginx-thin"><a href="#redmine-nginx-thin" class="headerlink" title="redmine + nginx + thin"></a>redmine + nginx + thin</h3><p>yum install git vim gem ruby-devel mysql-devel ImageMagick<br>gem install bundler</p>
+<h3 id="Step-1-下载redmine"><a href="#Step-1-下载redmine" class="headerlink" title="Step 1 下载redmine"></a>Step 1 下载redmine</h3><p>git clone <a href="https://github.com/redmine/redmine.git" target="_blank" rel="external">https://github.com/redmine/redmine.git</a><br>cd redmine<br>git checkout 3.3-stable</p>
+<h3 id="Step-2-Mysql"><a href="#Step-2-Mysql" class="headerlink" title="Step 2 Mysql"></a>Step 2 Mysql</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> redmine <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8;</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">'redmine'</span>@<span class="string">'%'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'xxxxxxxxxxxxxxx'</span>;</div><div class="line"><span class="keyword">GRANT</span> ALL <span class="keyword">PRIVILEGES</span> <span class="keyword">ON</span> redmine.* <span class="keyword">TO</span> <span class="string">'redmine'</span>@<span class="string">'%'</span>;</div><div class="line">#GRANT ALL PRIVILEGES ON redmine.* TO 'redmine'@'localhost' IDENTIFIED BY 'my_password';</div></pre></td></tr></table></figure>
+<h3 id="Step-3-配置"><a href="#Step-3-配置" class="headerlink" title="Step 3 配置"></a>Step 3 配置</h3><p>cp config/database.yml.example config/database.yml<br>vim config/database.yml<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="attr">production:</span></div><div class="line"><span class="attr">  adapter:</span> <span class="string">mysql2</span></div><div class="line"><span class="attr">  database:</span> <span class="string">redmine</span></div><div class="line"><span class="attr">  host:</span> <span class="string">dxty.tech</span></div><div class="line"><span class="attr">  username:</span> <span class="string">redmine</span></div><div class="line"><span class="attr">  password:</span> <span class="string">xxxxxxxxxxxxxxx</span></div></pre></td></tr></table></figure></p>
+<p>cp config/configuration.yml.example config/configuration.yml<br>vim config/configuration.yml<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="string">```yml</span></div><div class="line"><span class="attr">    email_delivery:</span></div><div class="line"><span class="attr">      delivery_method:</span> <span class="string">:smtp</span></div><div class="line"><span class="attr">      smtp_settings:</span></div><div class="line"><span class="attr">        address:</span> <span class="string">"smtp.mxhichina.com"</span></div><div class="line"><span class="attr">        port:</span> <span class="number">25</span></div><div class="line"><span class="attr">        authentication:</span> <span class="string">:plain</span></div><div class="line"><span class="attr">        domain:</span> <span class="string">'imlh.cn'</span></div><div class="line"><span class="attr">        user_name:</span> <span class="string">'dev@imlh.cn'</span></div><div class="line"><span class="attr">        password:</span> <span class="string">'sssssssssss'</span></div></pre></td></tr></table></figure></p>
+<h3 id="Step-4-依赖"><a href="#Step-4-依赖" class="headerlink" title="Step 4 依赖"></a>Step 4 依赖</h3><p>vim Gemfile 改为国内ruby源</p>
+<h4 id="bundle-install-–without-development-test"><a href="#bundle-install-–without-development-test" class="headerlink" title="bundle install –without development test"></a>bundle install –without development test</h4><p>bundle install –without development test rmagick</p>
+<h3 id="Step-5-生成token"><a href="#Step-5-生成token" class="headerlink" title="Step 5  生成token"></a>Step 5  生成token</h3><p>bundle exec bin/rake generate_secret_token</p>
+<h3 id="Step-6-数据库见表"><a href="#Step-6-数据库见表" class="headerlink" title="Step 6　数据库见表"></a>Step 6　数据库见表</h3><p>RAILS_ENV=production bundle exec bin/rake db:migrate</p>
+<h3 id="Step-7-默认数据"><a href="#Step-7-默认数据" class="headerlink" title="Step 7 默认数据"></a>Step 7 默认数据</h3><p>RAILS_ENV=production bundle exec bin/rake redmine:load_default_dat</p>
+<h3 id="Step-8-文件权限"><a href="#Step-8-文件权限" class="headerlink" title="Step 8 文件权限"></a>Step 8 文件权限</h3><p>mkdir -p tmp tmp/pdf public/plugin_assets<br>sudo chown -R redmine:redmine files log tmp public/plugin_assets<br>sudo chmod -R 755 files log tmp public/plugin_assets</p>
+<h3 id="Step-9-测试安装"><a href="#Step-9-测试安装" class="headerlink" title="Step 9 测试安装"></a>Step 9 测试安装</h3><p>bundle exec bin/rails server -b 0.0.0.0 webrick -e production</p>
+<h3 id="Step-10-登录"><a href="#Step-10-登录" class="headerlink" title="Step 10 登录"></a>Step 10 登录</h3><p>login: admin<br>password: admin</p>
+<h3 id="插件相关"><a href="#插件相关" class="headerlink" title="插件相关"></a>插件相关</h3><h4 id="装插件"><a href="#装插件" class="headerlink" title="装插件"></a>装插件</h4><p>git clone <a href="http://www.redmine.org/plugins/clipboard_image_paste" target="_blank" rel="external">http://www.redmine.org/plugins/clipboard_image_paste</a> plugin/clipboard_image_paste<br>git clone <a href="https://github.com/a-ono/redmine_ckeditor.git" target="_blank" rel="external">https://github.com/a-ono/redmine_ckeditor.git</a></p>
 <p>rake redmine:plugins:migrate RAILS_ENV=production</p>
-<h1 id="删插件"><a href="#删插件" class="headerlink" title="删插件"></a>删插件</h1><p>bundle exec rake redmine:plugins:migrate NAME=plugin_name VERSION=0 RAILS_ENV=production</p>
-<p>#<br><a href="https://github.com/centosadmin/redmine_activity_report.git" target="_blank" rel="external">https://github.com/centosadmin/redmine_activity_report.git</a><br>bundle exec whenever -c redmine_activity_report -f plugins/redmine_activity_report/config/schedule.rb</p>
-<h1 id="生产环境"><a href="#生产环境" class="headerlink" title="生产环境"></a>生产环境</h1><p>可用 passenter或webric或thin搭配nginx<br>这是 <a href="https://www.redmine.org/projects/redmine/wiki/HowTo_configure_Nginx_to_run_Redmine" target="_blank" rel="external">官方的thin教程</a></p>
-<h1 id="常用插件-贴一下"><a href="#常用插件-贴一下" class="headerlink" title="常用插件 贴一下"></a>常用插件 贴一下</h1><ul>
+<h4 id="删插件"><a href="#删插件" class="headerlink" title="删插件"></a>删插件</h4><p>bundle exec rake redmine:plugins:migrate NAME=plugin_name VERSION=0 RAILS_ENV=production</p>
+<p>####<br><a href="https://github.com/centosadmin/redmine_activity_report.git" target="_blank" rel="external">https://github.com/centosadmin/redmine_activity_report.git</a><br>bundle exec whenever -c redmine_activity_report -f plugins/redmine_activity_report/config/schedule.rb</p>
+<h4 id="生产环境"><a href="#生产环境" class="headerlink" title="生产环境"></a>生产环境</h4><p>可用 passenter或webric或thin搭配nginx<br>这是 <a href="https://www.redmine.org/projects/redmine/wiki/HowTo_configure_Nginx_to_run_Redmine" target="_blank" rel="external">官方的thin教程</a></p>
+<h4 id="常用插件-贴一下"><a href="#常用插件-贴一下" class="headerlink" title="常用插件 贴一下"></a>常用插件 贴一下</h4><ul>
 <li>clipboard_image_paste</li>
 <li>easy_gantt</li>
 <li>issue_charts</li>
@@ -429,7 +429,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/13/nginx前后端分离的应用/" rel="next" title="nginx前后端分离的应用">
+              <a href="/2017/08/13/dev/nginx前后端分离的应用/" rel="next" title="nginx前后端分离的应用">
                 <i class="fa fa-chevron-left"></i> nginx前后端分离的应用
               </a>
             
@@ -439,7 +439,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/13/fq/shadowsock翻墙/" rel="prev" title="shadowsock翻墙">
+              <a href="/2017/08/13/tools/shadowsock翻墙/" rel="prev" title="shadowsock翻墙">
                 shadowsock翻墙 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -525,7 +525,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -547,7 +547,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -582,7 +582,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#redmine-nginx-thin"><span class="nav-number">1.</span> <span class="nav-text">redmine + nginx + thin</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-1-下载redmine"><span class="nav-number">2.</span> <span class="nav-text">Step 1 下载redmine</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-2-Mysql"><span class="nav-number">3.</span> <span class="nav-text">Step 2 Mysql</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-3-配置"><span class="nav-number">4.</span> <span class="nav-text">Step 3 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SMTP-server-at-example-com-using-PLAIN-authentication"><span class="nav-number">4.1.</span> <span class="nav-text">==== SMTP server at example.com using PLAIN authentication</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-4-依赖"><span class="nav-number">5.</span> <span class="nav-text">Step 4 依赖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-5-生成token"><span class="nav-number">6.</span> <span class="nav-text">Step 5  生成token</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-6-数据库见表"><span class="nav-number">7.</span> <span class="nav-text">Step 6　数据库见表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-7-默认数据"><span class="nav-number">8.</span> <span class="nav-text">Step 7 默认数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-8-文件权限"><span class="nav-number">9.</span> <span class="nav-text">Step 8 文件权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-9-测试安装"><span class="nav-number">10.</span> <span class="nav-text">Step 9 测试安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Step-10-登录"><span class="nav-number">11.</span> <span class="nav-text">Step 10 登录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#装插件"><span class="nav-number">12.</span> <span class="nav-text">装插件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删插件"><span class="nav-number">13.</span> <span class="nav-text">删插件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生产环境"><span class="nav-number">14.</span> <span class="nav-text">生产环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用插件-贴一下"><span class="nav-number">15.</span> <span class="nav-text">常用插件 贴一下</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#redmine-nginx-thin"><span class="nav-number">1.</span> <span class="nav-text">redmine + nginx + thin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1-下载redmine"><span class="nav-number">2.</span> <span class="nav-text">Step 1 下载redmine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2-Mysql"><span class="nav-number">3.</span> <span class="nav-text">Step 2 Mysql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-3-配置"><span class="nav-number">4.</span> <span class="nav-text">Step 3 配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-4-依赖"><span class="nav-number">5.</span> <span class="nav-text">Step 4 依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#bundle-install-–without-development-test"><span class="nav-number">5.1.</span> <span class="nav-text">bundle install –without development test</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-5-生成token"><span class="nav-number">6.</span> <span class="nav-text">Step 5  生成token</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-6-数据库见表"><span class="nav-number">7.</span> <span class="nav-text">Step 6　数据库见表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-7-默认数据"><span class="nav-number">8.</span> <span class="nav-text">Step 7 默认数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-8-文件权限"><span class="nav-number">9.</span> <span class="nav-text">Step 8 文件权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-9-测试安装"><span class="nav-number">10.</span> <span class="nav-text">Step 9 测试安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-10-登录"><span class="nav-number">11.</span> <span class="nav-text">Step 10 登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件相关"><span class="nav-number">12.</span> <span class="nav-text">插件相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#装插件"><span class="nav-number">12.1.</span> <span class="nav-text">装插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删插件"><span class="nav-number">12.2.</span> <span class="nav-text">删插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生产环境"><span class="nav-number">12.3.</span> <span class="nav-text">生产环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用插件-贴一下"><span class="nav-number">12.4.</span> <span class="nav-text">常用插件 贴一下</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -731,8 +731,8 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://codecrop.cc/2017/08/13/redmine安装/';
-          this.page.identifier = '2017/08/13/redmine安装/';
+          this.page.url = 'http://codecrop.cc/2017/08/13/dev/redmine安装/';
+          this.page.identifier = '2017/08/13/dev/redmine安装/';
           this.page.title = 'redmine安装';
         };
         var d = document, s = d.createElement('script');
