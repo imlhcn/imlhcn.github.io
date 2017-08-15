@@ -76,7 +76,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="翻墙," />
+  <meta name="keywords" content="nginx," />
 
 
 
@@ -92,18 +92,18 @@
 
 
 
-<meta name="description" content="SSH -D首先，还是要有一台没被墙的机:10.0.0.112345678910sshusage: ssh [-1246AaCfGgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]           [-D [bind_address:]port] [-E log_file] [-e escape_char]           [-F co">
-<meta name="keywords" content="翻墙">
+<meta name="description" content="需求场景：做了好多SPA的子系统，但是只有一个域名，用nginx如何实现：http://myhost/app1http://myhost/app2http://myhost/app3访问到不同的 root? 栈爆上有人给出了答案https://stackoverflow.com/questions/31519505/how-to-setup-nginx-to-deploy-different-si">
+<meta name="keywords" content="nginx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ssh做socks5代理">
-<meta property="og:url" content="http://codecrop.cc/2017/08/14/tools/ssh做socks5代理/index.html">
+<meta property="og:title" content="nginx单域名挂多SPA">
+<meta property="og:url" content="http://codecrop.cc/2017/08/15/nginx/nginx单域名挂多SPA/index.html">
 <meta property="og:site_name" content="codecrop&#39;s blog">
-<meta property="og:description" content="SSH -D首先，还是要有一台没被墙的机:10.0.0.112345678910sshusage: ssh [-1246AaCfGgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]           [-D [bind_address:]port] [-E log_file] [-e escape_char]           [-F co">
+<meta property="og:description" content="需求场景：做了好多SPA的子系统，但是只有一个域名，用nginx如何实现：http://myhost/app1http://myhost/app2http://myhost/app3访问到不同的 root? 栈爆上有人给出了答案https://stackoverflow.com/questions/31519505/how-to-setup-nginx-to-deploy-different-si">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-14T13:48:17.000Z">
+<meta property="og:updated_time" content="2017-08-15T14:11:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ssh做socks5代理">
-<meta name="twitter:description" content="SSH -D首先，还是要有一台没被墙的机:10.0.0.112345678910sshusage: ssh [-1246AaCfGgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]           [-D [bind_address:]port] [-E log_file] [-e escape_char]           [-F co">
+<meta name="twitter:title" content="nginx单域名挂多SPA">
+<meta name="twitter:description" content="需求场景：做了好多SPA的子系统，但是只有一个域名，用nginx如何实现：http://myhost/app1http://myhost/app2http://myhost/app3访问到不同的 root? 栈爆上有人给出了答案https://stackoverflow.com/questions/31519505/how-to-setup-nginx-to-deploy-different-si">
 
 
 
@@ -132,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://codecrop.cc/2017/08/14/tools/ssh做socks5代理/"/>
+  <link rel="canonical" href="http://codecrop.cc/2017/08/15/nginx/nginx单域名挂多SPA/"/>
 
 
 
 
 
-  <title>ssh做socks5代理 | codecrop's blog</title>
+  <title>nginx单域名挂多SPA | codecrop's blog</title>
   
 
 
@@ -265,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://codecrop.cc/2017/08/14/tools/ssh做socks5代理/">
+    <link itemprop="mainEntityOfPage" href="http://codecrop.cc/2017/08/15/nginx/nginx单域名挂多SPA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="codecrop">
@@ -282,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ssh做socks5代理</h1>
+          <h1 class="post-title" itemprop="name headline">nginx单域名挂多SPA</h1>
         
 
         <div class="post-meta">
@@ -294,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T21:05:21+08:00">
-                2017-08-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-15T13:46:04+08:00">
+                2017-08-15
               </time>
             
 
@@ -305,28 +305,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/独家分享/" itemprop="url" rel="index">
-                    <span itemprop="name">独家分享</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -335,9 +313,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/08/14/tools/ssh做socks5代理/#comments" itemprop="discussionUrl">
+                <a href="/2017/08/15/nginx/nginx单域名挂多SPA/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/14/tools/ssh做socks5代理/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/08/15/nginx/nginx单域名挂多SPA/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -365,14 +343,24 @@
       
 
       
-        <h3 id="SSH-D"><a href="#SSH-D" class="headerlink" title="SSH -D"></a>SSH -D</h3><h4 id="首先，还是要有一台没被墙的机-10-0-0-1"><a href="#首先，还是要有一台没被墙的机-10-0-0-1" class="headerlink" title="首先，还是要有一台没被墙的机:10.0.0.1"></a>首先，还是要有一台没被墙的机:10.0.0.1</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">ssh</div><div class="line">usage: ssh [-1246AaCfGgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]</div><div class="line">           [-D [bind_address:]port] [-E log_file] [-e escape_char]</div><div class="line">           [-F configfile] [-I pkcs11] [-i identity_file]</div><div class="line">           [-J [user@]host[:port]] [-L address] [-l login_name] [-m mac_spec]</div><div class="line">           [-O ctl_cmd] [-o option] [-p port] [-Q query_option] [-R address]</div><div class="line">           [-S ctl_path] [-W host:port] [-w local_tun[:remote_tun]]</div><div class="line">           [user@]hostname [command]</div><div class="line"></div><div class="line">ssh -N -o ServerAliveInterval=180 -o ServerAliveCountMax=2 -D 7070 user@10.0.0.1 -i ~/.ssh/id_rsa</div></pre></td></tr></table></figure>
-<p>主要参数说明:<br>7070 为sock5的端口,user对应链接的用户,<br>简单的就是百度  “ssh免密登录”<br>id_rsa这个文件是标准的openssh 的sshkey,可以工具(ssh-keygen)生成，一般是一对的(id_rsa+id_rsa.pub)<br>需要把  id_rsa.pub的内容(单行的)放到 10.0.0.1 的  /home/user/.ssh/authorized_keys(注意 .ssh 和authorized_keys的权限644就好，太高了连不上)<br>连接有问题可以看看  /var/log/secure</p>
-<h4 id="在浏览器设置-socks5代理"><a href="#在浏览器设置-socks5代理" class="headerlink" title="在浏览器设置 socks5代理"></a>在浏览器设置 socks5代理</h4><p>参数 localhost:7070<br>OK,可以利用 10.0.0.1的网络上网</p>
-<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
-<li>某些系统有IP白名单限制，把白名单放10.0.0.1 然后本地的代理到7070即可，愉快调试了</li>
-<li>某台机只开了22(ssh)端口，上面挂了一个3306(mysql)只允许localhost访问，那么留意一下MYSQL客户端的（SSH Tunnel)这种连接方式</li>
+        <h4 id="需求场景："><a href="#需求场景：" class="headerlink" title="需求场景："></a>需求场景：</h4><p>做了好多SPA的子系统，但是只有一个域名，用nginx如何实现：<br><a href="http://myhost/app1" target="_blank" rel="external">http://myhost/app1</a><br><a href="http://myhost/app2" target="_blank" rel="external">http://myhost/app2</a><br><a href="http://myhost/app3" target="_blank" rel="external">http://myhost/app3</a><br>访问到不同的 root?</p>
+<p>栈爆上有人给出了答案<br><a href="https://stackoverflow.com/questions/31519505/how-to-setup-nginx-to-deploy-different-single-page-apps-spas-i-e-static-fil" target="_blank" rel="external">https://stackoverflow.com/questions/31519505/how-to-setup-nginx-to-deploy-different-single-page-apps-spas-i-e-static-fil</a></p>
+<p>结合给出的方案，优化了一下，如题配置如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">location /games &#123;</div><div class="line">    alias /dxg/dist/dxg-games-ui;</div><div class="line">    index index.html;</div><div class="line">    try_files $uri $uri/ /index.html =404;</div><div class="line">&#125;</div><div class="line"></div><div class="line">location /tgy &#123;</div><div class="line">    alias /dxg/dist/dxg-tgy-ui;</div><div class="line">    index index.html;</div><div class="line">    try_files $uri $uri/ /index.html =404;</div><div class="line">&#125;</div><div class="line"></div><div class="line">location /tgs &#123;</div><div class="line">    alias /dxg/dist/dxg-spread-ui;</div><div class="line">    index index.html;</div><div class="line">    try_files $uri $uri/ /index.html =404;</div><div class="line">&#125;</div><div class="line"></div><div class="line">location /static &#123;</div><div class="line">    if ($http_referer ~* &quot;(.*)/tgs(.*)&quot;) &#123;</div><div class="line">       rewrite /static/(.*) /tgs/static/$1 redirect;</div><div class="line">    &#125;</div><div class="line">    if ($http_referer ~* &quot;(.*)/games(.*)&quot;) &#123;</div><div class="line">       rewrite /static/(.*) /games/static/$1 redirect;</div><div class="line">    &#125;</div><div class="line">    if ($http_referer ~* &quot;(.*)/tgy(.*)&quot;) &#123;</div><div class="line">       rewrite /static/(.*) /tgy/static/$1 redirect;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">location ~ /api|/zuul &#123;</div><div class="line">    proxy_set_header Host $http_host;</div><div class="line">    proxy_set_header X-Real-IP $remote_addr;</div><div class="line">    proxy_set_header X-Scheme $scheme;</div><div class="line">    proxy_pass       http://localhost:8880;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>对应的SPA代码是需要调整的(以vue为例)。</p>
+<ol>
+<li><p>vue-router 需要加个 alias 前缀，保证  /tgy  和  / 访问的都是 根目录</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 重写 routes,利用 alias实现，所有的路由前缀 可有可无</span></div><div class="line"><span class="keyword">let</span> aliaPrefix = <span class="string">'/tgy'</span> <span class="comment">// 注意不同系统用相应的别名</span></div><div class="line">routes = routes.map(<span class="function">(<span class="params">route</span>) =&gt;</span> &#123;</div><div class="line">  route.alias = aliaPrefix + route.path</div><div class="line">  <span class="keyword">return</span> route</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>由于第一步，需要在路由，自动加上前缀，否则，页面强制刷新后，会404，逻辑如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> aliaPrefix=<span class="string">'/tgs'</span></div><div class="line"><span class="comment">// 路由拦截</span></div><div class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">from</span>.path.indexOf(aliaPrefix) &gt; <span class="number">-1</span> &amp;&amp; to.path.indexOf(aliaPrefix) !== <span class="number">0</span>) &#123;</div><div class="line">    next(&#123;<span class="attr">path</span>: aliaPrefix + to.path&#125;)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (to.matched.some(<span class="function"><span class="params">r</span> =&gt;</span> r.meta.requireAuth)) &#123;</div><div class="line">    <span class="keyword">if</span> (sessionStorage.getItem(<span class="string">'token'</span>)) &#123;</div><div class="line">      next()</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">if</span> (<span class="keyword">from</span>.path.indexOf(aliaPrefix) &gt; <span class="number">-1</span>) &#123;</div><div class="line">        next(&#123;<span class="attr">path</span>: aliaPrefix + <span class="string">'/login'</span>&#125;)</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        next(&#123;<span class="attr">path</span>: <span class="string">'/login'</span>&#125;)</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    next()</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>注意 nginx配置里面关于 /static部分，是基于 refrer 和前缀配合第二点一起解决了两个问题</p>
+</li>
+</ol>
+<ul>
+<li>/static/ 文件会自动切换到 相应的  /tgs/static,解决资源的404问题</li>
+<li>一旦访问有 /tgs/，那么所有的路由都会自动加上  /tgs/前缀，解决了刷新后404的问题</li>
 </ul>
-<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><h4 id="某些软件只支持-http代理，怎么破？"><a href="#某些软件只支持-http代理，怎么破？" class="headerlink" title="某些软件只支持 http代理，怎么破？"></a>某些软件只支持 http代理，怎么破？</h4><p>有 privoxy 或proxychains 可以将socks转为http</p>
 
       
     </div>
@@ -390,7 +378,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/翻墙/" rel="tag"># 翻墙</a>
+            <a href="/tags/nginx/" rel="tag"># nginx</a>
           
         </div>
       
@@ -403,8 +391,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/13/tools/改host免流量翻墙/" rel="next" title="改host免流量翻墙">
-                <i class="fa fa-chevron-left"></i> 改host免流量翻墙
+              <a href="/2017/08/14/collection/资源收集/" rel="next" title="资源收集">
+                <i class="fa fa-chevron-left"></i> 资源收集
               </a>
             
           </div>
@@ -412,10 +400,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/14/collection/资源收集/" rel="prev" title="资源收集">
-                资源收集 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -556,7 +540,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH-D"><span class="nav-number">1.</span> <span class="nav-text">SSH -D</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先，还是要有一台没被墙的机-10-0-0-1"><span class="nav-number">1.1.</span> <span class="nav-text">首先，还是要有一台没被墙的机:10.0.0.1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在浏览器设置-socks5代理"><span class="nav-number">1.2.</span> <span class="nav-text">在浏览器设置 socks5代理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景"><span class="nav-number">2.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展"><span class="nav-number">3.</span> <span class="nav-text">扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#某些软件只支持-http代理，怎么破？"><span class="nav-number">3.1.</span> <span class="nav-text">某些软件只支持 http代理，怎么破？</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#需求场景："><span class="nav-number">1.</span> <span class="nav-text">需求场景：</span></a></li></ol></div>
             
 
           </div>
@@ -705,9 +689,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://codecrop.cc/2017/08/14/tools/ssh做socks5代理/';
-          this.page.identifier = '2017/08/14/tools/ssh做socks5代理/';
-          this.page.title = 'ssh做socks5代理';
+          this.page.url = 'http://codecrop.cc/2017/08/15/nginx/nginx单域名挂多SPA/';
+          this.page.identifier = '2017/08/15/nginx/nginx单域名挂多SPA/';
+          this.page.title = 'nginx单域名挂多SPA';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://imlh.disqus.com/embed.js';
