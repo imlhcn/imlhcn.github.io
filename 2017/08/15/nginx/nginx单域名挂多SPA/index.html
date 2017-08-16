@@ -96,11 +96,11 @@
 <meta name="keywords" content="nginx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nginx单域名挂多SPA">
-<meta property="og:url" content="http://codecrop.cc/2017/08/15/nginx/nginx单域名挂多SPA/index.html">
-<meta property="og:site_name" content="codecrop&#39;s blog">
+<meta property="og:url" content="http://coderider.cc/2017/08/15/nginx/nginx单域名挂多SPA/index.html">
+<meta property="og:site_name" content="coderider&#39;s blog">
 <meta property="og:description" content="需求场景：做了好多SPA的子系统，但是只有一个域名，用nginx如何实现：http://myhost/app1http://myhost/app2http://myhost/app3访问到不同的 root? 栈爆上有人给出了答案https://stackoverflow.com/questions/31519505/how-to-setup-nginx-to-deploy-different-si">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-15T14:23:18.000Z">
+<meta property="og:updated_time" content="2017-08-16T06:23:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx单域名挂多SPA">
 <meta name="twitter:description" content="需求场景：做了好多SPA的子系统，但是只有一个域名，用nginx如何实现：http://myhost/app1http://myhost/app2http://myhost/app3访问到不同的 root? 栈爆上有人给出了答案https://stackoverflow.com/questions/31519505/how-to-setup-nginx-to-deploy-different-si">
@@ -132,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://codecrop.cc/2017/08/15/nginx/nginx单域名挂多SPA/"/>
+  <link rel="canonical" href="http://coderider.cc/2017/08/15/nginx/nginx单域名挂多SPA/"/>
 
 
 
 
 
-  <title>nginx单域名挂多SPA | codecrop's blog</title>
+  <title>nginx单域名挂多SPA | coderider's blog</title>
   
 
 
@@ -168,12 +168,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">codecrop's blog</span>
+        <span class="site-title">coderider's blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle">码行天下</p>
+        <p class="site-subtitle">行码走天下</p>
       
   </div>
 
@@ -265,16 +265,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://codecrop.cc/2017/08/15/nginx/nginx单域名挂多SPA/">
+    <link itemprop="mainEntityOfPage" href="http://coderider.cc/2017/08/15/nginx/nginx单域名挂多SPA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="codecrop">
+      <meta itemprop="name" content="codecropper">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="codecrop's blog">
+      <meta itemprop="name" content="coderider's blog">
     </span>
 
     
@@ -348,14 +348,15 @@
 <p>结合给出的方案，优化了一下，如题配置如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">location /games &#123;</div><div class="line">    alias /dxg/dist/dxg-games-ui;</div><div class="line">    index index.html;</div><div class="line">    try_files $uri $uri/ /index.html =404;</div><div class="line">&#125;</div><div class="line"></div><div class="line">location /tgy &#123;</div><div class="line">    alias /dxg/dist/dxg-tgy-ui;</div><div class="line">    index index.html;</div><div class="line">    try_files $uri $uri/ /index.html =404;</div><div class="line">&#125;</div><div class="line"></div><div class="line">location /tgs &#123;</div><div class="line">    alias /dxg/dist/dxg-spread-ui;</div><div class="line">    index index.html;</div><div class="line">    try_files $uri $uri/ /index.html =404;</div><div class="line">&#125;</div><div class="line"></div><div class="line">location /static &#123;</div><div class="line">    if ($http_referer ~* &quot;(.*)/tgs(.*)&quot;) &#123;</div><div class="line">       rewrite /static/(.*) /tgs/static/$1 redirect;</div><div class="line">    &#125;</div><div class="line">    if ($http_referer ~* &quot;(.*)/games(.*)&quot;) &#123;</div><div class="line">       rewrite /static/(.*) /games/static/$1 redirect;</div><div class="line">    &#125;</div><div class="line">    if ($http_referer ~* &quot;(.*)/tgy(.*)&quot;) &#123;</div><div class="line">       rewrite /static/(.*) /tgy/static/$1 redirect;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">location ~ /api|/zuul &#123;</div><div class="line">    proxy_set_header Host $http_host;</div><div class="line">    proxy_set_header X-Real-IP $remote_addr;</div><div class="line">    proxy_set_header X-Scheme $scheme;</div><div class="line">    proxy_pass       http://localhost:8880;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>对应的SPA代码是需要调整的(以vue为例)。</p>
 <ol>
-<li><p>vue-router 需要加个 alias 前缀，保证  /tgy  和  / 访问的都是 根目录</p>
+<li>vue-router 需要加个 alias 前缀，保证  /tgy  和  / 访问的都是 根目录</li>
+</ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 重写 routes,利用 alias实现，所有的路由前缀 可有可无</span></div><div class="line"><span class="keyword">let</span> aliasPrefix = <span class="string">'/tgy'</span> <span class="comment">// 注意不同系统用相应的别名</span></div><div class="line">routes = routes.map(<span class="function">(<span class="params">route</span>) =&gt;</span> &#123;</div><div class="line">  route.alias = aliasPrefix + route.path</div><div class="line">  <span class="keyword">return</span> route</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-</li>
-<li><p>由于第一步，需要在路由，自动加上前缀，否则，页面强制刷新后，会404，逻辑如下</p>
+<ol>
+<li>由于第一步，需要在路由，自动加上前缀，否则，页面强制刷新后，会404，逻辑如下</li>
+</ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 路由拦截</span></div><div class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">from</span>.path.indexOf(aliasPrefix) &gt; <span class="number">-1</span> &amp;&amp; to.path.indexOf(aliasPrefix) !== <span class="number">0</span>) &#123;</div><div class="line">    next(&#123;<span class="attr">path</span>: aliasPrefix + to.path&#125;)</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    next()</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-</li>
-<li><p>注意 nginx配置里面关于 /static部分，是基于 refrer 和前缀配合第二点一起解决了两个问题</p>
-</li>
+<ol>
+<li>注意 nginx配置里面关于 /static部分，是基于 refrer 和前缀配合第二点一起解决了两个问题</li>
 </ol>
 <ul>
 <li>/static/ 文件会自动切换到 相应的  /tgs/static,解决资源的404问题</li>
@@ -476,8 +477,8 @@
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
-               alt="codecrop" />
-          <p class="site-author-name" itemprop="name">codecrop</p>
+               alt="codecropper" />
+          <p class="site-author-name" itemprop="name">codecropper</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
           
@@ -487,7 +488,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -571,7 +572,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">codecrop</span>
+  <span class="author" itemprop="copyrightHolder">codecropper</span>
 </div>
 
 
@@ -693,7 +694,7 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://codecrop.cc/2017/08/15/nginx/nginx单域名挂多SPA/';
+          this.page.url = 'http://coderider.cc/2017/08/15/nginx/nginx单域名挂多SPA/';
           this.page.identifier = '2017/08/15/nginx/nginx单域名挂多SPA/';
           this.page.title = 'nginx单域名挂多SPA';
         };
