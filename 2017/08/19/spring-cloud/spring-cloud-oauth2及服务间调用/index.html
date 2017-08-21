@@ -76,7 +76,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="nginx," />
+  <meta name="keywords" content="spring-cloud," />
 
 
 
@@ -92,18 +92,18 @@
 
 
 
-<meta name="description" content="需求场景：做了好多SPA的子系统，但是只有一个域名，用nginx如何实现：http://myhost/app1http://myhost/app2http://myhost/app3访问到不同的 root? 栈爆上有人给出了答案https://stackoverflow.com/questions/31519505/how-to-setup-nginx-to-deploy-different-si">
-<meta name="keywords" content="nginx">
+<meta name="description" content="spring-boot initializr12345678910111213141516171819# 参数参考 https://github.com/spring-io/initializr/  http://docs.spring.io/initializr/docs/current-SNAPSHOT/reference/htmlsingle/#metadata-format# curl -">
+<meta name="keywords" content="spring-cloud">
 <meta property="og:type" content="article">
-<meta property="og:title" content="nginx单域名挂多SPA">
-<meta property="og:url" content="http://coderider.cc/2017/08/15/nginx/nginx单域名挂多SPA/index.html">
+<meta property="og:title" content="spring-cloud oauth2及服务间调用">
+<meta property="og:url" content="http://coderider.cc/2017/08/19/spring-cloud/spring-cloud-oauth2及服务间调用/index.html">
 <meta property="og:site_name" content="coderider&#39;s blog">
-<meta property="og:description" content="需求场景：做了好多SPA的子系统，但是只有一个域名，用nginx如何实现：http://myhost/app1http://myhost/app2http://myhost/app3访问到不同的 root? 栈爆上有人给出了答案https://stackoverflow.com/questions/31519505/how-to-setup-nginx-to-deploy-different-si">
+<meta property="og:description" content="spring-boot initializr12345678910111213141516171819# 参数参考 https://github.com/spring-io/initializr/  http://docs.spring.io/initializr/docs/current-SNAPSHOT/reference/htmlsingle/#metadata-format# curl -">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-16T06:23:48.000Z">
+<meta property="og:updated_time" content="2017-08-21T07:53:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="nginx单域名挂多SPA">
-<meta name="twitter:description" content="需求场景：做了好多SPA的子系统，但是只有一个域名，用nginx如何实现：http://myhost/app1http://myhost/app2http://myhost/app3访问到不同的 root? 栈爆上有人给出了答案https://stackoverflow.com/questions/31519505/how-to-setup-nginx-to-deploy-different-si">
+<meta name="twitter:title" content="spring-cloud oauth2及服务间调用">
+<meta name="twitter:description" content="spring-boot initializr12345678910111213141516171819# 参数参考 https://github.com/spring-io/initializr/  http://docs.spring.io/initializr/docs/current-SNAPSHOT/reference/htmlsingle/#metadata-format# curl -">
 
 
 
@@ -132,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://coderider.cc/2017/08/15/nginx/nginx单域名挂多SPA/"/>
+  <link rel="canonical" href="http://coderider.cc/2017/08/19/spring-cloud/spring-cloud-oauth2及服务间调用/"/>
 
 
 
 
 
-  <title>nginx单域名挂多SPA | coderider's blog</title>
+  <title>spring-cloud oauth2及服务间调用 | coderider's blog</title>
   
 
 
@@ -265,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://coderider.cc/2017/08/15/nginx/nginx单域名挂多SPA/">
+    <link itemprop="mainEntityOfPage" href="http://coderider.cc/2017/08/19/spring-cloud/spring-cloud-oauth2及服务间调用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="coderider">
@@ -282,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">nginx单域名挂多SPA</h1>
+          <h1 class="post-title" itemprop="name headline">spring-cloud oauth2及服务间调用</h1>
         
 
         <div class="post-meta">
@@ -294,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-15T13:46:04+08:00">
-                2017-08-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-19T11:16:29+08:00">
+                2017-08-19
               </time>
             
 
@@ -305,6 +305,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -313,9 +335,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/08/15/nginx/nginx单域名挂多SPA/#comments" itemprop="discussionUrl">
+                <a href="/2017/08/19/spring-cloud/spring-cloud-oauth2及服务间调用/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/15/nginx/nginx单域名挂多SPA/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/08/19/spring-cloud/spring-cloud-oauth2及服务间调用/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -343,25 +365,8 @@
       
 
       
-        <h4 id="需求场景："><a href="#需求场景：" class="headerlink" title="需求场景："></a>需求场景：</h4><p>做了好多SPA的子系统，但是只有一个域名，用nginx如何实现：<br><a href="http://myhost/app1" target="_blank" rel="external">http://myhost/app1</a><br><a href="http://myhost/app2" target="_blank" rel="external">http://myhost/app2</a><br><a href="http://myhost/app3" target="_blank" rel="external">http://myhost/app3</a><br>访问到不同的 root?</p>
-<p>栈爆上有人给出了答案<br><a href="https://stackoverflow.com/questions/31519505/how-to-setup-nginx-to-deploy-different-single-page-apps-spas-i-e-static-fil" target="_blank" rel="external">https://stackoverflow.com/questions/31519505/how-to-setup-nginx-to-deploy-different-single-page-apps-spas-i-e-static-fil</a></p>
-<p>结合给出的方案，优化了一下，如题配置如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">location /games &#123;</div><div class="line">    alias /dxg/dist/dxg-games-ui;</div><div class="line">    index index.html;</div><div class="line">    try_files $uri $uri/ /index.html =404;</div><div class="line">&#125;</div><div class="line"></div><div class="line">location /tgy &#123;</div><div class="line">    alias /dxg/dist/dxg-tgy-ui;</div><div class="line">    index index.html;</div><div class="line">    try_files $uri $uri/ /index.html =404;</div><div class="line">&#125;</div><div class="line"></div><div class="line">location /tgs &#123;</div><div class="line">    alias /dxg/dist/dxg-spread-ui;</div><div class="line">    index index.html;</div><div class="line">    try_files $uri $uri/ /index.html =404;</div><div class="line">&#125;</div><div class="line"></div><div class="line">location /static &#123;</div><div class="line">    if ($http_referer ~* &quot;(.*)/tgs(.*)&quot;) &#123;</div><div class="line">       rewrite /static/(.*) /tgs/static/$1 redirect;</div><div class="line">    &#125;</div><div class="line">    if ($http_referer ~* &quot;(.*)/games(.*)&quot;) &#123;</div><div class="line">       rewrite /static/(.*) /games/static/$1 redirect;</div><div class="line">    &#125;</div><div class="line">    if ($http_referer ~* &quot;(.*)/tgy(.*)&quot;) &#123;</div><div class="line">       rewrite /static/(.*) /tgy/static/$1 redirect;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">location ~ /api|/zuul &#123;</div><div class="line">    proxy_set_header Host $http_host;</div><div class="line">    proxy_set_header X-Real-IP $remote_addr;</div><div class="line">    proxy_set_header X-Scheme $scheme;</div><div class="line">    proxy_pass       http://localhost:8880;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>对应的SPA代码是需要调整的(以vue为例)。</p>
-<ol>
-<li>vue-router 需要加个 alias 前缀，保证  /tgy  和  / 访问的都是 根目录</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 重写 routes,利用 alias实现，所有的路由前缀 可有可无</span></div><div class="line"><span class="keyword">let</span> aliasPrefix = <span class="string">'/tgy'</span> <span class="comment">// 注意不同系统用相应的别名</span></div><div class="line">routes = routes.map(<span class="function">(<span class="params">route</span>) =&gt;</span> &#123;</div><div class="line">  route.alias = aliasPrefix + route.path</div><div class="line">  <span class="keyword">return</span> route</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<ol>
-<li>由于第一步，需要在路由，自动加上前缀，否则，页面强制刷新后，会404，逻辑如下</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 路由拦截</span></div><div class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">from</span>.path.indexOf(aliasPrefix) &gt; <span class="number">-1</span> &amp;&amp; to.path.indexOf(aliasPrefix) !== <span class="number">0</span>) &#123;</div><div class="line">    next(&#123;<span class="attr">path</span>: aliasPrefix + to.path&#125;)</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    next()</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<ol>
-<li>注意 nginx配置里面关于 /static部分，是基于 refrer 和前缀配合第二点一起解决了两个问题</li>
-</ol>
-<ul>
-<li>/static/ 文件会自动切换到 相应的  /tgs/static,解决资源的404问题</li>
-<li>一旦访问有 /tgs/，那么所有的路由都会自动加上  /tgs/前缀，解决了刷新后404的问题</li>
-</ul>
+        <h3 id="spring-boot-initializr"><a href="#spring-boot-initializr" class="headerlink" title="spring-boot initializr"></a>spring-boot initializr</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 参数参考 https://github.com/spring-io/initializr/  http://docs.spring.io/initializr/docs/current-SNAPSHOT/reference/htmlsingle/#metadata-format</span></div><div class="line"><span class="comment"># curl -H 'Accept: application/json' https://start.spring.io</span></div><div class="line">mkdir coderider.cc &amp;&amp; <span class="built_in">cd</span> coderider.cc </div><div class="line"><span class="comment"># oauth server</span></div><div class="line">curl https://start.spring.io/starter.tgz -d language=groovy -d <span class="built_in">type</span>=maven-project \</div><div class="line">-d javaVersion=1.8 -d bootVersion=1.5.6.RELEASE \</div><div class="line">-d groupId=cc.coderider -d artifactId=oauth2s -d baseDir=oauth2s -d name=OAuth2Server \</div><div class="line">-d dependencies=web,devtools,security,cloud-oauth2 \</div><div class="line">-d description=<span class="string">"oauth2 server"</span> \</div><div class="line">|tar -xzvf -</div><div class="line"></div><div class="line"><span class="comment"># service1</span></div><div class="line">curl https://start.spring.io/starter.tgz -d language=java -d <span class="built_in">type</span>=maven-project \</div><div class="line">-d baseDir=service1 -d dependencies=web,devtools  |tar -xzvf -</div><div class="line"><span class="comment"># service2</span></div><div class="line">curl https://start.spring.io/starter.tgz -d language=java -d <span class="built_in">type</span>=maven-project \</div><div class="line">-d baseDir=service2 -d dependencies=web,devtools  |tar -xzvf -</div><div class="line"></div><div class="line"><span class="comment"># vue fronend</span></div></pre></td></tr></table></figure>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="https://jhipster.github.io/using-uaa/" target="_blank" rel="external">jhipster uaa</a><br><a href="http://stytex.de/blog/2016/02/01/spring-cloud-security-with-oauth2/" target="_blank" rel="external">spring-cloud-security-with-oauth2</a><br><a href="https://tools.ietf.org/html/rfc6749#section-4" target="_blank" rel="external">oauth2</a><br><a href="http://projects.spring.io/spring-security/" target="_blank" rel="external">spring-security</a><br><a href="https://projects.spring.io/spring-security-oauth/" target="_blank" rel="external">spring-security-oauth</a><br><a href="https://projects.spring.io/spring-security-oauth/docs/oauth2.html" target="_blank" rel="external">spring-security-oauth2</a><br><a href="https://github.com/spring-projects/spring-security-oauth/tree/master/samples/oauth2" target="_blank" rel="external">https://github.com/spring-projects/spring-security-oauth/tree/master/samples/oauth2</a></p>
 
       
     </div>
@@ -379,7 +384,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/nginx/" rel="tag"># nginx</a>
+            <a href="/tags/spring-cloud/" rel="tag"># spring-cloud</a>
           
         </div>
       
@@ -392,8 +397,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/14/collection/大前端资料/" rel="next" title="大前端资料">
-                <i class="fa fa-chevron-left"></i> 大前端资料
+              <a href="/2017/08/18/collection/spring-cloud/" rel="next" title="spring-cloud">
+                <i class="fa fa-chevron-left"></i> spring-cloud
               </a>
             
           </div>
@@ -401,10 +406,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/16/spring-cloud/spring-cloud-config遭遇HostKey问题解决/" rel="prev" title="spring-cloud config遭遇HostKey问题解决">
-                spring-cloud config遭遇HostKey问题解决 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -545,7 +546,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#需求场景："><span class="nav-number">1.</span> <span class="nav-text">需求场景：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-boot-initializr"><span class="nav-number">1.</span> <span class="nav-text">spring-boot initializr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -701,9 +702,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://coderider.cc/2017/08/15/nginx/nginx单域名挂多SPA/';
-          this.page.identifier = '2017/08/15/nginx/nginx单域名挂多SPA/';
-          this.page.title = 'nginx单域名挂多SPA';
+          this.page.url = 'http://coderider.cc/2017/08/19/spring-cloud/spring-cloud-oauth2及服务间调用/';
+          this.page.identifier = '2017/08/19/spring-cloud/spring-cloud-oauth2及服务间调用/';
+          this.page.title = 'spring-cloud oauth2及服务间调用';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://imlh.disqus.com/embed.js';
