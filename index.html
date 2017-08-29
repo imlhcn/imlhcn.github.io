@@ -262,6 +262,138 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://coderider.cc/2017/08/29/spring-boot/SpringMvc-中文编码问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="coderider">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/static/img/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="coderider's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/29/spring-boot/SpringMvc-中文编码问题/" itemprop="url">SpringMvc 中文编码问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-29T21:29:39+08:00">
+                2017-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/29/spring-boot/SpringMvc-中文编码问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/29/spring-boot/SpringMvc-中文编码问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="不用utf8-就是坑"><a href="#不用utf8-就是坑" class="headerlink" title="不用utf8 就是坑"></a>不用utf8 就是坑</h1><p>最近对接某 .net系统的接口，对方的一个接口用get传中文，里面的url参数用gb2312编码 类似<br>curl <a href="http://localhost:8080/req\" target="_blank" rel="external">http://localhost:8080/req\</a><br>?params=100AbC%E4%B8%AD%E6%96%87\<br>&amp;params=100AbC%3F%3F\<br>&amp;params=100AbC%D6%D0%CE%C4\<br>&amp;params=100AbC%D6%D0%CE%C4</p>
+<p>参数用了4种编码：”UTF-8”, “ISO-8859-1”, “GBK”, “gb2312”<br>方向走错于是进行了各种尝试…..<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@GetMapping</span>(<span class="string">"/bytes"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bytes</span><span class="params">(<span class="keyword">byte</span>[] params)</span></span>&#123;&#125;<span class="comment">//此路不通</span></div><div class="line"></div><div class="line"><span class="meta">@GetMapping</span>(<span class="string">"/req"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">req</span><span class="params">(HttpServletRequest req)</span> </span>&#123;</div><div class="line">    String [] params=req.getParameters(<span class="string">"param"</span>);<span class="comment">// 此路不通，一开始只想到这里，然后绕远了</span></div><div class="line">    <span class="comment">// 尝试各种转换浪费了半天生命...............</span></div><div class="line">    <span class="keyword">return</span> ;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 结果 ----------------------------------------</span></div><div class="line"><span class="comment">// 发现SpringMvc自动组装参数的编码是根据 URIEncoding这个值全局的，不可能为你一个接口改了全局配置</span></div><div class="line"><span class="comment">// 那么只能绕过框架自动处理的,估计是今天没睡好，上一步差一点点了居然没想到</span></div><div class="line"><span class="meta">@GetMapping</span>(<span class="string">"/req"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">req</span><span class="params">(HttpServletRequest req)</span> </span>&#123;</div><div class="line">    String query = req.getQueryString();<span class="comment">// 用这个手动来即可</span></div><div class="line">    URLDecoder.decode(query,<span class="string">"gb2312"</span>);<span class="comment">//</span></div><div class="line">    <span class="keyword">return</span> ;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://coderider.cc/2017/08/25/spring-boot/spring-boot酸爽debug之路/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -418,7 +550,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/25/git/git-subtree/" itemprop="url">git subtree</a></h1>
+                <a class="post-title-link" href="/2017/08/25/git/git-subtree/" itemprop="url">git 收集</a></h1>
         
 
         <div class="post-meta">
@@ -482,6 +614,8 @@
         
           
             <p><a href="http://www.jianshu.com/p/3096069e9b72" target="_blank" rel="external">http://www.jianshu.com/p/3096069e9b72</a></p>
+<p><a href="http://yongpoliu.com/reorganize-git-local-commits/" target="_blank" rel="external">http://yongpoliu.com/reorganize-git-local-commits/</a></p>
+<p><a href="https://backlogtool.com/git-tutorial/cn/" target="_blank" rel="external">https://backlogtool.com/git-tutorial/cn/</a></p>
 
           
         
@@ -926,7 +1060,7 @@
 <li><p>还有 @EnableEurekaClient等注解也在前一次已经提交</p>
 </li>
 </ol>
-<h2 id="Step-5-Consumer-Service"><a href="#Step-5-Consumer-Service" class="headerlink" title="Step 5: Consumer Service"></a>Step 5: Consumer Service</h2><h3 id="ProviderClient-顺手加了个hystrix-还没测试，不了解的可以忽略）"><a href="#ProviderClient-顺手加了个hystrix-还没测试，不了解的可以忽略）" class="headerlink" title="ProviderClient(顺手加了个hystrix,还没测试，不了解的可以忽略）"></a>ProviderClient(顺手加了个hystrix,还没测试，不了解的可以忽略）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@FeignClient</span>(value = <span class="string">"provider-service"</span>, fallback = ProviderClient.ProviderClientHystrix.class)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ProviderClient</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 不加 @RequestParam 的value也报错</span></div><div class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/add"</span>)</div><div class="line">    <span class="function">CalcResult <span class="title">add</span><span class="params">(</span></span></div><div class="line"><span class="function"><span class="params">            @RequestParam(value = <span class="string">"a"</span>,required = <span class="keyword">false</span>, defaultValue = <span class="string">"0"</span>)</span> <span class="keyword">int</span> a,</span></div><div class="line"><span class="function">            @<span class="title">RequestParam</span><span class="params">(value = <span class="string">"a"</span>,required = <span class="keyword">false</span>, defaultValue = <span class="string">"0"</span>)</span> <span class="keyword">int</span> b)</span>;</div><div class="line">...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Step-5-Consumer-Service"><a href="#Step-5-Consumer-Service" class="headerlink" title="Step 5: Consumer Service"></a>Step 5: Consumer Service</h2><h3 id="ProviderClient-顺手加了个hystrix-还没测试，不了解的可以忽略）"><a href="#ProviderClient-顺手加了个hystrix-还没测试，不了解的可以忽略）" class="headerlink" title="ProviderClient(顺手加了个hystrix,还没测试，不了解的可以忽略）"></a>ProviderClient(顺手加了个hystrix,还没测试，不了解的可以忽略）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@FeignClient</span>(value = <span class="string">"provider-service"</span>, fallback = ProviderClientHystrix.class)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ProviderClient</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 不加 @RequestParam 的value也报错</span></div><div class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/add"</span>)</div><div class="line">    <span class="function">CalcResult <span class="title">add</span><span class="params">(</span></span></div><div class="line"><span class="function"><span class="params">            @RequestParam(value = <span class="string">"a"</span>,required = <span class="keyword">false</span>, defaultValue = <span class="string">"0"</span>)</span> <span class="keyword">int</span> a,</span></div><div class="line"><span class="function">            @<span class="title">RequestParam</span><span class="params">(value = <span class="string">"a"</span>,required = <span class="keyword">false</span>, defaultValue = <span class="string">"0"</span>)</span> <span class="keyword">int</span> b)</span>;</div><div class="line">...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="FeignClient结合oauth2的关键代码，就是加一个拦截器使用-client-credentials-去获取-token"><a href="#FeignClient结合oauth2的关键代码，就是加一个拦截器使用-client-credentials-去获取-token" class="headerlink" title="FeignClient结合oauth2的关键代码，就是加一个拦截器使用 client_credentials 去获取 token"></a>FeignClient结合oauth2的关键代码，就是加一个拦截器使用 client_credentials 去获取 token</h3><h4 id="ClientCredentials写到了yml"><a href="#ClientCredentials写到了yml" class="headerlink" title="ClientCredentials写到了yml"></a>ClientCredentials写到了yml</h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="attr">security:</span></div><div class="line"><span class="attr">  oauth2:</span></div><div class="line"><span class="attr">    client:</span></div><div class="line"><span class="attr">      clientId:</span> <span class="string">micro-service</span></div><div class="line"><span class="attr">      clientSecret:</span> <span class="string">service-to-service-call-secret</span></div><div class="line"><span class="attr">      accessTokenUri:</span> <span class="attr">http://localhost:6660/oauth/token</span></div><div class="line"><span class="attr">      grant-type:</span> <span class="string">client_credentials</span></div><div class="line"><span class="attr">      scope:</span> <span class="string">service</span></div><div class="line"><span class="attr">    resource:</span></div><div class="line"><span class="attr">      user-info-uri:</span> <span class="attr">http://localhost:6660/me</span></div></pre></td></tr></table></figure>
 <h4 id="而拦截器直接配置即可，没有的话就是调feign时401（因为不会自己拿token和加token"><a href="#而拦截器直接配置即可，没有的话就是调feign时401（因为不会自己拿token和加token" class="headerlink" title="而拦截器直接配置即可，没有的话就是调feign时401（因为不会自己拿token和加token)"></a>而拦截器直接配置即可，没有的话就是调feign时401（因为不会自己拿token和加token)</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Configuration</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FeignConfig</span> </span>&#123;</div><div class="line">...</div><div class="line">    <span class="comment">// 下面3个Bean 配合 application.yml 对应的EndPoint 需要加上 #oauth2.hasScope('server')</span></div><div class="line">    <span class="meta">@Bean</span></div><div class="line">    <span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"security.oauth2.client"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> ClientCredentialsResourceDetails <span class="title">clientCredentialsResourceDetails</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ClientCredentialsResourceDetails();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Bean</span></div><div class="line">    <span class="function"><span class="keyword">public</span> RequestInterceptor <span class="title">oauth2FeignRequestInterceptor</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> OAuth2FeignRequestInterceptor(<span class="keyword">new</span> DefaultOAuth2ClientContext(), clientCredentialsResourceDetails());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Bean</span></div><div class="line">    <span class="function"><span class="keyword">public</span> OAuth2RestTemplate <span class="title">clientCredentialsRestTemplate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> OAuth2RestTemplate(clientCredentialsResourceDetails());</div><div class="line">    &#125;</div><div class="line">...</div></pre></td></tr></table></figure>
 <p>jhipster 自己写了个@AuthorizedFeignClient，能实现同样的功能</p>
@@ -1555,137 +1689,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://coderider.cc/2017/08/14/collection/大前端资料/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="coderider">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/static/img/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="coderider's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/14/collection/大前端资料/" itemprop="url">大前端资料</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T21:56:52+08:00">
-                2017-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/14/collection/大前端资料/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/14/collection/大前端资料/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://www.awesomes.cn/" target="_blank" rel="external">https://www.awesomes.cn/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1736,7 +1739,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

@@ -92,17 +92,17 @@
 
 
 
-<meta name="description" content="适合临时用一下来调试线上环境，反正nginx都有的情况下，何必装个squid注意，不能同时支持 https和http123456789101112131415161718192021# forward-proxy.confserver&amp;#123;     listen 8765;     client_body_timeout 60000;     client_max_body_size 102">
+<meta name="description" content="不用utf8 就是坑最近对接某 .net系统的接口，对方的一个接口用get传中文，里面的url参数用gb2312编码 类似curl http://localhost:8080/req\?params=100AbC%E4%B8%AD%E6%96%87\&amp;amp;params=100AbC%3F%3F\&amp;amp;params=100AbC%D6%D0%CE%C4\&amp;amp;params=100AbC%">
 <meta property="og:type" content="article">
-<meta property="og:title" content="nginx正向代理">
-<meta property="og:url" content="http://coderider.cc/2017/08/24/nginx/nginx正向代理-带密码/index.html">
+<meta property="og:title" content="SpringMvc 中文编码问题">
+<meta property="og:url" content="http://coderider.cc/2017/08/29/spring-boot/SpringMvc-中文编码问题/index.html">
 <meta property="og:site_name" content="coderider&#39;s blog">
-<meta property="og:description" content="适合临时用一下来调试线上环境，反正nginx都有的情况下，何必装个squid注意，不能同时支持 https和http123456789101112131415161718192021# forward-proxy.confserver&amp;#123;     listen 8765;     client_body_timeout 60000;     client_max_body_size 102">
+<meta property="og:description" content="不用utf8 就是坑最近对接某 .net系统的接口，对方的一个接口用get传中文，里面的url参数用gb2312编码 类似curl http://localhost:8080/req\?params=100AbC%E4%B8%AD%E6%96%87\&amp;amp;params=100AbC%3F%3F\&amp;amp;params=100AbC%D6%D0%CE%C4\&amp;amp;params=100AbC%">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-24T13:50:12.000Z">
+<meta property="og:updated_time" content="2017-08-29T15:35:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="nginx正向代理">
-<meta name="twitter:description" content="适合临时用一下来调试线上环境，反正nginx都有的情况下，何必装个squid注意，不能同时支持 https和http123456789101112131415161718192021# forward-proxy.confserver&amp;#123;     listen 8765;     client_body_timeout 60000;     client_max_body_size 102">
+<meta name="twitter:title" content="SpringMvc 中文编码问题">
+<meta name="twitter:description" content="不用utf8 就是坑最近对接某 .net系统的接口，对方的一个接口用get传中文，里面的url参数用gb2312编码 类似curl http://localhost:8080/req\?params=100AbC%E4%B8%AD%E6%96%87\&amp;amp;params=100AbC%3F%3F\&amp;amp;params=100AbC%D6%D0%CE%C4\&amp;amp;params=100AbC%">
 
 
 
@@ -131,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://coderider.cc/2017/08/24/nginx/nginx正向代理-带密码/"/>
+  <link rel="canonical" href="http://coderider.cc/2017/08/29/spring-boot/SpringMvc-中文编码问题/"/>
 
 
 
 
 
-  <title>nginx正向代理 | coderider's blog</title>
+  <title>SpringMvc 中文编码问题 | coderider's blog</title>
   
 
 
@@ -264,7 +264,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://coderider.cc/2017/08/24/nginx/nginx正向代理-带密码/">
+    <link itemprop="mainEntityOfPage" href="http://coderider.cc/2017/08/29/spring-boot/SpringMvc-中文编码问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="coderider">
@@ -281,7 +281,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">nginx正向代理</h1>
+          <h1 class="post-title" itemprop="name headline">SpringMvc 中文编码问题</h1>
         
 
         <div class="post-meta">
@@ -293,8 +293,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T10:23:52+08:00">
-                2017-08-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-29T21:29:39+08:00">
+                2017-08-29
               </time>
             
 
@@ -312,9 +312,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/08/24/nginx/nginx正向代理-带密码/#comments" itemprop="discussionUrl">
+                <a href="/2017/08/29/spring-boot/SpringMvc-中文编码问题/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/24/nginx/nginx正向代理-带密码/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/08/29/spring-boot/SpringMvc-中文编码问题/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -342,8 +342,9 @@
       
 
       
-        <p>适合临时用一下来调试线上环境，反正nginx都有的情况下，何必装个squid<br>注意，不能同时支持 https和http<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"># forward-proxy.conf</div><div class="line">server&#123;</div><div class="line">     listen 8765;</div><div class="line">     client_body_timeout 60000;</div><div class="line">     client_max_body_size 1024m;</div><div class="line">     send_timeout       60000;</div><div class="line">     client_header_buffer_size 16k;</div><div class="line">     large_client_header_buffers 4 64k;</div><div class="line"></div><div class="line">     proxy_headers_hash_bucket_size 1024;</div><div class="line">     proxy_headers_hash_max_size 4096;</div><div class="line">     proxy_read_timeout 60000;</div><div class="line">     proxy_send_timeout 60000;</div><div class="line"></div><div class="line">     location / &#123;</div><div class="line">         #auth_basic &quot;Please enter your password:&quot;;</div><div class="line">         #auth_basic_user_file conf.d/conf.d/forward-proxy.passwd;</div><div class="line">         resolver 8.8.8.8;</div><div class="line">         proxy_pass $schema://$http_host$request_uri;</div><div class="line">     &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">## 实测发现加上auth_basic后用浏览器的代理设置，每次都需要弹出问密码，看来还是用squid</span></div><div class="line"><span class="built_in">printf</span> <span class="string">"userD:<span class="variable">$(openssl passwd -crypt 123456)</span>\n"</span> &gt;&gt;conf.d/forward-proxy.passwd</div><div class="line">cat conf/forward-proxy.passwd</div></pre></td></tr></table></figure>
+        <h1 id="不用utf8-就是坑"><a href="#不用utf8-就是坑" class="headerlink" title="不用utf8 就是坑"></a>不用utf8 就是坑</h1><p>最近对接某 .net系统的接口，对方的一个接口用get传中文，里面的url参数用gb2312编码 类似<br>curl <a href="http://localhost:8080/req\" target="_blank" rel="external">http://localhost:8080/req\</a><br>?params=100AbC%E4%B8%AD%E6%96%87\<br>&amp;params=100AbC%3F%3F\<br>&amp;params=100AbC%D6%D0%CE%C4\<br>&amp;params=100AbC%D6%D0%CE%C4</p>
+<p>参数用了4种编码：”UTF-8”, “ISO-8859-1”, “GBK”, “gb2312”<br>方向走错于是进行了各种尝试…..<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@GetMapping</span>(<span class="string">"/bytes"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bytes</span><span class="params">(<span class="keyword">byte</span>[] params)</span></span>&#123;&#125;<span class="comment">//此路不通</span></div><div class="line"></div><div class="line"><span class="meta">@GetMapping</span>(<span class="string">"/req"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">req</span><span class="params">(HttpServletRequest req)</span> </span>&#123;</div><div class="line">    String [] params=req.getParameters(<span class="string">"param"</span>);<span class="comment">// 此路不通，一开始只想到这里，然后绕远了</span></div><div class="line">    <span class="comment">// 尝试各种转换浪费了半天生命...............</span></div><div class="line">    <span class="keyword">return</span> ;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 结果 ----------------------------------------</span></div><div class="line"><span class="comment">// 发现SpringMvc自动组装参数的编码是根据 URIEncoding这个值全局的，不可能为你一个接口改了全局配置</span></div><div class="line"><span class="comment">// 那么只能绕过框架自动处理的,估计是今天没睡好，上一步差一点点了居然没想到</span></div><div class="line"><span class="meta">@GetMapping</span>(<span class="string">"/req"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">req</span><span class="params">(HttpServletRequest req)</span> </span>&#123;</div><div class="line">    String query = req.getQueryString();<span class="comment">// 用这个手动来即可</span></div><div class="line">    URLDecoder.decode(query,<span class="string">"gb2312"</span>);<span class="comment">//</span></div><div class="line">    <span class="keyword">return</span> ;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
       
     </div>
     
@@ -367,8 +368,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/23/spring-boot/RestTemplate配置泛型/" rel="next" title="RestTemplate配置泛型">
-                <i class="fa fa-chevron-left"></i> RestTemplate配置泛型
+              <a href="/2017/08/25/spring-boot/spring-boot酸爽debug之路/" rel="next" title="spring-boot酸爽debug之路">
+                <i class="fa fa-chevron-left"></i> spring-boot酸爽debug之路
               </a>
             
           </div>
@@ -376,10 +377,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/25/git/git-subtree/" rel="prev" title="git 收集">
-                git 收集 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -438,8 +435,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/static/img/avatar.jpg"
@@ -501,6 +507,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#不用utf8-就是坑"><span class="nav-number">1.</span> <span class="nav-text">不用utf8 就是坑</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -651,9 +673,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://coderider.cc/2017/08/24/nginx/nginx正向代理-带密码/';
-          this.page.identifier = '2017/08/24/nginx/nginx正向代理-带密码/';
-          this.page.title = 'nginx正向代理';
+          this.page.url = 'http://coderider.cc/2017/08/29/spring-boot/SpringMvc-中文编码问题/';
+          this.page.identifier = '2017/08/29/spring-boot/SpringMvc-中文编码问题/';
+          this.page.title = 'SpringMvc 中文编码问题';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://coderider.disqus.com/embed.js';
