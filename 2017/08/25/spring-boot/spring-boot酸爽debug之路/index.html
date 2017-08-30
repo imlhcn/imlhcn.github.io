@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="coderider&#39;s blog">
 <meta property="og:description" content="方式一:devtoolshttps://docs.spring.io/spring-boot/docs/1.4.7.RELEASE/reference/htmlsingle/#using-boot-devtoolspom加上依赖即可，记得要在profile里面切换，否则浪费了正式环境的硬件 123456789101112131415161718192021222324252627282930313">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-29T15:49:00.000Z">
+<meta property="og:updated_time" content="2017-08-30T03:22:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spring-boot酸爽debug之路">
 <meta name="twitter:description" content="方式一:devtoolshttps://docs.spring.io/spring-boot/docs/1.4.7.RELEASE/reference/htmlsingle/#using-boot-devtoolspom加上依赖即可，记得要在profile里面切换，否则浪费了正式环境的硬件 123456789101112131415161718192021222324252627282930313">
@@ -352,7 +352,9 @@
 <h2 id="方式二-spring-loaded"><a href="#方式二-spring-loaded" class="headerlink" title="方式二: spring-loaded"></a>方式二: spring-loaded</h2><p>升级版的 devtools  加减方法都不用重启。<br>不过像Controller这种，需要SpringMVC装载的就不行了，新加一个接口就404了，还是要重启</p>
 <p><a href="https://docs.spring.io/spring-boot/docs/1.4.7.RELEASE/reference/htmlsingle/#howto-reload-java-classes-without-restarting" target="_blank" rel="external">官方文档</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">80.3 Fast application restarts</div><div class="line">The spring-boot-devtools module includes support for automatic application restarts. Whilst not as fast a technologies such as JRebel or Spring Loaded it’s usually significantly faster than a “cold start”. You should probably give it a try before investigating some of the more complex reload options discussed below.</div><div class="line"></div><div class="line">For more details see the Chapter 20, Developer tools section.</div><div class="line"></div><div class="line">80.4 Reload Java classes without restarting the container</div><div class="line">Modern IDEs (Eclipse, IDEA, etc.) all support hot swapping of bytecode, so if you make a change that doesn’t affect class or method signatures it should reload cleanly with no side effects.</div><div class="line"></div><div class="line">Spring Loaded goes a little further in that it can reload class definitions with changes in the method signatures. With some customization it can force an ApplicationContext to refresh itself (but there is no general mechanism to ensure that would be safe for a running application anyway, so it would only ever be a development time trick probably).</div></pre></td></tr></table></figure>
-<h2 id="方式三-JRebel"><a href="#方式三-JRebel" class="headerlink" title="方式三: JRebel"></a>方式三: <a href="http://zeroturnaround.com/software/jrebel/" target="_blank" rel="external">JRebel</a></h2>
+<h2 id="方式三-JRebel"><a href="#方式三-JRebel" class="headerlink" title="方式三: JRebel"></a>方式三: <a href="http://zeroturnaround.com/software/jrebel/" target="_blank" rel="external">JRebel</a></h2><p>有空再研究一下，目前推荐用spring-loaded</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>注意，在IDEA需要在Debug模式下才会启用spring-loaded</p>
+
       
     </div>
     
@@ -392,8 +394,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/29/spring-boot/SpringMvc-中文编码问题/" rel="prev" title="SpringMvc 中文编码问题">
-                SpringMvc 中文编码问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/08/29/spring-cloud/简洁之美-用groovy玩sc/" rel="prev" title="简洁之美,用groovy玩sc">
+                简洁之美,用groovy玩sc <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -478,7 +480,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -535,7 +537,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#方式一-devtools"><span class="nav-number">1.</span> <span class="nav-text">方式一:devtools</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如果是gradlew-还要麻烦一点"><span class="nav-number">2.</span> <span class="nav-text">如果是gradlew 还要麻烦一点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方式二-spring-loaded"><span class="nav-number">3.</span> <span class="nav-text">方式二: spring-loaded</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方式三-JRebel"><span class="nav-number">4.</span> <span class="nav-text">方式三: JRebel</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#方式一-devtools"><span class="nav-number">1.</span> <span class="nav-text">方式一:devtools</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如果是gradlew-还要麻烦一点"><span class="nav-number">2.</span> <span class="nav-text">如果是gradlew 还要麻烦一点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方式二-spring-loaded"><span class="nav-number">3.</span> <span class="nav-text">方式二: spring-loaded</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方式三-JRebel"><span class="nav-number">4.</span> <span class="nav-text">方式三: JRebel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>

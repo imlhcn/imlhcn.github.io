@@ -262,6 +262,317 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://coderider.cc/2017/08/16/spring-cloud/spring-cloud-config遭遇HostKey问题解决/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="coderider">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/static/img/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="coderider's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/16/spring-cloud/spring-cloud-config遭遇HostKey问题解决/" itemprop="url">spring-cloud config遭遇HostKey问题解决</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-16T09:36:39+08:00">
+                2017-08-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/16/spring-cloud/spring-cloud-config遭遇HostKey问题解决/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/16/spring-cloud/spring-cloud-config遭遇HostKey问题解决/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>主要是青云主机的ssh默认配置的坑<br>在本地没问题，青云上部署后发现，sc 的config server 在从git clone的时候报错了<br>遇到过两次，所以记录一下，两次可能用的sc版本不一样，ssh客户端库：一个依赖 jsch,一个依赖 jgit,</p>
+<p>reject HostKey: xxxxxx<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">##  jsch</span></div><div class="line">com.jcraft.jsch.JSchException: reject HostKey: git.oschina.net</div><div class="line">        at com.jcraft.jsch.Session.checkHost(Session.java:781) ~[jsch-0.1.53.jar!/:na]</div><div class="line">        at com.jcraft.jsch.Session.connect(Session.java:342) ~[jsch-0.1.53.jar!/:na]</div><div class="line"></div><div class="line"><span class="comment">## 或者 jgit</span></div><div class="line">Caused by: org.eclipse.jgit.api.errors.TransportException: git@git.oschina.net:xxxx/xxx.git: reject HostKey: git.oschina.net</div><div class="line"> at org.eclipse.jgit.api.FetchCommand.call(FetchCommand.java:135) ~[org.eclipse.jgit-4.6.0.201612231935-r.jar!/:4.6.0.201612231935-r]</div><div class="line"> at org.eclipse.jgit.api.CloneCommand.fetch(CloneCommand.java:203) ~[org.eclipse.jgit-4.6.0.201612231935-r.jar!/:4.6.0.201612231935-r]</div><div class="line"> at org.eclipse.jgit.api.CloneCommand.call(CloneCommand.java:136) ~[org.eclipse.jgit-4.6.0.201612231935-r.jar!/:4.6.0.201612231935-r]</div><div class="line"> at org.springframework.cloud.config.server.environment.JGitEnvironmentRepository.cloneToBasedir(JGitEnvironmentRepository.java:402) ~[spring-cloud-config-server-1.3.0.RELEASE.jar!/:1.3.0.RELEASE]</div><div class="line"> at org.springframework.cloud.config.server.environment.JGitEnvironmentRepository.copyRepository(JGitEnvironmentRepository.java:376) ~[spring-</div></pre></td></tr></table></figure></p>
+<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><h5 id="方法一"><a href="#方法一" class="headerlink" title="方法一:"></a>方法一:</h5><p>跟了一下sc和sb的代码和文档，没找到哪里可以配StrictHostKeyChecking的，所以就从 ssh_config入手了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">vim /etc/ssh/ssh_config</div><div class="line">    UserKnownHostsFile /dev/null</div><div class="line">    StrictHostKeyChecking no</div><div class="line"><span class="comment">#改成</span></div><div class="line">    StrictHostKeyChecking ask</div><div class="line">    <span class="comment">#UserKnownHostsFile /dev/null</span></div></pre></td></tr></table></figure></p>
+<ol>
+<li>把上述文件 no 改为yes, 吧UserKnownHostFile /dev/null 注释掉(青云的心思猜不懂，为什么禁止生产known_hosts?)</li>
+<li>用git clone一次 代码（会在 ~/.ssh/known_hosts 上面加一条记录，如果有这条记录也可以在其他机器复制过来)</li>
+<li>记录格式如下，注意 git协议的和https协议的known_hosts有点区别的,而且不能通用</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 这是git协议的 (git clone git@git.oschina.net:xx/xx)</span></div><div class="line">git.oschina.net,120.55.226.24 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbml........</div><div class="line"></div><div class="line"><span class="comment"># 这是 https的 (git clone https://git.oschina.net/xx/xx)</span></div><div class="line">git.oschina.net ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMzG3r+......</div></pre></td></tr></table></figure>
+<h5 id="方法二-可支持多private-key"><a href="#方法二-可支持多private-key" class="headerlink" title="方法二(可支持多private key):"></a>方法二(可支持多private key):</h5><p>后来找到，可以在 ~/.ssh/config针对用户的配置(上面是全局的)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># vim ~/.ssh/config</span></div><div class="line">StrictHostKeyChecking ask</div><div class="line">UserKnownHostsFile ~/.ssh/known_hosts</div><div class="line"></div><div class="line">Host github.*</div><div class="line">    HostName github.com</div><div class="line">    PubkeyAuthentication yes</div><div class="line">    IdentityFile ~/.ssh/id_rsa</div><div class="line">Host *.oschina.net</div><div class="line">    User git</div><div class="line">    HostName oschina.net</div><div class="line">    PubkeyAuthentication yes</div><div class="line">    IdentityFile ~/.ssh/id_rsa</div><div class="line">Host *</div><div class="line">    PubkeyAuthentication no</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://coderider.cc/2017/08/15/nginx/nginx单域名挂多SPA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="coderider">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/static/img/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="coderider's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/15/nginx/nginx单域名挂多SPA/" itemprop="url">nginx单域名挂多SPA</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-15T13:46:04+08:00">
+                2017-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/15/nginx/nginx单域名挂多SPA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/15/nginx/nginx单域名挂多SPA/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="需求场景："><a href="#需求场景：" class="headerlink" title="需求场景："></a>需求场景：</h4><p>做了好多SPA的子系统，但是只有一个域名，用nginx如何实现：<br><a href="http://myhost/app1" target="_blank" rel="external">http://myhost/app1</a><br><a href="http://myhost/app2" target="_blank" rel="external">http://myhost/app2</a><br><a href="http://myhost/app3" target="_blank" rel="external">http://myhost/app3</a><br>访问到不同的 root?</p>
+<p>栈爆上有人给出了答案<br><a href="https://stackoverflow.com/questions/31519505/how-to-setup-nginx-to-deploy-different-single-page-apps-spas-i-e-static-fil" target="_blank" rel="external">https://stackoverflow.com/questions/31519505/how-to-setup-nginx-to-deploy-different-single-page-apps-spas-i-e-static-fil</a></p>
+<p>结合给出的方案，优化了一下，如题配置如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">location /games &#123;</div><div class="line">    alias /dxg/dist/dxg-games-ui;</div><div class="line">    index index.html;</div><div class="line">    try_files $uri $uri/ /index.html =404;</div><div class="line">&#125;</div><div class="line"></div><div class="line">location /tgy &#123;</div><div class="line">    alias /dxg/dist/dxg-tgy-ui;</div><div class="line">    index index.html;</div><div class="line">    try_files $uri $uri/ /index.html =404;</div><div class="line">&#125;</div><div class="line"></div><div class="line">location /tgs &#123;</div><div class="line">    alias /dxg/dist/dxg-spread-ui;</div><div class="line">    index index.html;</div><div class="line">    try_files $uri $uri/ /index.html =404;</div><div class="line">&#125;</div><div class="line"></div><div class="line">location /static &#123;</div><div class="line">    if ($http_referer ~* &quot;(.*)/tgs(.*)&quot;) &#123;</div><div class="line">       rewrite /static/(.*) /tgs/static/$1 redirect;</div><div class="line">    &#125;</div><div class="line">    if ($http_referer ~* &quot;(.*)/games(.*)&quot;) &#123;</div><div class="line">       rewrite /static/(.*) /games/static/$1 redirect;</div><div class="line">    &#125;</div><div class="line">    if ($http_referer ~* &quot;(.*)/tgy(.*)&quot;) &#123;</div><div class="line">       rewrite /static/(.*) /tgy/static/$1 redirect;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">location ~ /api|/zuul &#123;</div><div class="line">    proxy_set_header Host $http_host;</div><div class="line">    proxy_set_header X-Real-IP $remote_addr;</div><div class="line">    proxy_set_header X-Scheme $scheme;</div><div class="line">    proxy_pass       http://localhost:8880;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>对应的SPA代码是需要调整的(以vue为例)。</p>
+<ol>
+<li>vue-router 需要加个 alias 前缀，保证  /tgy  和  / 访问的都是 根目录</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 重写 routes,利用 alias实现，所有的路由前缀 可有可无</span></div><div class="line"><span class="keyword">let</span> aliasPrefix = <span class="string">'/tgy'</span> <span class="comment">// 注意不同系统用相应的别名</span></div><div class="line">routes = routes.map(<span class="function">(<span class="params">route</span>) =&gt;</span> &#123;</div><div class="line">  route.alias = aliasPrefix + route.path</div><div class="line">  <span class="keyword">return</span> route</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ol>
+<li>由于第一步，需要在路由，自动加上前缀，否则，页面强制刷新后，会404，逻辑如下</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 路由拦截</span></div><div class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">from</span>.path.indexOf(aliasPrefix) &gt; <span class="number">-1</span> &amp;&amp; to.path.indexOf(aliasPrefix) !== <span class="number">0</span>) &#123;</div><div class="line">    next(&#123;<span class="attr">path</span>: aliasPrefix + to.path&#125;)</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    next()</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ol>
+<li>注意 nginx配置里面关于 /static部分，是基于 refrer 和前缀配合第二点一起解决了两个问题</li>
+</ol>
+<ul>
+<li>/static/ 文件会自动切换到 相应的  /tgs/static,解决资源的404问题</li>
+<li>一旦访问有 /tgs/，那么所有的路由都会自动加上  /tgs/前缀，解决了刷新后404的问题</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://coderider.cc/2017/08/14/collection/大前端资料/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1252,7 +1563,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
