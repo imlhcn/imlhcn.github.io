@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://imlh.cn/201709/collection/java%E8%B5%84%E6%96%99/</loc>
+    
+    <lastmod>2017-09-03T08:15:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://imlh.cn/201709/spring-boot/spring-boot-rest-api-error-handling/</loc>
     
     <lastmod>2017-09-02T15:27:58.000Z</lastmod>
