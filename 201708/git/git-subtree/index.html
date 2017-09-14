@@ -92,17 +92,17 @@
 
 
 
-<meta name="description" content="http://www.jianshu.com/p/3096069e9b72 http://yongpoliu.com/reorganize-git-local-commits/ https://backlogtool.com/git-tutorial/cn/">
+<meta name="description" content="subtreehttp://www.jianshu.com/p/3096069e9b72 rebasehttp://yongpoliu.com/reorganize-git-local-commits/ monkey githttps://backlogtool.com/git-tutorial/cn/ 分支http://blog.jobbole.com/81196/http://nvie.com">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git 收集">
 <meta property="og:url" content="http://imlh.cn/201708/git/git-subtree/index.html">
 <meta property="og:site_name" content="木鱼&#39;s Blog">
-<meta property="og:description" content="http://www.jianshu.com/p/3096069e9b72 http://yongpoliu.com/reorganize-git-local-commits/ https://backlogtool.com/git-tutorial/cn/">
+<meta property="og:description" content="subtreehttp://www.jianshu.com/p/3096069e9b72 rebasehttp://yongpoliu.com/reorganize-git-local-commits/ monkey githttps://backlogtool.com/git-tutorial/cn/ 分支http://blog.jobbole.com/81196/http://nvie.com">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-29T07:39:08.000Z">
+<meta property="og:updated_time" content="2017-09-14T01:10:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git 收集">
-<meta name="twitter:description" content="http://www.jianshu.com/p/3096069e9b72 http://yongpoliu.com/reorganize-git-local-commits/ https://backlogtool.com/git-tutorial/cn/">
+<meta name="twitter:description" content="subtreehttp://www.jianshu.com/p/3096069e9b72 rebasehttp://yongpoliu.com/reorganize-git-local-commits/ monkey githttps://backlogtool.com/git-tutorial/cn/ 分支http://blog.jobbole.com/81196/http://nvie.com">
 
 
 
@@ -331,9 +331,13 @@
       
 
       
-        <p><a href="http://www.jianshu.com/p/3096069e9b72" target="_blank" rel="external">http://www.jianshu.com/p/3096069e9b72</a></p>
-<p><a href="http://yongpoliu.com/reorganize-git-local-commits/" target="_blank" rel="external">http://yongpoliu.com/reorganize-git-local-commits/</a></p>
-<p><a href="https://backlogtool.com/git-tutorial/cn/" target="_blank" rel="external">https://backlogtool.com/git-tutorial/cn/</a></p>
+        <h4 id="subtree"><a href="#subtree" class="headerlink" title="subtree"></a>subtree</h4><p><a href="http://www.jianshu.com/p/3096069e9b72" target="_blank" rel="external">http://www.jianshu.com/p/3096069e9b72</a></p>
+<h4 id="rebase"><a href="#rebase" class="headerlink" title="rebase"></a>rebase</h4><p><a href="http://yongpoliu.com/reorganize-git-local-commits/" target="_blank" rel="external">http://yongpoliu.com/reorganize-git-local-commits/</a></p>
+<h4 id="monkey-git"><a href="#monkey-git" class="headerlink" title="monkey git"></a>monkey git</h4><p><a href="https://backlogtool.com/git-tutorial/cn/" target="_blank" rel="external">https://backlogtool.com/git-tutorial/cn/</a></p>
+<h4 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h4><p><a href="http://blog.jobbole.com/81196/" target="_blank" rel="external">http://blog.jobbole.com/81196/</a><br><a href="http://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="external">http://nvie.com/posts/a-successful-git-branching-model/</a></p>
+<h4 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h4><p><a href="http://learngitbranching.js.org/?demo" target="_blank" rel="external">http://learngitbranching.js.org/?demo</a></p>
+<h4 id="gitflow-video"><a href="#gitflow-video" class="headerlink" title="gitflow video"></a>gitflow video</h4><p><a href="https://buildamodule.com/video/change-management-and-version-control-deploying-releases-features-and-fixes-with-git-how-to-use-a-scalable-git-branching-model-called-gitflow#viewing" target="_blank" rel="external">https://buildamodule.com/video/change-management-and-version-control-deploying-releases-features-and-fixes-with-git-how-to-use-a-scalable-git-branching-model-called-gitflow#viewing</a></p>
+<h4 id="gitlfow-plugin"><a href="#gitlfow-plugin" class="headerlink" title="gitlfow plugin"></a>gitlfow plugin</h4><p><a href="https://github.com/nvie/gitflow/wiki/Installation" target="_blank" rel="external">https://github.com/nvie/gitflow/wiki/Installation</a></p>
 
       
     </div>
@@ -424,8 +428,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/static/img/avatar.jpg"
@@ -440,7 +453,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -487,6 +500,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#subtree"><span class="nav-number">1.</span> <span class="nav-text">subtree</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rebase"><span class="nav-number">2.</span> <span class="nav-text">rebase</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#monkey-git"><span class="nav-number">3.</span> <span class="nav-text">monkey git</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分支"><span class="nav-number">4.</span> <span class="nav-text">分支</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#demo"><span class="nav-number">5.</span> <span class="nav-text">demo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gitflow-video"><span class="nav-number">6.</span> <span class="nav-text">gitflow video</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gitlfow-plugin"><span class="nav-number">7.</span> <span class="nav-text">gitlfow plugin</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
