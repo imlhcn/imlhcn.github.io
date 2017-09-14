@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://imlh.cn/201708/git/git-subtree/</loc>
+    <loc>http://imlh.cn/201708/collection/git-%E7%94%A8%E6%B3%95/</loc>
     
-    <lastmod>2017-09-14T01:10:08.000Z</lastmod>
+    <lastmod>2017-09-14T05:47:20.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://imlh.cn/201709/git/git-flow/</loc>
+    <loc>http://imlh.cn/201709/collection/java%E8%B5%84%E6%96%99/</loc>
     
-    <lastmod>2017-09-13T09:07:27.000Z</lastmod>
+    <lastmod>2017-09-14T05:46:36.000Z</lastmod>
     
   </url>
   
@@ -19,13 +19,6 @@
     <loc>http://imlh.cn/201708/spring-boot/SpringMvc-%E4%B8%AD%E6%96%87%E7%BC%96%E7%A0%81%E9%97%AE%E9%A2%98/</loc>
     
     <lastmod>2017-09-12T07:56:54.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://imlh.cn/201709/collection/java%E8%B5%84%E6%96%99/</loc>
-    
-    <lastmod>2017-09-07T07:14:11.000Z</lastmod>
     
   </url>
   

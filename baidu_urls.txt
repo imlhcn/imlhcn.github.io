@@ -1,11 +1,10 @@
-http://imlh.cn/201709/git/git-flow/
 http://imlh.cn/201709/collection/java资料/
 http://imlh.cn/201709/spring-boot/spring-boot-rest-api-error-handling/
 http://imlh.cn/201708/tools/IDEA-mac-下面debug卡一下的问题/
 http://imlh.cn/201708/spring-boot/SpringMvc-中文编码问题/
 http://imlh.cn/201708/spring-cloud/简洁之美-用groovy玩sc/
 http://imlh.cn/201708/spring-boot/spring-boot酸爽debug之路/
-http://imlh.cn/201708/git/git-subtree/
+http://imlh.cn/201708/collection/git-用法/
 http://imlh.cn/201708/nginx/nginx正向代理-带密码/
 http://imlh.cn/201708/spring-boot/RestTemplate配置泛型/
 http://imlh.cn/201708/spring-cloud/oauth2-feign服务间授权/
