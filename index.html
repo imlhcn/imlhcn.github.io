@@ -265,6 +265,255 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://imlh.cn/201712/gradle/Gradle入坑记录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/static/img/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木鱼's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/201712/gradle/Gradle入坑记录/" itemprop="url">Gradle入坑记录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-20T10:23:12+08:00">
+                2017-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="首先解决墙的问题"><a href="#首先解决墙的问题" class="headerlink" title="首先解决墙的问题"></a>首先解决墙的问题</h2><p>把下面代码放(如果没有则新建) ~/.gradle/init.gradle<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">allprojects&#123;</div><div class="line">    repositories &#123;</div><div class="line">        <span class="keyword">def</span> ALIYUN_REPOSITORY_URL = <span class="string">'http://maven.aliyun.com/nexus/content/groups/public'</span></div><div class="line">        <span class="keyword">def</span> ALIYUN_JCENTER_URL = <span class="string">'http://maven.aliyun.com/nexus/content/repositories/jcenter'</span></div><div class="line">        all &#123; ArtifactRepository repo -&gt;</div><div class="line">            <span class="keyword">if</span>(repo <span class="keyword">instanceof</span> MavenArtifactRepository)&#123;</div><div class="line">                <span class="keyword">def</span> url = repo.url.toString()</div><div class="line">                <span class="keyword">if</span> (url.startsWith(<span class="string">'https://repo1.maven.org/maven2'</span>)) &#123;</div><div class="line">                    project.logger.lifecycle <span class="string">"Repository $&#123;repo.url&#125; replaced by $ALIYUN_REPOSITORY_URL."</span></div><div class="line">                    remove repo</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (url.startsWith(<span class="string">'https://jcenter.bintray.com/'</span>)) &#123;</div><div class="line">                    project.logger.lifecycle <span class="string">"Repository $&#123;repo.url&#125; replaced by $ALIYUN_JCENTER_URL."</span></div><div class="line">                    remove repo</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        maven &#123;</div><div class="line">            url ALIYUN_REPOSITORY_URL</div><div class="line">            url ALIYUN_JCENTER_URL</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="剩下的参考git里面的提交记录"><a href="#剩下的参考git里面的提交记录" class="headerlink" title="剩下的参考git里面的提交记录"></a>剩下的参考git里面的提交记录</h2><p><a href="https://gitee.com/lhhl/creating-multi-project-builds.git" target="_blank" rel="external">https://gitee.com/lhhl/creating-multi-project-builds.git</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://guides.gradle.org/creating-multi-project-builds/" target="_blank" rel="external">https://guides.gradle.org/creating-multi-project-builds/</a></p>
+<p><a href="https://docs.gradle.org/current/userguide/userguide.html" target="_blank" rel="external">https://docs.gradle.org/current/userguide/userguide.html</a></p>
+<p><a href="https://spring.io/guides/gs/gradle/" target="_blank" rel="external">https://spring.io/guides/gs/gradle/</a></p>
+<p><a href="https://github.com/gradle/gradle/tree/master/subprojects/docs/src/samples" target="_blank" rel="external">https://github.com/gradle/gradle/tree/master/subprojects/docs/src/samples</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://imlh.cn/201711/lab/ELK入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/static/img/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木鱼's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/201711/lab/ELK入门/" itemprop="url">ELK入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-30T16:35:23+08:00">
+                2017-11-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="下载ELK"><a href="#下载ELK" class="headerlink" title="下载ELK"></a>下载ELK</h3><p><a href="https://www.elastic.co/" target="_blank" rel="external">https://www.elastic.co/</a></p>
+<h3 id="filebeat"><a href="#filebeat" class="headerlink" title="filebeat"></a>filebeat</h3><p><a href="https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html" target="_blank" rel="external">https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.0.0-darwin-x86_64.tar.gz</div><div class="line">tar xzvf filebeat-6.0.0-darwin-x86_64.tar.gz</div></pre></td></tr></table></figure>
+<h3 id="测试-log"><a href="#测试-log" class="headerlink" title="测试 log"></a>测试 log</h3><p><a href="https://download.elastic.co/demos/logstash/gettingstarted/logstash-tutorial.log.gz" target="_blank" rel="external">https://download.elastic.co/demos/logstash/gettingstarted/logstash-tutorial.log.gz</a></p>
+<h3 id="gork-filter"><a href="#gork-filter" class="headerlink" title="gork filter"></a>gork filter</h3><p><a href="http://www.elastic.co/guide/en/logstash/6.0/plugins-filters-grok.html" target="_blank" rel="external">http://www.elastic.co/guide/en/logstash/6.0/plugins-filters-grok.html</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/logstash-plugin install logstash-filter-grok</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://imlh.cn/201711/kotlin/kotlin与spring-boot/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -338,7 +587,7 @@
           
             <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> cn.imlh.kotest</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication</div><div class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication</div><div class="line"><span class="keyword">import</span> org.springframework.<span class="keyword">data</span>.repository.CrudRepository</div><div class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller</div><div class="line"><span class="keyword">import</span> org.springframework.stereotype.Service</div><div class="line"><span class="keyword">import</span> org.springframework.web.bind.<span class="keyword">annotation</span>.GetMapping</div><div class="line"><span class="keyword">import</span> org.springframework.web.bind.<span class="keyword">annotation</span>.RestController</div><div class="line"><span class="keyword">import</span> springfox.documentation.swagger2.annotations.EnableSwagger2</div><div class="line"><span class="keyword">import</span> java.util.*</div><div class="line"><span class="keyword">import</span> javax.persistence.*</div><div class="line"></div><div class="line"><span class="meta">@EnableSwagger2</span></div><div class="line"><span class="meta">@SpringBootApplication</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HMcollectApplication</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</div><div class="line">    SpringApplication.run(HMcollectApplication::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>, <span class="type">*args)</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Entity</span></div><div class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Company</span></span>(<span class="meta">@Id</span> <span class="keyword">var</span> name: String)</div><div class="line"></div><div class="line"><span class="meta">@Entity</span></div><div class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Department</span></span>(</div><div class="line">        <span class="meta">@Id</span> <span class="keyword">var</span> name: String,</div><div class="line">        <span class="meta">@ManyToOne</span> <span class="keyword">var</span> company: Company</div><div class="line">)</div><div class="line"></div><div class="line"><span class="meta">@Entity</span></div><div class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span>(</div><div class="line">        <span class="meta">@Id</span> <span class="keyword">var</span> regPhone: String,</div><div class="line">        <span class="keyword">var</span> name: String,</div><div class="line">        <span class="keyword">var</span> mallNumber: String,</div><div class="line">        <span class="keyword">var</span> registTime: Date,</div><div class="line">        <span class="keyword">var</span> remark: String,</div><div class="line">        <span class="meta">@ManyToOne</span> <span class="keyword">var</span> company: Company,</div><div class="line">        <span class="meta">@ManyToOne</span> <span class="keyword">var</span> department: Department</div><div class="line">)</div><div class="line"></div><div class="line"><span class="comment">// data-rest</span></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">CustomerRepository</span> : <span class="type">CrudRepository</span>&lt;<span class="type">Employee, String</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">// 以下垃圾代码用来演示 Service和Controller怎么写</span></div><div class="line"><span class="meta">@Service</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomerService</span></span>(<span class="keyword">val</span> customerRepository: CustomerRepository) &#123;</div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">count</span><span class="params">()</span></span> = customerRepository.count()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@RestController</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomerController</span></span>(<span class="keyword">val</span> customerService: CustomerService) &#123;</div><div class="line"></div><div class="line">    <span class="meta">@GetMapping(<span class="meta-string">"/count"</span>)</span></div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">count</span><span class="params">()</span></span> = customerService.count()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>###</p>
-<p>kotlin这么优雅你不用？下面几个车站,各种司机带你上路<br><a href="http://kotlinlang.org/docs/reference/" target="_blank" rel="external">官网</a><br><a href="https://github.com/Kotlin/kotlin-koans" target="_blank" rel="external">官方司机-42个任务</a><br><a href="https://spring.io/blog/2016/02/15/developing-spring-boot-applications-with-kotlin" target="_blank" rel="external">spring.io</a><br><a href="https://github.com/tschiman/kotlin-spring-demo" target="_blank" rel="external">亲民司机</a><br><a href="http://www.kotlindoc.cn/" target="_blank" rel="external">中文司机</a><br><a href="https://www.kotlincn.net/docs/reference/" target="_blank" rel="external">中文2</a>  </p>
+<p>kotlin这么优雅你不用？下面几个车站,各路司机带你上路<br><a href="http://kotlinlang.org/docs/reference/" target="_blank" rel="external">官网</a><br><a href="https://github.com/Kotlin/kotlin-koans" target="_blank" rel="external">官方司机-42个任务</a><br><a href="https://spring.io/blog/2016/02/15/developing-spring-boot-applicatio" target="_blank" rel="external">spring.io</a><br><a href="https://github.com/tschiman/kotlin-spring-demo" target="_blank" rel="external">亲民</a><br><a href="http://www.kotlindoc.cn/" target="_blank" rel="external">中文</a><br><a href="https://www.kotlincn.net/docs/reference/" target="_blank" rel="external">中文2</a><br><a href="https://spring.io/blog/2017/01/04/introducing-kotlin-support-in-spring-framework-5-0" target="_blank" rel="external">前卫的spring5+kotlin</a><br><a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/languages.html#kotlin" target="_blank" rel="external">more</a></p>
 
           
         
@@ -1229,262 +1478,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://imlh.cn/201708/spring-boot/spring-boot酸爽debug之路/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="木鱼">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/static/img/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="木鱼's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/201708/spring-boot/spring-boot酸爽debug之路/" itemprop="url">spring-boot酸爽debug之路</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-25T14:47:59+08:00">
-                2017-08-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="方式一-devtools"><a href="#方式一-devtools" class="headerlink" title="方式一:devtools"></a>方式一:devtools</h2><p><a href="https://docs.spring.io/spring-boot/docs/1.4.7.RELEASE/reference/htmlsingle/#using-boot-devtools" target="_blank" rel="external">https://docs.spring.io/spring-boot/docs/1.4.7.RELEASE/reference/htmlsingle/#using-boot-devtools</a><br>pom加上依赖即可，记得要在profile里面切换，否则浪费了正式环境的硬件</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">profiles</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">profile</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>dev<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">activation</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">activeByDefault</span>&gt;</span>true<span class="tag">&lt;/<span class="name">activeByDefault</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">activation</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!--</span></div><div class="line"><span class="comment">        &lt;dependencies&gt;</span></div><div class="line"><span class="comment">            &lt;dependency&gt;</span></div><div class="line"><span class="comment">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span></div><div class="line"><span class="comment">                &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;</span></div><div class="line"><span class="comment">                &lt;optional&gt;true&lt;/optional&gt;</span></div><div class="line"><span class="comment">            &lt;/dependency&gt;</span></div><div class="line"><span class="comment">        &lt;/dependencies&gt;</span></div><div class="line"><span class="comment">        --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">properties</span>&gt;</span></div><div class="line">            <span class="comment">&lt;!-- log configuration --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">logback.loglevel</span>&gt;</span>DEBUG<span class="tag">&lt;/<span class="name">logback.loglevel</span>&gt;</span></div><div class="line">            <span class="comment">&lt;!-- default Spring profiles --&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springloaded<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.5.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">profile</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>prod<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-tomcat<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-undertow<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">properties</span>&gt;</span></div><div class="line">            <span class="comment">&lt;!-- log configuration --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">logback.loglevel</span>&gt;</span>INFO<span class="tag">&lt;/<span class="name">logback.loglevel</span>&gt;</span></div><div class="line">            <span class="comment">&lt;!-- default Spring profiles --&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="如果是gradlew-还要麻烦一点"><a href="#如果是gradlew-还要麻烦一点" class="headerlink" title="如果是gradlew 还要麻烦一点"></a>如果是gradlew 还要麻烦一点</h2><p>80.4.2 Configuring Spring Loaded for use with Gradle and IntelliJ IDEA</p>
-<p>You need to jump through a few hoops if you want to use Spring Loaded in combination with Gradle and IntelliJ IDEA. By default, IntelliJ IDEA will compile classes into a different location than Gradle, causing Spring Loaded monitoring to fail.</p>
-<p>To configure IntelliJ IDEA correctly you can use the idea Gradle plugin:</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">buildscript &#123;</div><div class="line">    repositories &#123; jcenter() &#125;</div><div class="line">    dependencies &#123;</div><div class="line">        classpath <span class="string">"org.springframework.boot:spring-boot-gradle-plugin:1.4.7.RELEASE"</span></div><div class="line">        classpath <span class="string">'org.springframework:springloaded:1.2.6.RELEASE'</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">apply <span class="string">plugin:</span> <span class="string">'idea'</span></div><div class="line"></div><div class="line">idea &#123;</div><div class="line">    module &#123;</div><div class="line">        inheritOutputDirs = <span class="literal">false</span></div><div class="line">        outputDir = file(<span class="string">"$buildDir/classes/main/"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// ...</span></div></pre></td></tr></table></figure>
-<h2 id="方式二-spring-loaded"><a href="#方式二-spring-loaded" class="headerlink" title="方式二: spring-loaded"></a>方式二: spring-loaded</h2><p>升级版的 devtools  加减方法都不用重启。<br>不过像Controller这种，需要SpringMVC装载的就不行了，新加一个接口就404了，还是要重启</p>
-<p><a href="https://docs.spring.io/spring-boot/docs/1.4.7.RELEASE/reference/htmlsingle/#howto-reload-java-classes-without-restarting" target="_blank" rel="external">官方文档</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">80.3 Fast application restarts</div><div class="line">The spring-boot-devtools module includes support for automatic application restarts. Whilst not as fast a technologies such as JRebel or Spring Loaded it’s usually significantly faster than a “cold start”. You should probably give it a try before investigating some of the more complex reload options discussed below.</div><div class="line"></div><div class="line">For more details see the Chapter 20, Developer tools section.</div><div class="line"></div><div class="line">80.4 Reload Java classes without restarting the container</div><div class="line">Modern IDEs (Eclipse, IDEA, etc.) all support hot swapping of bytecode, so if you make a change that doesn’t affect class or method signatures it should reload cleanly with no side effects.</div><div class="line"></div><div class="line">Spring Loaded goes a little further in that it can reload class definitions with changes in the method signatures. With some customization it can force an ApplicationContext to refresh itself (but there is no general mechanism to ensure that would be safe for a running application anyway, so it would only ever be a development time trick probably).</div></pre></td></tr></table></figure>
-<h2 id="方式三-JRebel"><a href="#方式三-JRebel" class="headerlink" title="方式三: JRebel"></a>方式三: <a href="http://zeroturnaround.com/software/jrebel/" target="_blank" rel="external">JRebel</a></h2><p>有空再研究一下，目前推荐用spring-loaded</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>注意，在IDEA需要在Debug模式下才会启用spring-loaded</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://imlh.cn/201708/collection/git-用法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="木鱼">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/static/img/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="木鱼's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/201708/collection/git-用法/" itemprop="url">git 用法收集</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-25T14:15:20+08:00">
-                2017-08-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="subtree"><a href="#subtree" class="headerlink" title="subtree"></a>subtree</h4><p><a href="http://www.jianshu.com/p/3096069e9b72" target="_blank" rel="external">http://www.jianshu.com/p/3096069e9b72</a></p>
-<h4 id="rebase"><a href="#rebase" class="headerlink" title="rebase"></a>rebase</h4><p><a href="http://yongpoliu.com/reorganize-git-local-commits/" target="_blank" rel="external">http://yongpoliu.com/reorganize-git-local-commits/</a></p>
-<h4 id="monkey-git"><a href="#monkey-git" class="headerlink" title="monkey git"></a>monkey git</h4><p><a href="https://backlogtool.com/git-tutorial/cn/" target="_blank" rel="external">https://backlogtool.com/git-tutorial/cn/</a></p>
-<h4 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h4><p><a href="http://blog.jobbole.com/81196/" target="_blank" rel="external">http://blog.jobbole.com/81196/</a><br><a href="http://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="external">http://nvie.com/posts/a-successful-git-branching-model/</a></p>
-<h4 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h4><p><a href="http://learngitbranching.js.org/?demo" target="_blank" rel="external">http://learngitbranching.js.org/?demo</a></p>
-<h4 id="gitflow-video"><a href="#gitflow-video" class="headerlink" title="gitflow video"></a>gitflow video</h4><p><a href="https://buildamodule.com/video/change-management-and-version-control-deploying-releases-features-and-fixes-with-git-how-to-use-a-scalable-git-branching-model-called-gitflow#viewing" target="_blank" rel="external">https://buildamodule.com/video/change-management-and-version-control-deploying-releases-features-and-fixes-with-git-how-to-use-a-scalable-git-branching-model-called-gitflow#viewing</a></p>
-<h4 id="gitlfow-plugin"><a href="#gitlfow-plugin" class="headerlink" title="gitlfow plugin"></a>gitlfow plugin</h4><p><a href="https://github.com/nvie/gitflow/wiki/Installation" target="_blank" rel="external">https://github.com/nvie/gitflow/wiki/Installation</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1535,7 +1528,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1557,7 +1550,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
