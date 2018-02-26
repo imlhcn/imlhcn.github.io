@@ -92,18 +92,18 @@
 
 
 
-<meta name="description" content="准备下载ELKhttps://www.elastic.co/ filebeathttps://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html 12curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.0">
+<meta name="description" content="准备下载 ELKhttps://www.elastic.co/ filebeathttps://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html 12curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.">
 <meta name="keywords" content="EKL,日志分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ELK入门">
 <meta property="og:url" content="http://imlh.cn/201711/lab/ELK入门/index.html">
 <meta property="og:site_name" content="木鱼&#39;s Blog">
-<meta property="og:description" content="准备下载ELKhttps://www.elastic.co/ filebeathttps://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html 12curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.0">
+<meta property="og:description" content="准备下载 ELKhttps://www.elastic.co/ filebeathttps://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html 12curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-30T15:27:39.380Z">
+<meta property="og:updated_time" content="2018-02-26T06:02:26.701Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ELK入门">
-<meta name="twitter:description" content="准备下载ELKhttps://www.elastic.co/ filebeathttps://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html 12curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.0">
+<meta name="twitter:description" content="准备下载 ELKhttps://www.elastic.co/ filebeathttps://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html 12curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.">
 
 
 
@@ -332,11 +332,13 @@
       
 
       
-        <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="下载ELK"><a href="#下载ELK" class="headerlink" title="下载ELK"></a>下载ELK</h3><p><a href="https://www.elastic.co/" target="_blank" rel="noopener">https://www.elastic.co/</a></p>
+        <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="下载-ELK"><a href="#下载-ELK" class="headerlink" title="下载 ELK"></a>下载 ELK</h3><p><a href="https://www.elastic.co/" target="_blank" rel="noopener">https://www.elastic.co/</a></p>
 <h3 id="filebeat"><a href="#filebeat" class="headerlink" title="filebeat"></a>filebeat</h3><p><a href="https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.0.0-darwin-x86_64.tar.gz</span><br><span class="line">tar xzvf filebeat-6.0.0-darwin-x86_64.tar.gz</span><br></pre></td></tr></table></figure>
 <h3 id="测试-log"><a href="#测试-log" class="headerlink" title="测试 log"></a>测试 log</h3><p><a href="https://download.elastic.co/demos/logstash/gettingstarted/logstash-tutorial.log.gz" target="_blank" rel="noopener">https://download.elastic.co/demos/logstash/gettingstarted/logstash-tutorial.log.gz</a></p>
-<h3 id="gork-filter"><a href="#gork-filter" class="headerlink" title="gork filter"></a>gork filter</h3><p><a href="http://www.elastic.co/guide/en/logstash/6.0/plugins-filters-grok.html" target="_blank" rel="noopener">http://www.elastic.co/guide/en/logstash/6.0/plugins-filters-grok.html</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/logstash-plugin install logstash-filter-grok</span><br></pre></td></tr></table></figure></p>
+<h3 id="gork-filter"><a href="#gork-filter" class="headerlink" title="gork filter"></a>gork filter</h3><p><a href="http://www.elastic.co/guide/en/logstash/6.0/plugins-filters-grok.html" target="_blank" rel="noopener">http://www.elastic.co/guide/en/logstash/6.0/plugins-filters-grok.html</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/logstash-plugin install logstash-filter-grok</span><br></pre></td></tr></table></figure>
+<h3 id="更快的体验"><a href="#更快的体验" class="headerlink" title="更快的体验"></a>更快的体验</h3><p><a href="https://github.com/sqshq/ELK-docker" target="_blank" rel="noopener">https://github.com/sqshq/ELK-docker</a></p>
 
       
     </div>
@@ -517,7 +519,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载ELK"><span class="nav-number">1.1.</span> <span class="nav-text">下载ELK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filebeat"><span class="nav-number">1.2.</span> <span class="nav-text">filebeat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试-log"><span class="nav-number">1.3.</span> <span class="nav-text">测试 log</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gork-filter"><span class="nav-number">1.4.</span> <span class="nav-text">gork filter</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载-ELK"><span class="nav-number">1.1.</span> <span class="nav-text">下载 ELK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filebeat"><span class="nav-number">1.2.</span> <span class="nav-text">filebeat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试-log"><span class="nav-number">1.3.</span> <span class="nav-text">测试 log</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gork-filter"><span class="nav-number">1.4.</span> <span class="nav-text">gork filter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更快的体验"><span class="nav-number">1.5.</span> <span class="nav-text">更快的体验</span></a></li></ol></li></ol></div>
             
 
           </div>
