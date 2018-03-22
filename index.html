@@ -284,7 +284,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/201803/tools/ngrok自部署/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/201803/tools/ngrok自部署/" itemprop="url">ngrok自部署</a></h1>
         
 
         <div class="post-meta">
@@ -306,6 +306,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/独家分享/" itemprop="url" rel="index">
+                    <span itemprop="name">独家分享</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -336,14 +358,8 @@
       
         
           
-            <hr>
-<p>title: ngrok自部署<br>date: 2018-03-22 10:59:06<br>tags:</p>
-<ul>
-<li>翻墙<br>categories:</li>
-<li>独家分享</li>
-</ul>
-<h2 id="免费的有各种限制，自己装ngrok开源的旧版"><a href="#免费的有各种限制，自己装ngrok开源的旧版" class="headerlink" title="免费的有各种限制，自己装ngrok开源的旧版"></a>免费的有各种限制，自己装ngrok开源的旧版</h2><h3 id="golang依赖下载需要翻墙"><a href="#golang依赖下载需要翻墙" class="headerlink" title="golang依赖下载需要翻墙"></a>golang依赖下载需要翻墙</h3><pre><code>**翻不了墙就不要往下走了**
-</code></pre><h3 id="首先要golang环境"><a href="#首先要golang环境" class="headerlink" title="首先要golang环境"></a>首先要golang环境</h3><p>根据系统下载绿色的(*.tar.gz)<a href="https://golang.org/dl/" target="_blank" rel="noopener">https://golang.org/dl/</a></p>
+            <h2 id="免费的有各种限制，自己装ngrok开源的旧版"><a href="#免费的有各种限制，自己装ngrok开源的旧版" class="headerlink" title="免费的有各种限制，自己装ngrok开源的旧版"></a>免费的有各种限制，自己装ngrok开源的旧版</h2><h3 id="golang依赖下载需要翻墙"><a href="#golang依赖下载需要翻墙" class="headerlink" title="golang依赖下载需要翻墙"></a>golang依赖下载需要翻墙</h3><p>   <strong>翻不了墙就不要往下走了</strong></p>
+<h3 id="首先要golang环境"><a href="#首先要golang环境" class="headerlink" title="首先要golang环境"></a>首先要golang环境</h3><p>根据系统下载绿色的(*.tar.gz)<a href="https://golang.org/dl/" target="_blank" rel="noopener">https://golang.org/dl/</a></p>
 <p>加入这几个到环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> GOROOT=<span class="variable">$HOME</span>/a/go</span><br><span class="line"><span class="built_in">export</span> GOBIN=<span class="variable">$GOROOT</span>/bin</span><br><span class="line"><span class="built_in">export</span> GOPATH=<span class="variable">$HOME</span>/work/go/gopath</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$GOBIN</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="编译自定义域名的服务端和客户端"><a href="#编译自定义域名的服务端和客户端" class="headerlink" title="编译自定义域名的服务端和客户端"></a>编译自定义域名的服务端和客户端</h3><p>参考官方文档写的shell，快速部署<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># https://github.com/inconshreveable/ngrok/blob/master/docs/SELFHOSTING.md</span></span><br><span class="line">NGROK_DOMAIN=<span class="variable">$1</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">""</span> == <span class="string">"<span class="variable">$1</span>"</span> ];<span class="keyword">then</span></span><br><span class="line">    NGROK_DOMAIN=<span class="string">"o.imlh.cn"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="comment">#git clone https://github.com/inconshreveable/ngrok.git</span></span><br><span class="line"><span class="comment">#cd ngrok</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -f <span class="string">"./rootCA.pem"</span> ];<span class="keyword">then</span></span><br><span class="line">    rm rootCA* device*</span><br><span class="line">    openssl genrsa -out rootCA.key 2048 &amp;&amp; \</span><br><span class="line">    openssl req -x509 -new -nodes -key rootCA.key -subj <span class="string">"/CN=<span class="variable">$NGROK_DOMAIN</span>"</span> -days 5000 -out rootCA.pem &amp;&amp; \</span><br><span class="line">    openssl genrsa -out device.key 2048 &amp;&amp; \</span><br><span class="line">    openssl req -new -key device.key -subj <span class="string">"/CN=<span class="variable">$NGROK_DOMAIN</span>"</span> -out device.csr &amp;&amp; \</span><br><span class="line">    openssl x509 -req -<span class="keyword">in</span> device.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out device.crt -days 5000</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -f <span class="string">"./rootCA.pem"</span> ];<span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'pls run '</span><span class="variable">$0</span><span class="string">'again'</span></span><br><span class="line">    <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">cp rootCA.pem assets/client/tls/ngrokroot.crt</span><br><span class="line"></span><br><span class="line"><span class="comment"># make clean</span></span><br><span class="line">make release-server release-client</span><br><span class="line">GOOS=darwin GOARCH=amd64 make release-client</span><br><span class="line">GOOS=windows GOARCH=amd64 make release-client</span><br><span class="line"></span><br><span class="line"><span class="comment"># copy keys for server use</span></span><br><span class="line">cp device.key device.crt bin/</span><br><span class="line"></span><br><span class="line"><span class="comment"># gen config</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'server_addr: '</span><span class="variable">$NGROK_DOMAIN</span><span class="string">':8444'</span>&gt;bin/ngrok.cfg</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'trust_host_root_certs: false'</span>&gt;&gt;bin/ngrok.cfg</span><br><span class="line"></span><br><span class="line"><span class="comment"># gen server &amp; client script templates</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'./ngrokd -domain '</span><span class="variable">$NGROK_DOMAIN</span><span class="string">' -httpAddr :8080 -httpsAddr :8443 -tlsKey device.key -tlsCrt device.crt -tunnelAddr :8444'</span>&gt;bin/runServer.sh</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'./ngrok -subdomain test -config ./ngrok.cfg 8080'</span>&gt;bin/runClient.sh</span><br></pre></td></tr></table></figure></p>
 
