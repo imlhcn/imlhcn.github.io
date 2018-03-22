@@ -265,6 +265,135 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://imlh.cn/201803/tools/ngrok自部署/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/static/img/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木鱼's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/201803/tools/ngrok自部署/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-22T10:59:06+08:00">
+                2018-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<p>title: ngrok自部署<br>date: 2018-03-22 10:59:06<br>tags:</p>
+<ul>
+<li>翻墙<br>categories:</li>
+<li>独家分享</li>
+</ul>
+<h2 id="免费的有各种限制，自己装ngrok开源的旧版"><a href="#免费的有各种限制，自己装ngrok开源的旧版" class="headerlink" title="免费的有各种限制，自己装ngrok开源的旧版"></a>免费的有各种限制，自己装ngrok开源的旧版</h2><h3 id="golang依赖下载需要翻墙"><a href="#golang依赖下载需要翻墙" class="headerlink" title="golang依赖下载需要翻墙"></a>golang依赖下载需要翻墙</h3><pre><code>**翻不了墙就不要往下走了**
+</code></pre><h3 id="首先要golang环境"><a href="#首先要golang环境" class="headerlink" title="首先要golang环境"></a>首先要golang环境</h3><p>根据系统下载绿色的(*.tar.gz)<a href="https://golang.org/dl/" target="_blank" rel="noopener">https://golang.org/dl/</a></p>
+<p>加入这几个到环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> GOROOT=<span class="variable">$HOME</span>/a/go</span><br><span class="line"><span class="built_in">export</span> GOBIN=<span class="variable">$GOROOT</span>/bin</span><br><span class="line"><span class="built_in">export</span> GOPATH=<span class="variable">$HOME</span>/work/go/gopath</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$GOBIN</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="编译自定义域名的服务端和客户端"><a href="#编译自定义域名的服务端和客户端" class="headerlink" title="编译自定义域名的服务端和客户端"></a>编译自定义域名的服务端和客户端</h3><p>参考官方文档写的shell，快速部署<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># https://github.com/inconshreveable/ngrok/blob/master/docs/SELFHOSTING.md</span></span><br><span class="line">NGROK_DOMAIN=<span class="variable">$1</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">""</span> == <span class="string">"<span class="variable">$1</span>"</span> ];<span class="keyword">then</span></span><br><span class="line">    NGROK_DOMAIN=<span class="string">"o.imlh.cn"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="comment">#git clone https://github.com/inconshreveable/ngrok.git</span></span><br><span class="line"><span class="comment">#cd ngrok</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -f <span class="string">"./rootCA.pem"</span> ];<span class="keyword">then</span></span><br><span class="line">    rm rootCA* device*</span><br><span class="line">    openssl genrsa -out rootCA.key 2048 &amp;&amp; \</span><br><span class="line">    openssl req -x509 -new -nodes -key rootCA.key -subj <span class="string">"/CN=<span class="variable">$NGROK_DOMAIN</span>"</span> -days 5000 -out rootCA.pem &amp;&amp; \</span><br><span class="line">    openssl genrsa -out device.key 2048 &amp;&amp; \</span><br><span class="line">    openssl req -new -key device.key -subj <span class="string">"/CN=<span class="variable">$NGROK_DOMAIN</span>"</span> -out device.csr &amp;&amp; \</span><br><span class="line">    openssl x509 -req -<span class="keyword">in</span> device.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out device.crt -days 5000</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -f <span class="string">"./rootCA.pem"</span> ];<span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'pls run '</span><span class="variable">$0</span><span class="string">'again'</span></span><br><span class="line">    <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">cp rootCA.pem assets/client/tls/ngrokroot.crt</span><br><span class="line"></span><br><span class="line"><span class="comment"># make clean</span></span><br><span class="line">make release-server release-client</span><br><span class="line">GOOS=darwin GOARCH=amd64 make release-client</span><br><span class="line">GOOS=windows GOARCH=amd64 make release-client</span><br><span class="line"></span><br><span class="line"><span class="comment"># copy keys for server use</span></span><br><span class="line">cp device.key device.crt bin/</span><br><span class="line"></span><br><span class="line"><span class="comment"># gen config</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'server_addr: '</span><span class="variable">$NGROK_DOMAIN</span><span class="string">':8444'</span>&gt;bin/ngrok.cfg</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'trust_host_root_certs: false'</span>&gt;&gt;bin/ngrok.cfg</span><br><span class="line"></span><br><span class="line"><span class="comment"># gen server &amp; client script templates</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'./ngrokd -domain '</span><span class="variable">$NGROK_DOMAIN</span><span class="string">' -httpAddr :8080 -httpsAddr :8443 -tlsKey device.key -tlsCrt device.crt -tunnelAddr :8444'</span>&gt;bin/runServer.sh</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'./ngrok -subdomain test -config ./ngrok.cfg 8080'</span>&gt;bin/runClient.sh</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://imlh.cn/201802/spring-cloud/PiggyMetric快速体验/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1373,127 +1502,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://imlh.cn/201708/spring-boot/SpringMvc-中文编码问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="木鱼">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/static/img/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="木鱼's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/201708/spring-boot/SpringMvc-中文编码问题/" itemprop="url">SpringMvc GET 中文编码问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-29T21:29:39+08:00">
-                2017-08-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="不用utf8-就是坑"><a href="#不用utf8-就是坑" class="headerlink" title="不用utf8 就是坑"></a>不用utf8 就是坑</h1><p>最近对接某 .net系统的接口，对方的一个接口用get传中文回调到我们系统，里面的url参数用gb2312编码 类似<br>curl <a href="http://localhost:8080/req\" target="_blank" rel="noopener">http://localhost:8080/req\</a><br>?params=100AbC%E4%B8%AD%E6%96%87\<br>&amp;params=100AbC%3F%3F\<br>&amp;params=100AbC%D6%D0%CE%C4\<br>&amp;params=100AbC%D6%D0%CE%C4</p>
-<p>参数用了4种编码：”UTF-8”, “ISO-8859-1”, “GBK”, “gb2312”<br>方向走错于是进行了各种尝试…..<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/bytes"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bytes</span><span class="params">(<span class="keyword">byte</span>[] params)</span></span>&#123;&#125;<span class="comment">//此路不通</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/req"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">req</span><span class="params">(HttpServletRequest req)</span> </span>&#123;</span><br><span class="line">    String [] params=req.getParameters(<span class="string">"param"</span>);<span class="comment">// 此路不通，一开始只想到这里，然后绕远了</span></span><br><span class="line">    <span class="comment">// 尝试各种转换浪费了半天生命...............</span></span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 结果 ----------------------------------------</span></span><br><span class="line"><span class="comment">// 发现SpringMvc自动组装参数的编码是根据 URIEncoding这个值全局的，不可能为你一个接口改了全局配置</span></span><br><span class="line"><span class="comment">// 那么只能绕过框架自动处理的,估计是今天没睡好，上一步差一点点了居然没想到</span></span><br><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/req"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">req</span><span class="params">(HttpServletRequest req)</span> </span>&#123;</span><br><span class="line">    String query = req.getQueryString();<span class="comment">// 用这个手动来即可</span></span><br><span class="line">    URLDecoder.decode(query,<span class="string">"gb2312"</span>);<span class="comment">//</span></span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1544,7 +1552,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
