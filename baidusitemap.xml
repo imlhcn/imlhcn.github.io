@@ -4,11 +4,11 @@
 
     
   <url>
-    <loc>http://imlh.cn/201803/docker/%E7%94%A8nexu3%E6%90%AD%E5%BB%BAdocker+maven%E7%A7%81%E6%9C%8D/</loc>
-    <lastmod>2018-03-26T14:51:56.548Z</lastmod>
+    <loc>http://imlh.cn/201803/docker/%E7%94%A8nexus3%E6%90%AD%E5%BB%BAdocker+maven%E7%A7%81%E6%9C%8D/</loc>
+    <lastmod>2018-03-26T14:53:17.792Z</lastmod>
     <data>
         <display>
-        <title>docker入坑记录</title>
+        <title>用nexus3搭建docker+maven私服</title>
         <pubTime>2018-03-26T14:17:46.000Z</pubTime>
         
         <tag>docker</tag>
