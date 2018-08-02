@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="imlhcn,imlh,lh,spring-cloud,spring-boot,micro-service" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="https://github.com/eeoa/OSGuide禁止luci12/etc/init.d/uhttpd disable/etc/init.d/uhttpd stop ###dnsmasq-full1opkg remove dnsmasq &amp;amp;&amp;amp; opkg install dnsmasq-full  resolve_conffiles: Existing conffile">
+<meta property="og:type" content="article">
+<meta property="og:title" content="openwrt">
+<meta property="og:url" content="http://imlh.cn/201807/tools/openwrt/index.html">
+<meta property="og:site_name" content="木鱼&#39;s Blog">
+<meta property="og:description" content="https://github.com/eeoa/OSGuide禁止luci12/etc/init.d/uhttpd disable/etc/init.d/uhttpd stop ###dnsmasq-full1opkg remove dnsmasq &amp;amp;&amp;amp; opkg install dnsmasq-full  resolve_conffiles: Existing conffile">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-02T17:00:53.336Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="openwrt">
+<meta name="twitter:description" content="https://github.com/eeoa/OSGuide禁止luci12/etc/init.d/uhttpd disable/etc/init.d/uhttpd stop ###dnsmasq-full1opkg remove dnsmasq &amp;amp;&amp;amp; opkg install dnsmasq-full  resolve_conffiles: Existing conffile">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://imlh.cn/201807/tools/openwrt/"/>
+
+
+
+
+
+  <title>openwrt | 木鱼's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">木鱼's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">策码浆糊，留点笔迹</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://imlh.cn/201807/tools/openwrt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/static/img/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木鱼's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">openwrt</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-24T22:10:46+08:00">
+                2018-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="https-github-com-eeoa-OSGuide"><a href="#https-github-com-eeoa-OSGuide" class="headerlink" title="https://github.com/eeoa/OSGuide"></a><a href="https://github.com/eeoa/OSGuide" target="_blank" rel="noopener">https://github.com/eeoa/OSGuide</a></h2><h3 id="禁止luci"><a href="#禁止luci" class="headerlink" title="禁止luci"></a>禁止luci</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/uhttpd <span class="built_in">disable</span></span><br><span class="line">/etc/init.d/uhttpd stop</span><br></pre></td></tr></table></figure>
+<p>###dnsmasq-full<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">opkg remove dnsmasq &amp;&amp; opkg install dnsmasq-full</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>resolve_conffiles: Existing conffile /etc/config/dhcp is different from the conffile in the new package. The new conffile will be placed at /etc/config/dhcp-opkg.</li>
+</ul>
+<h3 id="这个产生的文件太大，放弃"><a href="#这个产生的文件太大，放弃" class="headerlink" title="这个产生的文件太大，放弃"></a>这个产生的文件太大，放弃</h3><p> generate_dnsmasq_chinalist.sh -d 202.96.128.86 -p 53 -s ss_spec_dst_bp -o accelerated-domains.china.conf</p>
+<h3 id="挂载upan（可选）"><a href="#挂载upan（可选）" class="headerlink" title="挂载upan（可选）"></a>挂载upan（可选）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ppp完全没有用了</span></span><br><span class="line">opkg remove ppp* kmod-ppp*</span><br><span class="line"></span><br><span class="line">opkg install fdisk kmod-fs-vfat kmod-usb-storage</span><br><span class="line"></span><br><span class="line">mkdir /mnt/sda1</span><br><span class="line">mount -t vfat /dev/sda1 /mnt/sda1</span><br><span class="line"></span><br><span class="line"><span class="comment"># opkg install mountd (自动挂载)</span></span><br></pre></td></tr></table></figure>
+<h3 id="aria2c-（可选）"><a href="#aria2c-（可选）" class="headerlink" title="aria2c （可选）"></a>aria2c （可选）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">opkg install aria2 luci-app-aria2</span><br><span class="line"></span><br><span class="line"><span class="comment"># ui</span></span><br><span class="line">wget https://github.com/mayswind/AriaNg/releases/download/0.4.0/aria-ng-0.4.0.zip</span><br><span class="line">unzip aria-ng-0.4.0.zip -d aria2</span><br><span class="line">ln -s /mnt/sda1/aria2/aria2 /www/aria2</span><br><span class="line"></span><br><span class="line"><span class="comment"># https://www.mivm.cn/openwrt-sdk-package-foundation/</span></span><br></pre></td></tr></table></figure>
+<h3 id="交叉编译aria2c-发现自带的版本没有支持bt和磁力链接"><a href="#交叉编译aria2c-发现自带的版本没有支持bt和磁力链接" class="headerlink" title="交叉编译aria2c(发现自带的版本没有支持bt和磁力链接)"></a>交叉编译aria2c(发现自带的版本没有支持bt和磁力链接)</h3><p><a href="https://stray.love/itshou-zha/shi-yong-openwrt-sdkbian-yi-aria2zui-xin-ban-ben" target="_blank" rel="noopener">https://stray.love/itshou-zha/shi-yong-openwrt-sdkbian-yi-aria2zui-xin-ban-ben</a><br><a href="https://www.lovesykun.cn/archives/4.html" target="_blank" rel="noopener">https://www.lovesykun.cn/archives/4.html</a></p>
+<h3 id="官网关于如何build"><a href="#官网关于如何build" class="headerlink" title="官网关于如何build"></a>官网关于如何build</h3><p><a href="https://openwrt.org/docs/guide-developer/build-system/install-buildsystem" target="_blank" rel="noopener">https://openwrt.org/docs/guide-developer/build-system/install-buildsystem</a><br><a href="https://openwrt.org/docs/guide-developer/build-system/use-buildsystem" target="_blank" rel="noopener">https://openwrt.org/docs/guide-developer/build-system/use-buildsystem</a><br><a href="https://openwrt.org/docs/guide-developer/crosscompile" target="_blank" rel="noopener">https://openwrt.org/docs/guide-developer/crosscompile</a></p>
+<h3 id="ssl支持"><a href="#ssl支持" class="headerlink" title="ssl支持"></a>ssl支持</h3><p>root@LEDE:~# wget <a href="https://tu.66vod.net/2018/2753.jpg" target="_blank" rel="noopener">https://tu.66vod.net/2018/2753.jpg</a><br>Downloading ‘<a href="https://tu.66vod.net/2018/2753.jpg&#39;" target="_blank" rel="noopener">https://tu.66vod.net/2018/2753.jpg&#39;</a><br>Connecting to 128.1.90.94:443<br>Connection error: Invalid SSL certificate</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">opkg install ca-bundle ca-certificates libustream-openssl luci-ssl-openssl</span><br></pre></td></tr></table></figure>
+<h3 id="shadowsocks"><a href="#shadowsocks" class="headerlink" title="shadowsocks"></a>shadowsocks</h3><p><a href="http://openwrt-dist.sourceforge.net/" target="_blank" rel="noopener">http://openwrt-dist.sourceforge.net/</a></p>
+<p><a href="http://openwrt-dist.sourceforge.net/packages/base/mips_mips32/" target="_blank" rel="noopener">http://openwrt-dist.sourceforge.net/packages/base/mips_mips32/</a></p>
+<p>总体参考<br><a href="https://cokebar.info/archives/962" target="_blank" rel="noopener">https://cokebar.info/archives/962</a></p>
+<p>采取的方案<br><a href="https://github.com/shadowsocks/luci-app-shadowsocks/wiki/Instruction-of-ss-rules" target="_blank" rel="noopener">https://github.com/shadowsocks/luci-app-shadowsocks/wiki/Instruction-of-ss-rules</a></p>
+<p>解决上述重启ss-rule被覆盖的问题，但是 ipset 添加不在dnsmasq服务内，参考下面的bash,全部在ss-rules下修改<br><a href="https://herowong.me/archives/fuck-gfw-by-using-openwrt-shadowsocks.html" target="_blank" rel="noopener">https://herowong.me/archives/fuck-gfw-by-using-openwrt-shadowsocks.html</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /usr/bin/ss-rules</span></span><br><span class="line"><span class="function"><span class="title">include_ac_rules</span></span>() &#123;</span><br><span class="line">        <span class="comment"># add ipset 需要确保gfwlist存在，否则后面报错</span></span><br><span class="line">        ipset list gfwlist &gt; /dev/null || ipset -N gfwlist iphash</span><br><span class="line"></span><br><span class="line">        <span class="built_in">local</span> protocol=$([ <span class="string">"<span class="variable">$1</span>"</span> = <span class="string">"mangle"</span> ] &amp;&amp; <span class="built_in">echo</span> udp || <span class="built_in">echo</span> tcp)</span><br><span class="line">        iptables-restore -n &lt;&lt;-EOF</span><br><span class="line">        *<span class="variable">$1</span></span><br><span class="line">        :SS_SPEC_LAN_DG - [0:0]</span><br><span class="line">        :SS_SPEC_LAN_AC - [0:0]</span><br><span class="line">        :SS_SPEC_WAN_AC - [0:0]</span><br><span class="line">        :SS_SPEC_WAN_FW - [0:0]</span><br><span class="line">        -A SS_SPEC_LAN_DG -m <span class="built_in">set</span> --match-set ss_spec_dst_sp dst -j RETURN</span><br><span class="line">        -A SS_SPEC_LAN_DG -p <span class="variable">$protocol</span> <span class="variable">$EXT_ARGS</span> -j SS_SPEC_LAN_AC</span><br><span class="line">        -A SS_SPEC_LAN_AC -m <span class="built_in">set</span> --match-set ss_spec_src_bp src -j RETURN</span><br><span class="line">        -A SS_SPEC_LAN_AC -m <span class="built_in">set</span> --match-set ss_spec_src_fw src -j SS_SPEC_WAN_FW</span><br><span class="line">        -A SS_SPEC_LAN_AC -m <span class="built_in">set</span> --match-set ss_spec_src_ac src -j SS_SPEC_WAN_AC</span><br><span class="line">        -A SS_SPEC_LAN_AC -j <span class="variable">$&#123;LAN_TARGET:=SS_SPEC_WAN_AC&#125;</span></span><br><span class="line">        -A SS_SPEC_WAN_AC -m <span class="built_in">set</span> --match-set gfwlist dst -j SS_SPEC_WAN_FW</span><br><span class="line">        -A SS_SPEC_WAN_AC -m <span class="built_in">set</span> --match-set ss_spec_dst_fw dst -j SS_SPEC_WAN_FW</span><br><span class="line">        -A SS_SPEC_WAN_AC -m <span class="built_in">set</span> --match-set ss_spec_dst_bp dst -j RETURN</span><br><span class="line">        -A SS_SPEC_WAN_AC -j SS_SPEC_WAN_FW</span><br><span class="line">        $(gen_prerouting_rules <span class="variable">$protocol</span>)</span><br><span class="line">        COMMIT</span><br><span class="line">EOF</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># /etc/init.d/dnsmasq （已作废)</span></span><br><span class="line">```bash</span><br><span class="line">ipset list gfwlist &gt; /dev/null || ipset -N gfwlist iphash</span><br><span class="line">config_load dhcp</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">## 注意</span><br><span class="line">http://rt.cn2k.net/?p=221</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### iptables -t nat -L</span><br><span class="line"></span><br><span class="line">Chain SS_SPEC_WAN_AC (3 references)</span><br><span class="line">target     prot opt source               destination</span><br><span class="line">SS_SPEC_WAN_FW  all  --  anywhere             anywhere             match-set ss_spec_dst_fw dst</span><br><span class="line">RETURN     all  --  anywhere             anywhere             match-set ss_spec_dst_bp dst</span><br><span class="line">SS_SPEC_WAN_FW  all  --  anywhere             anywhere             match-set gfwlist dst</span><br><span class="line">SS_SPEC_WAN_FW  all  --  anywhere             anywhere</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### crontab(不用chnroute了，这里仅仅做个记录，我采取了后面新版的，只代理gfwlist+自定义维护)</span><br><span class="line">wget -O- &apos;http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest&apos; | awk -F\| &apos;/CN\|ipv4/ &#123; printf(&quot;%s/%d\n&quot;, $4, 32-log($5)/log(2)) &#125;&apos; &gt; /etc/ignore.list</span><br><span class="line">/etc/init.d/shadowsocks-libev restart</span><br></pre></td></tr></table></figure>
+<h3 id="etc-config-shadowsocks-libev-（已作废）"><a href="#etc-config-shadowsocks-libev-（已作废）" class="headerlink" title="/etc/config/shadowsocks-libev （已作废）"></a>/etc/config/shadowsocks-libev （已作废）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">config shadowsocks-libev</span><br><span class="line">        option enable &apos;1&apos;</span><br><span class="line">        option server &apos;x.x.x.x.&apos;</span><br><span class="line">        option server_port &apos;8999&apos;</span><br><span class="line">        option local_port &apos;1080&apos;</span><br><span class="line">        option password &apos;x.x.x.x&apos;</span><br><span class="line">        option timeout &apos;60&apos;</span><br><span class="line">        option encrypt_method &apos;aes-256-cfb&apos;</span><br><span class="line">        option ignore_list &apos;/etc/ignore.list&apos;</span><br><span class="line">        option udp_mode &apos;0&apos;</span><br><span class="line">        option tunnel_enable &apos;1&apos;</span><br><span class="line">        option tunnel_port &apos;5300&apos;</span><br><span class="line">        option tunnel_forward &apos;8.8.4.4:53&apos;</span><br><span class="line">        option lan_ac_mode &apos;0&apos;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/201806/relax/" rel="next" title="relax">
+                <i class="fa fa-chevron-left"></i> relax
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/static/img/avatar.jpg"
+               alt="木鱼" />
+          <p class="site-author-name" itemprop="name">木鱼</p>
+           
+              <p class="site-description motion-element" itemprop="description">生命有限，能量守恒<br>码农生涯，重在过程</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#https-github-com-eeoa-OSGuide"><span class="nav-number">1.</span> <span class="nav-text">https://github.com/eeoa/OSGuide</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#禁止luci"><span class="nav-number">1.1.</span> <span class="nav-text">禁止luci</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#这个产生的文件太大，放弃"><span class="nav-number">1.2.</span> <span class="nav-text">这个产生的文件太大，放弃</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#挂载upan（可选）"><span class="nav-number">1.3.</span> <span class="nav-text">挂载upan（可选）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aria2c-（可选）"><span class="nav-number">1.4.</span> <span class="nav-text">aria2c （可选）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交叉编译aria2c-发现自带的版本没有支持bt和磁力链接"><span class="nav-number">1.5.</span> <span class="nav-text">交叉编译aria2c(发现自带的版本没有支持bt和磁力链接)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#官网关于如何build"><span class="nav-number">1.6.</span> <span class="nav-text">官网关于如何build</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ssl支持"><span class="nav-number">1.7.</span> <span class="nav-text">ssl支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shadowsocks"><span class="nav-number">1.8.</span> <span class="nav-text">shadowsocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#etc-config-shadowsocks-libev-（已作废）"><span class="nav-number">1.9.</span> <span class="nav-text">/etc/config/shadowsocks-libev （已作废）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木鱼</span>
+</div>
+
+
+<div class="powered-by">
+  Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+</div>
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
