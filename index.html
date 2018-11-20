@@ -265,6 +265,389 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://imlh.cn/201811/tools/ssh三种转发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/static/img/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木鱼's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/201811/tools/ssh三种转发/" itemprop="url">ssh三种转发</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-20T22:34:07+08:00">
+                2018-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>详解SSH三种端口转发<br>SSH端口转发的好处：</p>
+<ol>
+<li>利用SSH通道天然的加密特性</li>
+<li>通过具备访问权限的第三者，突破防火墙对自己的限制，或者隐身<br>角色定义：<br>A. 本地服务器，想通过中间服务器B间接访问目标服务器C<br>B. 中间服务器，类似于代理，A以B的名义去访问C<br>C. 目标服务器，C看到的都是中间服务器B在访问自己</li>
+</ol>
+<p>A Home_Computer_IP: 10.10.1.200<br>B SSH_Forward_Server_IP1: 10.10.1.201<br>  SSH_Forward_Server_IP2: 192.168.1.201<br>C The_Tag_Server_IP: 192.168.1.224</p>
+<h2 id="1-本地端口转发"><a href="#1-本地端口转发" class="headerlink" title="1. 本地端口转发"></a>1. 本地端口转发</h2><p>命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -Nf -L [local_A_address]:local_A_port:target_C_server:target_C_port via_B_server</span><br><span class="line">ssh -Nf -p B_SSH_PORT -L 10.10.1.200:8080:192.168.1.224:80 B_User@10.10.1.201</span><br></pre></td></tr></table></figure></p>
+<p>参数：<br>-N,不执行命令<br>-f,后台执行<br>-L,local本地端口转发<br>local_A_address:<br>    127.0.0.1 - 默认，只能本机使用这个端口转发<br>    也可以是本机的IP地址，同时其他人可以使用这个IP来使用这个端口转发<br>via_B_server:中间服务器</p>
+<p>应用：<br>A—能访问——&gt;B——-能访问——&gt;C<br>A—不能访问—————————–&gt;C<br>A—通过本机端口,以B的名义访问–&gt;C<br>关闭：<br>直接kill -9 建立的SSH连接，下同</p>
+<h2 id="2-远程端口转发-在B上执行"><a href="#2-远程端口转发-在B上执行" class="headerlink" title="2. 远程端口转发 在B上执行"></a>2. 远程端口转发 在B上执行</h2><p>命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -Nf -R [local_A_address]:local_A_port:target_C_server:target_C_port local_A_address</span><br><span class="line">ssh -Nf -p A_SSH_PORT 10.10.1.201:8080:192.168.1.224:80 A_User@10.10.1.200</span><br></pre></td></tr></table></figure></p>
+<p>参数：<br>-R,remote,远程端口转发<br>local_A_address,这个地址为A的IP<br>应用：<br>环境和目的 与 本地端口转发是一样的，这里只是不在本地服务器A上执行命令，而是在中间服务器B上执行；<br>为什么不直接在服务器A自己身上执行命令呢？这个场景有别于本地端口转发的地方在于A不能主动连接B但反之可以，比如A在外网，B在内网；<br>而A去访问的时候，同样都是通过自己的IP和端口，同样首先建立AB之间的SSH通道，以服务器B的名义来访问目标服务器C。</p>
+<h2 id="3-动态端口转发"><a href="#3-动态端口转发" class="headerlink" title="3. 动态端口转发"></a>3. 动态端口转发</h2><p>命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -Nf -D [local_A_address]:local_A_port via_B_server</span><br><span class="line">ssh -Nf -p B_SSH_PORT 10.10.1.200:8080 B_User@10.10.1.201</span><br></pre></td></tr></table></figure></p>
+<p>参数：<br>-D,dynamic,动态端口转发<br>应用：<br>本地和远程端口转发，都限定了目标服务器以及目标服务器的端口；<br>而动态端口转发，A把B作为了自己的全权代理，不限定目标服务器及其端口；<br>这里要求在A上，做下代理设置，比如浏览器的代理设定为自己的IP:PORT；<br>本地端口转发和远程端口转发，其实都可看着是动态端口转发(代理)的子集；<br>三者和一般代理的目的和场景都一致，区别在于这里自己A和代理服务器B之前的所有连接都是基于加密的SSH。</p>
+<p>作者：功夫猫星人<br>链接：<a href="https://www.jianshu.com/p/558781768505" target="_blank" rel="noopener">https://www.jianshu.com/p/558781768505</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://imlh.cn/201810/openvpn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/static/img/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木鱼's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/201810/openvpn/" itemprop="url">install openvpn in debian</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-18T21:18:17+08:00">
+                2018-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="enviroment"><a href="#enviroment" class="headerlink" title="enviroment"></a>enviroment</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">lsb_release -a <span class="comment">#查看系统版本</span></span><br><span class="line">No LSB modules are available.</span><br><span class="line">Distributor ID: Debian</span><br><span class="line">Description:    Debian GNU/Linux 9.2 (stretch)</span><br><span class="line">Release:        9.2</span><br><span class="line">Codename:       stretch</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"deb http://build.openvpn.net/debian/openvpn/stable stretch main"</span> &gt; /etc/apt/sources.list.d/openvpn-aptrepo.list</span><br></pre></td></tr></table></figure>
+<h3 id="config"><a href="#config" class="headerlink" title="config"></a>config</h3><p><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-an-openvpn-server-on-debian-9" target="_blank" rel="noopener">https://www.digitalocean.com/community/tutorials/how-to-set-up-an-openvpn-server-on-debian-9</a><br><a href="http://www.mimastech.com/2017/09/11/install-openvpn-server-on-debian-9-stretch-linux-systems" target="_blank" rel="noopener">http://www.mimastech.com/2017/09/11/install-openvpn-server-on-debian-9-stretch-linux-systems</a></p>
+<h4 id="step-1-configs-and-prepare"><a href="#step-1-configs-and-prepare" class="headerlink" title="step 1 configs and prepare"></a>step 1 configs and prepare</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt; /etc/openvpn/server.conf</span><br><span class="line">mkdir /etc/openvpn/rsa</span><br><span class="line">cp -rf /usr/share/easy-rsa/* /etc/openvpn/rsa</span><br><span class="line"></span><br><span class="line">vim /etc/openvpn/rsa/vars <span class="comment">#edit KEY_***</span></span><br></pre></td></tr></table></figure>
+<h4 id="step-2-keys"><a href="#step-2-keys" class="headerlink" title="step 2 keys"></a>step 2 keys</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cp openssl-1.0.0.cnf openssl.cnf</span><br><span class="line"><span class="built_in">source</span> ./vars</span><br><span class="line">./clean-all</span><br><span class="line">./build-ca</span><br><span class="line">./build-key-server server  <span class="comment"># A challenge password []:codecrop.cc</span></span><br><span class="line">./build-dh</span><br><span class="line">./build-key codecrop <span class="comment">#./build-key &lt;client_name&gt; A challenge password []:codecrop.cc</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> keys</span><br><span class="line">cp dh2048.pem ca.crt server.crt server.key /etc/openvpn</span><br></pre></td></tr></table></figure>
+<p>“~/Library/Application Support/Tunnelblick/Configurations”<br>“/Library/Application Support/Tunnelblick/“<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">client</span><br><span class="line">dev tun</span><br><span class="line">proto udp</span><br><span class="line">remote &lt;openvpn server IP&gt; 1194</span><br><span class="line">resolv-retry infinite</span><br><span class="line">nobind</span><br><span class="line">persist-key</span><br><span class="line">persist-tun</span><br><span class="line">comp-lzo</span><br><span class="line">verb 3</span><br><span class="line">ca ca.crt</span><br><span class="line">cert &lt;client_name&gt;.crt</span><br><span class="line">key &lt;client_name&gt;.key</span><br></pre></td></tr></table></figure></p>
+<h4 id="step-3"><a href="#step-3" class="headerlink" title="step 3"></a>step 3</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/openvpn/server.conf</span><br><span class="line">dh dh2048.pem</span><br><span class="line"></span><br><span class="line">ce /etc/openvpn/</span><br><span class="line">openvpn --genkey --secret ta.key <span class="comment"># /var/log/secure show something</span></span><br></pre></td></tr></table></figure>
+<h4 id="step-4"><a href="#step-4" class="headerlink" title="step 4"></a>step 4</h4><p>echo “net.ipv4.ip_forward = 1” &gt;&gt; /etc/sysctl.conf<br>sysctl -p</p>
+<h4 id="step-5-secure-not-yet"><a href="#step-5-secure-not-yet" class="headerlink" title="step 5 secure (not yet)"></a>step 5 secure (not yet)</h4><h4 id="step-6-start"><a href="#step-6-start" class="headerlink" title="step 6 start"></a>step 6 start</h4><p>systemctl enable openvpn<br>systemctl start openvpn</p>
+<h4 id="step-7-check"><a href="#step-7-check" class="headerlink" title="step 7 check"></a>step 7 check</h4><p>apt-get install net-tools<br>systemctl status openvpn<br>netstat -nlup<br>ifconfig</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://imlh.cn/201809/tools/wireshark抓https和http2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/static/img/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木鱼's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/201809/tools/wireshark抓https和http2/" itemprop="url">wireshark抓https和http2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-17T14:30:09+08:00">
+                2018-09-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="参考-https-www-jianshu-com-p-83551b91e9a2"><a href="#参考-https-www-jianshu-com-p-83551b91e9a2" class="headerlink" title="参考 https://www.jianshu.com/p/83551b91e9a2"></a>参考 <a href="https://www.jianshu.com/p/83551b91e9a2" target="_blank" rel="noopener">https://www.jianshu.com/p/83551b91e9a2</a></h2><h3 id="设置一个环境变量"><a href="#设置一个环境变量" class="headerlink" title="设置一个环境变量"></a>设置一个环境变量</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> SSLKEYLOGFILE=~/sslkeylogfile/keylogfile.log</span><br></pre></td></tr></table></figure>
+<h3 id="wireshark里面"><a href="#wireshark里面" class="headerlink" title="wireshark里面"></a>wireshark里面</h3><p>Edit -&gt; Preferences… -&gt; Protocols -&gt; SSL</p>
+<p>(Pre)-Master-Secret log filename = ~/sslkeylogfile/keylogfile.log </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://imlh.cn/201807/tools/openwrt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -342,13 +725,14 @@
 <li>resolve_conffiles: Existing conffile /etc/config/dhcp is different from the conffile in the new package. The new conffile will be placed at /etc/config/dhcp-opkg.</li>
 </ul>
 <h3 id="这个产生的文件太大，放弃"><a href="#这个产生的文件太大，放弃" class="headerlink" title="这个产生的文件太大，放弃"></a>这个产生的文件太大，放弃</h3><p> generate_dnsmasq_chinalist.sh -d 202.96.128.86 -p 53 -s ss_spec_dst_bp -o accelerated-domains.china.conf</p>
-<h3 id="挂载upan（可选）"><a href="#挂载upan（可选）" class="headerlink" title="挂载upan（可选）"></a>挂载upan（可选）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ppp完全没有用了</span></span><br><span class="line">opkg remove ppp* kmod-ppp*</span><br><span class="line"></span><br><span class="line">opkg install fdisk kmod-fs-vfat kmod-usb-storage</span><br><span class="line"></span><br><span class="line">mkdir /mnt/sda1</span><br><span class="line">mount -t vfat /dev/sda1 /mnt/sda1</span><br><span class="line"></span><br><span class="line"><span class="comment"># opkg install mountd (自动挂载)</span></span><br></pre></td></tr></table></figure>
+<h3 id="挂载upan（可选）"><a href="#挂载upan（可选）" class="headerlink" title="挂载upan（可选）"></a>挂载upan（可选）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ppp完全没有用了</span></span><br><span class="line">opkg remove ppp* kmod-ppp*</span><br><span class="line"></span><br><span class="line">opkg install fdisk kmod-fs-vfat ntfs-3g kmod-usb-storage block-mount samba36-server luci-app-samba</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mkdir /mnt/sda1</span><br><span class="line">mount -t vfat /dev/sda1 /mnt/sda1</span><br><span class="line"></span><br><span class="line"><span class="comment"># opkg install block-mount (自动挂载)</span></span><br></pre></td></tr></table></figure>
 <h3 id="aria2c-（可选）"><a href="#aria2c-（可选）" class="headerlink" title="aria2c （可选）"></a>aria2c （可选）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">opkg install aria2 luci-app-aria2</span><br><span class="line"></span><br><span class="line"><span class="comment"># ui</span></span><br><span class="line">wget https://github.com/mayswind/AriaNg/releases/download/0.4.0/aria-ng-0.4.0.zip</span><br><span class="line">unzip aria-ng-0.4.0.zip -d aria2</span><br><span class="line">ln -s /mnt/sda1/aria2/aria2 /www/aria2</span><br><span class="line"></span><br><span class="line"><span class="comment"># https://www.mivm.cn/openwrt-sdk-package-foundation/</span></span><br></pre></td></tr></table></figure>
 <h3 id="交叉编译aria2c-发现自带的版本没有支持bt和磁力链接"><a href="#交叉编译aria2c-发现自带的版本没有支持bt和磁力链接" class="headerlink" title="交叉编译aria2c(发现自带的版本没有支持bt和磁力链接)"></a>交叉编译aria2c(发现自带的版本没有支持bt和磁力链接)</h3><p><a href="https://stray.love/itshou-zha/shi-yong-openwrt-sdkbian-yi-aria2zui-xin-ban-ben" target="_blank" rel="noopener">https://stray.love/itshou-zha/shi-yong-openwrt-sdkbian-yi-aria2zui-xin-ban-ben</a><br><a href="https://www.lovesykun.cn/archives/4.html" target="_blank" rel="noopener">https://www.lovesykun.cn/archives/4.html</a></p>
 <h3 id="官网关于如何build"><a href="#官网关于如何build" class="headerlink" title="官网关于如何build"></a>官网关于如何build</h3><p><a href="https://openwrt.org/docs/guide-developer/build-system/install-buildsystem" target="_blank" rel="noopener">https://openwrt.org/docs/guide-developer/build-system/install-buildsystem</a><br><a href="https://openwrt.org/docs/guide-developer/build-system/use-buildsystem" target="_blank" rel="noopener">https://openwrt.org/docs/guide-developer/build-system/use-buildsystem</a><br><a href="https://openwrt.org/docs/guide-developer/crosscompile" target="_blank" rel="noopener">https://openwrt.org/docs/guide-developer/crosscompile</a></p>
 <h3 id="ssl支持"><a href="#ssl支持" class="headerlink" title="ssl支持"></a>ssl支持</h3><p>root@LEDE:~# wget <a href="https://tu.66vod.net/2018/2753.jpg" target="_blank" rel="noopener">https://tu.66vod.net/2018/2753.jpg</a><br>Downloading ‘<a href="https://tu.66vod.net/2018/2753.jpg&#39;" target="_blank" rel="noopener">https://tu.66vod.net/2018/2753.jpg&#39;</a><br>Connecting to 128.1.90.94:443<br>Connection error: Invalid SSL certificate</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">opkg install ca-bundle ca-certificates libustream-openssl luci-ssl-openssl</span><br></pre></td></tr></table></figure>
-<h3 id="shadowsocks"><a href="#shadowsocks" class="headerlink" title="shadowsocks"></a>shadowsocks</h3><p><a href="http://openwrt-dist.sourceforge.net/" target="_blank" rel="noopener">http://openwrt-dist.sourceforge.net/</a></p>
+<h3 id="shadowsocks"><a href="#shadowsocks" class="headerlink" title="shadowsocks"></a>shadowsocks</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#透明代理</span></span><br><span class="line">opkg install iptables-mod-tproxy</span><br></pre></td></tr></table></figure>
+<p><a href="http://openwrt-dist.sourceforge.net/" target="_blank" rel="noopener">http://openwrt-dist.sourceforge.net/</a></p>
 <p><a href="http://openwrt-dist.sourceforge.net/packages/base/mips_mips32/" target="_blank" rel="noopener">http://openwrt-dist.sourceforge.net/packages/base/mips_mips32/</a></p>
 <p>总体参考<br><a href="https://cokebar.info/archives/962" target="_blank" rel="noopener">https://cokebar.info/archives/962</a></p>
 <p>采取的方案<br><a href="https://github.com/shadowsocks/luci-app-shadowsocks/wiki/Instruction-of-ss-rules" target="_blank" rel="noopener">https://github.com/shadowsocks/luci-app-shadowsocks/wiki/Instruction-of-ss-rules</a></p>
@@ -356,6 +740,10 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /usr/bin/ss-rules</span></span><br><span class="line"><span class="function"><span class="title">include_ac_rules</span></span>() &#123;</span><br><span class="line">        <span class="comment"># add ipset 需要确保gfwlist存在，否则后面报错</span></span><br><span class="line">        ipset list gfwlist &gt; /dev/null || ipset -N gfwlist iphash</span><br><span class="line"></span><br><span class="line">        <span class="built_in">local</span> protocol=$([ <span class="string">"<span class="variable">$1</span>"</span> = <span class="string">"mangle"</span> ] &amp;&amp; <span class="built_in">echo</span> udp || <span class="built_in">echo</span> tcp)</span><br><span class="line">        iptables-restore -n &lt;&lt;-EOF</span><br><span class="line">        *<span class="variable">$1</span></span><br><span class="line">        :SS_SPEC_LAN_DG - [0:0]</span><br><span class="line">        :SS_SPEC_LAN_AC - [0:0]</span><br><span class="line">        :SS_SPEC_WAN_AC - [0:0]</span><br><span class="line">        :SS_SPEC_WAN_FW - [0:0]</span><br><span class="line">        -A SS_SPEC_LAN_DG -m <span class="built_in">set</span> --match-set ss_spec_dst_sp dst -j RETURN</span><br><span class="line">        -A SS_SPEC_LAN_DG -p <span class="variable">$protocol</span> <span class="variable">$EXT_ARGS</span> -j SS_SPEC_LAN_AC</span><br><span class="line">        -A SS_SPEC_LAN_AC -m <span class="built_in">set</span> --match-set ss_spec_src_bp src -j RETURN</span><br><span class="line">        -A SS_SPEC_LAN_AC -m <span class="built_in">set</span> --match-set ss_spec_src_fw src -j SS_SPEC_WAN_FW</span><br><span class="line">        -A SS_SPEC_LAN_AC -m <span class="built_in">set</span> --match-set ss_spec_src_ac src -j SS_SPEC_WAN_AC</span><br><span class="line">        -A SS_SPEC_LAN_AC -j <span class="variable">$&#123;LAN_TARGET:=SS_SPEC_WAN_AC&#125;</span></span><br><span class="line">        -A SS_SPEC_WAN_AC -m <span class="built_in">set</span> --match-set gfwlist dst -j SS_SPEC_WAN_FW</span><br><span class="line">        -A SS_SPEC_WAN_AC -m <span class="built_in">set</span> --match-set ss_spec_dst_fw dst -j SS_SPEC_WAN_FW</span><br><span class="line">        -A SS_SPEC_WAN_AC -m <span class="built_in">set</span> --match-set ss_spec_dst_bp dst -j RETURN</span><br><span class="line">        -A SS_SPEC_WAN_AC -j SS_SPEC_WAN_FW</span><br><span class="line">        $(gen_prerouting_rules <span class="variable">$protocol</span>)</span><br><span class="line">        COMMIT</span><br><span class="line">EOF</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># /etc/init.d/dnsmasq （已作废)</span></span><br><span class="line">```bash</span><br><span class="line">ipset list gfwlist &gt; /dev/null || ipset -N gfwlist iphash</span><br><span class="line">config_load dhcp</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">## 注意</span><br><span class="line">http://rt.cn2k.net/?p=221</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### iptables -t nat -L</span><br><span class="line"></span><br><span class="line">Chain SS_SPEC_WAN_AC (3 references)</span><br><span class="line">target     prot opt source               destination</span><br><span class="line">SS_SPEC_WAN_FW  all  --  anywhere             anywhere             match-set ss_spec_dst_fw dst</span><br><span class="line">RETURN     all  --  anywhere             anywhere             match-set ss_spec_dst_bp dst</span><br><span class="line">SS_SPEC_WAN_FW  all  --  anywhere             anywhere             match-set gfwlist dst</span><br><span class="line">SS_SPEC_WAN_FW  all  --  anywhere             anywhere</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### crontab(不用chnroute了，这里仅仅做个记录，我采取了后面新版的，只代理gfwlist+自定义维护)</span><br><span class="line">wget -O- &apos;http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest&apos; | awk -F\| &apos;/CN\|ipv4/ &#123; printf(&quot;%s/%d\n&quot;, $4, 32-log($5)/log(2)) &#125;&apos; &gt; /etc/ignore.list</span><br><span class="line">/etc/init.d/shadowsocks-libev restart</span><br></pre></td></tr></table></figure>
 <h3 id="etc-config-shadowsocks-libev-（已作废）"><a href="#etc-config-shadowsocks-libev-（已作废）" class="headerlink" title="/etc/config/shadowsocks-libev （已作废）"></a>/etc/config/shadowsocks-libev （已作废）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">config shadowsocks-libev</span><br><span class="line">        option enable &apos;1&apos;</span><br><span class="line">        option server &apos;x.x.x.x.&apos;</span><br><span class="line">        option server_port &apos;8999&apos;</span><br><span class="line">        option local_port &apos;1080&apos;</span><br><span class="line">        option password &apos;x.x.x.x&apos;</span><br><span class="line">        option timeout &apos;60&apos;</span><br><span class="line">        option encrypt_method &apos;aes-256-cfb&apos;</span><br><span class="line">        option ignore_list &apos;/etc/ignore.list&apos;</span><br><span class="line">        option udp_mode &apos;0&apos;</span><br><span class="line">        option tunnel_enable &apos;1&apos;</span><br><span class="line">        option tunnel_port &apos;5300&apos;</span><br><span class="line">        option tunnel_forward &apos;8.8.4.4:53&apos;</span><br><span class="line">        option lan_ac_mode &apos;0&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="samba"><a href="#samba" class="headerlink" title="samba"></a>samba</h2><p>samberpwd</p>
+<h2 id="硬盘休眠"><a href="#硬盘休眠" class="headerlink" title="硬盘休眠"></a>硬盘休眠</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">opkg install hd-idle luci-app-hd-idle</span><br></pre></td></tr></table></figure>
+<h2 id="自动挂载"><a href="#自动挂载" class="headerlink" title="自动挂载"></a>自动挂载</h2><p><a href="https://wiki.openwrt.org/doc/uci/fstab" target="_blank" rel="noopener">https://wiki.openwrt.org/doc/uci/fstab</a><br><a href="https://gist.github.com/lanceliao/455687b8e9780d8e487d#file-0-openwrt-auto-mount-readme-md" target="_blank" rel="noopener">https://gist.github.com/lanceliao/455687b8e9780d8e487d#file-0-openwrt-auto-mount-readme-md</a></p>
+
           
         
       
@@ -601,6 +989,11 @@
 <h3 id="pod"><a href="#pod" class="headerlink" title="pod"></a>pod</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ios</span><br><span class="line">pod install</span><br><span class="line"><span class="comment"># brew upgrade libressl openssl curl 如果出现下面错误时尝试更新</span></span><br></pre></td></tr></table></figure>
 <p><a href="https://docs.expo.io/versions/v26.0.0/distribution/building-standalone-apps" target="_blank" rel="noopener">https://docs.expo.io/versions/v26.0.0/distribution/building-standalone-apps</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[!] Error installing Crashlytics</span><br><span class="line">[!] /usr/bin/curl -f -L -o /var/folders/76/qw6ngcrx7cnc179pjc2ys3sh0000gn/T/d20180419-62115-1p7nohg/file.zip https://kit-downloads.fabric.io/cocoapods/crashlytics/3.10.1/crashlytics.zip --create-dirs --netrc-optional</span><br><span class="line"></span><br><span class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">  0     0    0     0    0     0      0      0 --:--:--  0:00:31 --:--:--     0</span><br><span class="line">curl: (35) LibreSSL SSL_connect: SSL_ERROR_SYSCALL <span class="keyword">in</span> connection to kit-downloads.fabric.io:443</span><br></pre></td></tr></table></figure>
+<h3 id="git-也是要翻墙的"><a href="#git-也是要翻墙的" class="headerlink" title="git 也是要翻墙的"></a>git 也是要翻墙的</h3><p>Installing FBAudienceNetwork (4.99.0)</p>
+<p>[!] Error installing FBAudienceNetwork<br>[!] /usr/bin/curl -f -L -o /var/folders/76/qw6ngcrx7cnc179pjc2ys3sh0000gn/T/d20181023-59767-1ubfvhh/file.zip <a href="https://developers.facebook.com/resources/FBAudienceNetwork-4.99.0.zip" target="_blank" rel="noopener">https://developers.facebook.com/resources/FBAudienceNetwork-4.99.0.zip</a> –create-dirs –netrc-optional –retry 2</p>
+<p>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current<br>                                 Dload  Upload   Total   Spent    Left  Speed<br>  0     0    0     0    0     0      0      0 –:–:–  0:01:14 –:–:–     0curl: (7) Failed to connect to developers.facebook.com port 443: Operation timed out</p>
+<p><a href="https://github.com/felix-cao/Blog/issues/81" target="_blank" rel="noopener">https://github.com/felix-cao/Blog/issues/81</a></p>
+<p><a href="https://github.com/jpush/jpush-react-native/issues/104" target="_blank" rel="noopener">https://github.com/jpush/jpush-react-native/issues/104</a></p>
 
           
         
@@ -1211,379 +1604,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://imlh.cn/201712/gradle/Gradle入坑记录/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="木鱼">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/static/img/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="木鱼's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/201712/gradle/Gradle入坑记录/" itemprop="url">Gradle入坑记录</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-20T10:23:12+08:00">
-                2017-12-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="首先解决墙的问题"><a href="#首先解决墙的问题" class="headerlink" title="首先解决墙的问题"></a>首先解决墙的问题</h2><p>把下面代码放(如果没有则新建) ~/.gradle/init.gradle<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">allprojects&#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        <span class="keyword">def</span> ALIYUN_REPOSITORY_URL = <span class="string">'http://maven.aliyun.com/nexus/content/groups/public'</span></span><br><span class="line">        <span class="keyword">def</span> ALIYUN_JCENTER_URL = <span class="string">'http://maven.aliyun.com/nexus/content/repositories/jcenter'</span></span><br><span class="line">        all &#123; ArtifactRepository repo -&gt;</span><br><span class="line">            <span class="keyword">if</span>(repo <span class="keyword">instanceof</span> MavenArtifactRepository)&#123;</span><br><span class="line">                <span class="keyword">def</span> url = repo.url.toString()</span><br><span class="line">                <span class="keyword">if</span> (url.startsWith(<span class="string">'https://repo1.maven.org/maven2'</span>)) &#123;</span><br><span class="line">                    project.logger.lifecycle <span class="string">"Repository $&#123;repo.url&#125; replaced by $ALIYUN_REPOSITORY_URL."</span></span><br><span class="line">                    remove repo</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (url.startsWith(<span class="string">'https://jcenter.bintray.com/'</span>)) &#123;</span><br><span class="line">                    project.logger.lifecycle <span class="string">"Repository $&#123;repo.url&#125; replaced by $ALIYUN_JCENTER_URL."</span></span><br><span class="line">                    remove repo</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        maven &#123;</span><br><span class="line">            url ALIYUN_REPOSITORY_URL</span><br><span class="line">            url ALIYUN_JCENTER_URL</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="剩下的参考git里面的提交记录"><a href="#剩下的参考git里面的提交记录" class="headerlink" title="剩下的参考git里面的提交记录"></a>剩下的参考git里面的提交记录</h2><p><a href="https://gitee.com/lhhl/creating-multi-project-builds.git" target="_blank" rel="noopener">https://gitee.com/lhhl/creating-multi-project-builds.git</a></p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://guides.gradle.org/creating-multi-project-builds/" target="_blank" rel="noopener">https://guides.gradle.org/creating-multi-project-builds/</a></p>
-<p><a href="https://docs.gradle.org/current/userguide/userguide.html" target="_blank" rel="noopener">https://docs.gradle.org/current/userguide/userguide.html</a></p>
-<p><a href="https://spring.io/guides/gs/gradle/" target="_blank" rel="noopener">https://spring.io/guides/gs/gradle/</a></p>
-<p><a href="https://github.com/gradle/gradle/tree/master/subprojects/docs/src/samples" target="_blank" rel="noopener">https://github.com/gradle/gradle/tree/master/subprojects/docs/src/samples</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://imlh.cn/201711/lab/ELK入门/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="木鱼">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/static/img/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="木鱼's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/201711/lab/ELK入门/" itemprop="url">ELK入门</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-30T16:35:23+08:00">
-                2017-11-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="下载-ELK"><a href="#下载-ELK" class="headerlink" title="下载 ELK"></a>下载 ELK</h3><p><a href="https://www.elastic.co/" target="_blank" rel="noopener">https://www.elastic.co/</a></p>
-<h3 id="filebeat"><a href="#filebeat" class="headerlink" title="filebeat"></a>filebeat</h3><p><a href="https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.0.0-darwin-x86_64.tar.gz</span><br><span class="line">tar xzvf filebeat-6.0.0-darwin-x86_64.tar.gz</span><br></pre></td></tr></table></figure>
-<h3 id="测试-log"><a href="#测试-log" class="headerlink" title="测试 log"></a>测试 log</h3><p><a href="https://download.elastic.co/demos/logstash/gettingstarted/logstash-tutorial.log.gz" target="_blank" rel="noopener">https://download.elastic.co/demos/logstash/gettingstarted/logstash-tutorial.log.gz</a></p>
-<h3 id="gork-filter"><a href="#gork-filter" class="headerlink" title="gork filter"></a>gork filter</h3><p><a href="http://www.elastic.co/guide/en/logstash/6.0/plugins-filters-grok.html" target="_blank" rel="noopener">http://www.elastic.co/guide/en/logstash/6.0/plugins-filters-grok.html</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/logstash-plugin install logstash-filter-grok</span><br></pre></td></tr></table></figure>
-<h3 id="更快的体验"><a href="#更快的体验" class="headerlink" title="更快的体验"></a>更快的体验</h3><p><a href="https://github.com/sqshq/ELK-docker" target="_blank" rel="noopener">https://github.com/sqshq/ELK-docker</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://imlh.cn/201711/kotlin/kotlin与spring-boot/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="木鱼">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/static/img/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="木鱼's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/201711/kotlin/kotlin与spring-boot/" itemprop="url">kotlin与spring-boot</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-02T23:58:09+08:00">
-                2017-11-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.imlh.kotest</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication</span><br><span class="line"><span class="keyword">import</span> org.springframework.<span class="keyword">data</span>.repository.CrudRepository</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.<span class="keyword">annotation</span>.GetMapping</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.<span class="keyword">annotation</span>.RestController</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.swagger2.annotations.EnableSwagger2</span><br><span class="line"><span class="keyword">import</span> java.util.*</span><br><span class="line"><span class="keyword">import</span> javax.persistence.*</span><br><span class="line"></span><br><span class="line"><span class="meta">@EnableSwagger2</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HMcollectApplication</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    SpringApplication.run(HMcollectApplication::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>, <span class="type">*args)</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Company</span></span>(<span class="meta">@Id</span> <span class="keyword">var</span> name: String)</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Department</span></span>(</span><br><span class="line">        <span class="meta">@Id</span> <span class="keyword">var</span> name: String,</span><br><span class="line">        <span class="meta">@ManyToOne</span> <span class="keyword">var</span> company: Company</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span>(</span><br><span class="line">        <span class="meta">@Id</span> <span class="keyword">var</span> regPhone: String,</span><br><span class="line">        <span class="keyword">var</span> name: String,</span><br><span class="line">        <span class="keyword">var</span> mallNumber: String,</span><br><span class="line">        <span class="keyword">var</span> registTime: Date,</span><br><span class="line">        <span class="keyword">var</span> remark: String,</span><br><span class="line">        <span class="meta">@ManyToOne</span> <span class="keyword">var</span> company: Company,</span><br><span class="line">        <span class="meta">@ManyToOne</span> <span class="keyword">var</span> department: Department</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// data-rest</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">CustomerRepository</span> : <span class="type">CrudRepository</span>&lt;<span class="type">Employee, String</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 以下垃圾代码用来演示 Service和Controller怎么写</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomerService</span></span>(<span class="keyword">val</span> customerRepository: CustomerRepository) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">count</span><span class="params">()</span></span> = customerRepository.count()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomerController</span></span>(<span class="keyword">val</span> customerService: CustomerService) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(<span class="meta-string">"/count"</span>)</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">count</span><span class="params">()</span></span> = customerService.count()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>###</p>
-<p>kotlin这么优雅你不用？下面几个车站,各路司机带你上路<br><a href="http://kotlinlang.org/docs/reference/" target="_blank" rel="noopener">官网</a><br><a href="https://github.com/Kotlin/kotlin-koans" target="_blank" rel="noopener">官方司机-42个任务</a><br><a href="https://spring.io/blog/2016/02/15/developing-spring-boot-applicatio" target="_blank" rel="noopener">spring.io</a><br><a href="https://github.com/tschiman/kotlin-spring-demo" target="_blank" rel="noopener">亲民</a><br><a href="http://www.kotlindoc.cn/" target="_blank" rel="noopener">中文</a><br><a href="https://www.kotlincn.net/docs/reference/" target="_blank" rel="noopener">中文2</a><br><a href="https://spring.io/blog/2017/01/04/introducing-kotlin-support-in-spring-framework-5-0" target="_blank" rel="noopener">前卫的spring5+kotlin</a><br><a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/languages.html#kotlin" target="_blank" rel="noopener">more</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1634,7 +1654,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
