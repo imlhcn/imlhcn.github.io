@@ -92,23 +92,23 @@
 
 
 
-<meta name="description" content="在项目实战中应用到的开发运维参考了庞大的k8s,2018年1月份做了个简单的devop系统，到目前为止运行良好。实现了推送代码时，所部署的相应分支，会实现自动更新docker镜像。基于 spring-cloud maven Jenkins(groovy) node python docker另外集成了 Mojo-Weixin 和Mojo-Webqq 做运维的通知最近有点时间整理一下，改个通用版准备">
+<meta name="description" content="在项目实战中应用到的开发运维参考了庞大的k8s,2018年1月份做了个简单的devop系统，在三个项目中使用到这套东西，到目前为止运行良好。实现了推送代码时，所部署的相应分支，会实现自动更新docker镜像。基于 spring-cloud maven Jenkins(groovy) node python docker另外集成了 Mojo-Weixin 和Mojo-Webqq 做运维的通知最近有点">
 <meta name="keywords" content="nginx,docker,jenkins,node,python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="wad-devop">
 <meta property="og:url" content="http://imlh.cn/201812/docker/wad-devop/index.html">
 <meta property="og:site_name" content="木鱼&#39;s Blog">
-<meta property="og:description" content="在项目实战中应用到的开发运维参考了庞大的k8s,2018年1月份做了个简单的devop系统，到目前为止运行良好。实现了推送代码时，所部署的相应分支，会实现自动更新docker镜像。基于 spring-cloud maven Jenkins(groovy) node python docker另外集成了 Mojo-Weixin 和Mojo-Webqq 做运维的通知最近有点时间整理一下，改个通用版准备">
+<meta property="og:description" content="在项目实战中应用到的开发运维参考了庞大的k8s,2018年1月份做了个简单的devop系统，在三个项目中使用到这套东西，到目前为止运行良好。实现了推送代码时，所部署的相应分支，会实现自动更新docker镜像。基于 spring-cloud maven Jenkins(groovy) node python docker另外集成了 Mojo-Weixin 和Mojo-Webqq 做运维的通知最近有点">
 <meta property="og:image" content="http://blog.imlh.cn/img/20181212/wad.png">
 <meta property="og:image" content="http://blog.imlh.cn/img/20181212/wad-devop.png">
 <meta property="og:image" content="http://blog.imlh.cn/img/20181212/client.png">
 <meta property="og:image" content="http://blog.imlh.cn/img/20181212/agent.png">
 <meta property="og:image" content="http://blog.imlh.cn/img/20181212/jenkins-lib.png">
 <meta property="og:image" content="http://blog.imlh.cn/img/20181212/wad-devop/mojowx.png">
-<meta property="og:updated_time" content="2018-12-12T06:12:52.139Z">
+<meta property="og:updated_time" content="2018-12-12T06:14:31.661Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="wad-devop">
-<meta name="twitter:description" content="在项目实战中应用到的开发运维参考了庞大的k8s,2018年1月份做了个简单的devop系统，到目前为止运行良好。实现了推送代码时，所部署的相应分支，会实现自动更新docker镜像。基于 spring-cloud maven Jenkins(groovy) node python docker另外集成了 Mojo-Weixin 和Mojo-Webqq 做运维的通知最近有点时间整理一下，改个通用版准备">
+<meta name="twitter:description" content="在项目实战中应用到的开发运维参考了庞大的k8s,2018年1月份做了个简单的devop系统，在三个项目中使用到这套东西，到目前为止运行良好。实现了推送代码时，所部署的相应分支，会实现自动更新docker镜像。基于 spring-cloud maven Jenkins(groovy) node python docker另外集成了 Mojo-Weixin 和Mojo-Webqq 做运维的通知最近有点">
 <meta name="twitter:image" content="http://blog.imlh.cn/img/20181212/wad.png">
 
 
@@ -338,7 +338,7 @@
       
 
       
-        <h2 id="在项目实战中应用到的开发运维"><a href="#在项目实战中应用到的开发运维" class="headerlink" title="在项目实战中应用到的开发运维"></a>在项目实战中应用到的开发运维</h2><p>参考了庞大的k8s,2018年1月份做了个简单的devop系统，到目前为止运行良好。<br>实现了推送代码时，所部署的相应分支，会实现自动更新docker镜像。<br>基于 spring-cloud maven Jenkins(groovy) node python docker<br>另外集成了 Mojo-Weixin 和Mojo-Webqq 做运维的通知<br>最近有点时间整理一下，改个通用版准备放github开源</p>
+        <h2 id="在项目实战中应用到的开发运维"><a href="#在项目实战中应用到的开发运维" class="headerlink" title="在项目实战中应用到的开发运维"></a>在项目实战中应用到的开发运维</h2><p>参考了庞大的k8s,2018年1月份做了个简单的devop系统，在三个项目中使用到这套东西，到目前为止运行良好。<br>实现了推送代码时，所部署的相应分支，会实现自动更新docker镜像。<br>基于 spring-cloud maven Jenkins(groovy) node python docker<br>另外集成了 Mojo-Weixin 和Mojo-Webqq 做运维的通知<br>最近有点时间整理一下，改个通用版准备放github开源</p>
 <h2 id="开发部分"><a href="#开发部分" class="headerlink" title="开发部分"></a>开发部分</h2><h3 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h3><p><img src="http://blog.imlh.cn/img/20181212/wad.png" alt="wad"></p>
 <h2 id="运维部分"><a href="#运维部分" class="headerlink" title="运维部分"></a>运维部分</h2><h3 id="总览-1"><a href="#总览-1" class="headerlink" title="总览"></a>总览</h3><p><img src="http://blog.imlh.cn/img/20181212/wad-devop.png" alt="wad-devop"></p>
 <h3 id="gitee-com"><a href="#gitee-com" class="headerlink" title="gitee.com"></a>gitee.com</h3><p>使用码云私有仓库管理代码</p>
