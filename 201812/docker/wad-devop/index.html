@@ -92,22 +92,23 @@
 
 
 
-<meta name="description" content="在项目实战中应用到的开发运维参考了庞大的k8s,2018年1月份做了个简单的devop系统，到目前为止运行良好。实现了推送代码时，所部署的相应分支，会实现自动更新docker镜像。基于 spring-cloud maven Jenkins(groovy) node python docker,最近有点时间整理一下，改个通用版准备放github开源 开发部分总览 运维部分总览 gitee.com使用">
+<meta name="description" content="在项目实战中应用到的开发运维参考了庞大的k8s,2018年1月份做了个简单的devop系统，到目前为止运行良好。实现了推送代码时，所部署的相应分支，会实现自动更新docker镜像。基于 spring-cloud maven Jenkins(groovy) node python docker另外集成了 Mojo-Weixin 和Mojo-Webqq 做运维的通知最近有点时间整理一下，改个通用版准备">
 <meta name="keywords" content="nginx,docker,jenkins,node,python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="wad-devop">
 <meta property="og:url" content="http://imlh.cn/201812/docker/wad-devop/index.html">
 <meta property="og:site_name" content="木鱼&#39;s Blog">
-<meta property="og:description" content="在项目实战中应用到的开发运维参考了庞大的k8s,2018年1月份做了个简单的devop系统，到目前为止运行良好。实现了推送代码时，所部署的相应分支，会实现自动更新docker镜像。基于 spring-cloud maven Jenkins(groovy) node python docker,最近有点时间整理一下，改个通用版准备放github开源 开发部分总览 运维部分总览 gitee.com使用">
+<meta property="og:description" content="在项目实战中应用到的开发运维参考了庞大的k8s,2018年1月份做了个简单的devop系统，到目前为止运行良好。实现了推送代码时，所部署的相应分支，会实现自动更新docker镜像。基于 spring-cloud maven Jenkins(groovy) node python docker另外集成了 Mojo-Weixin 和Mojo-Webqq 做运维的通知最近有点时间整理一下，改个通用版准备">
 <meta property="og:image" content="http://blog.imlh.cn/img/20181212/wad.png">
 <meta property="og:image" content="http://blog.imlh.cn/img/20181212/wad-devop.png">
 <meta property="og:image" content="http://blog.imlh.cn/img/20181212/client.png">
 <meta property="og:image" content="http://blog.imlh.cn/img/20181212/agent.png">
 <meta property="og:image" content="http://blog.imlh.cn/img/20181212/jenkins-lib.png">
-<meta property="og:updated_time" content="2018-12-12T03:50:07.372Z">
+<meta property="og:image" content="http://blog.imlh.cn/img/20181212/wad-devop/mojowx.png">
+<meta property="og:updated_time" content="2018-12-12T05:49:40.532Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="wad-devop">
-<meta name="twitter:description" content="在项目实战中应用到的开发运维参考了庞大的k8s,2018年1月份做了个简单的devop系统，到目前为止运行良好。实现了推送代码时，所部署的相应分支，会实现自动更新docker镜像。基于 spring-cloud maven Jenkins(groovy) node python docker,最近有点时间整理一下，改个通用版准备放github开源 开发部分总览 运维部分总览 gitee.com使用">
+<meta name="twitter:description" content="在项目实战中应用到的开发运维参考了庞大的k8s,2018年1月份做了个简单的devop系统，到目前为止运行良好。实现了推送代码时，所部署的相应分支，会实现自动更新docker镜像。基于 spring-cloud maven Jenkins(groovy) node python docker另外集成了 Mojo-Weixin 和Mojo-Webqq 做运维的通知最近有点时间整理一下，改个通用版准备">
 <meta name="twitter:image" content="http://blog.imlh.cn/img/20181212/wad.png">
 
 
@@ -337,7 +338,7 @@
       
 
       
-        <h2 id="在项目实战中应用到的开发运维"><a href="#在项目实战中应用到的开发运维" class="headerlink" title="在项目实战中应用到的开发运维"></a>在项目实战中应用到的开发运维</h2><p>参考了庞大的k8s,2018年1月份做了个简单的devop系统，到目前为止运行良好。<br>实现了推送代码时，所部署的相应分支，会实现自动更新docker镜像。<br>基于 spring-cloud maven Jenkins(groovy) node python docker,<br>最近有点时间整理一下，改个通用版准备放github开源</p>
+        <h2 id="在项目实战中应用到的开发运维"><a href="#在项目实战中应用到的开发运维" class="headerlink" title="在项目实战中应用到的开发运维"></a>在项目实战中应用到的开发运维</h2><p>参考了庞大的k8s,2018年1月份做了个简单的devop系统，到目前为止运行良好。<br>实现了推送代码时，所部署的相应分支，会实现自动更新docker镜像。<br>基于 spring-cloud maven Jenkins(groovy) node python docker<br>另外集成了 Mojo-Weixin 和Mojo-Webqq 做运维的通知<br>最近有点时间整理一下，改个通用版准备放github开源</p>
 <h2 id="开发部分"><a href="#开发部分" class="headerlink" title="开发部分"></a>开发部分</h2><h3 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h3><p><img src="http://blog.imlh.cn/img/20181212/wad.png" alt="wad"></p>
 <h2 id="运维部分"><a href="#运维部分" class="headerlink" title="运维部分"></a>运维部分</h2><h3 id="总览-1"><a href="#总览-1" class="headerlink" title="总览"></a>总览</h3><p><img src="http://blog.imlh.cn/img/20181212/wad-devop.png" alt="wad-devop"></p>
 <h3 id="gitee-com"><a href="#gitee-com" class="headerlink" title="gitee.com"></a>gitee.com</h3><p>使用码云私有仓库管理代码</p>
@@ -347,6 +348,8 @@
 <h3 id="Jenkins"><a href="#Jenkins" class="headerlink" title="Jenkins"></a>Jenkins</h3><h3 id="wad-jenkins-lib"><a href="#wad-jenkins-lib" class="headerlink" title="wad-jenkins-lib"></a>wad-jenkins-lib</h3><p><img src="http://blog.imlh.cn/img/20181212/jenkins-lib.png" alt="jenkins-lib"></p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/usr/bin/env groovy</span></div><div class="line">library(<span class="string">identifier:</span> <span class="string">'wad-jenkins-lib@beta1'</span>,</div><div class="line"><span class="symbol">        retriever:</span> modernSCM([</div><div class="line">                <span class="string">$class       :</span> <span class="string">'GitSCMSource'</span>,</div><div class="line">                <span class="string">remote       :</span> <span class="string">'git@gitee.com:xxxxxxxxxxx/wad-jenkins-lib.git'</span>,</div><div class="line"><span class="symbol">                credentialsId:</span> <span class="string">'my-private-key'</span>])</div><div class="line">) _</div><div class="line"></div><div class="line">simpleFlow &#123;&#125;</div></pre></td></tr></table></figure>
 <h3 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h3><p>redis主要是用来做消息的订阅，轻量。<br>git push触发jenkins build，build好的docker镜像上传到nexus。<br>nexus本身有webhook通过redis通知所有的client(python),有新镜像，每个client自己处理所订阅的‘分支’进行更新。</p>
+<h3 id="Mojo-Weixin-perl"><a href="#Mojo-Weixin-perl" class="headerlink" title="Mojo-Weixin(perl)"></a>Mojo-Weixin(perl)</h3><p><a href="https://github.com/sjdy521/Mojo-Weixin" target="_blank" rel="external">https://github.com/sjdy521/Mojo-Weixin</a><br>需要一个独立的微信号，2018某个时间前注册的才可以</p>
+<p><img src="http://blog.imlh.cn/img/20181212/wad-devop/mojowx.png" alt="mojowx"></p>
 
       
     </div>
@@ -529,7 +532,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#在项目实战中应用到的开发运维"><span class="nav-number">1.</span> <span class="nav-text">在项目实战中应用到的开发运维</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发部分"><span class="nav-number">2.</span> <span class="nav-text">开发部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总览"><span class="nav-number">2.1.</span> <span class="nav-text">总览</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运维部分"><span class="nav-number">3.</span> <span class="nav-text">运维部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总览-1"><span class="nav-number">3.1.</span> <span class="nav-text">总览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gitee-com"><span class="nav-number">3.2.</span> <span class="nav-text">gitee.com</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nexus"><span class="nav-number">3.3.</span> <span class="nav-text">nexus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#client-python"><span class="nav-number">3.4.</span> <span class="nav-text">client(python)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#agent-node-koa"><span class="nav-number">3.5.</span> <span class="nav-text">agent(node/koa)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jenkins"><span class="nav-number">3.6.</span> <span class="nav-text">Jenkins</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wad-jenkins-lib"><span class="nav-number">3.7.</span> <span class="nav-text">wad-jenkins-lib</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis"><span class="nav-number">3.8.</span> <span class="nav-text">redis</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#在项目实战中应用到的开发运维"><span class="nav-number">1.</span> <span class="nav-text">在项目实战中应用到的开发运维</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发部分"><span class="nav-number">2.</span> <span class="nav-text">开发部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总览"><span class="nav-number">2.1.</span> <span class="nav-text">总览</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运维部分"><span class="nav-number">3.</span> <span class="nav-text">运维部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总览-1"><span class="nav-number">3.1.</span> <span class="nav-text">总览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gitee-com"><span class="nav-number">3.2.</span> <span class="nav-text">gitee.com</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nexus"><span class="nav-number">3.3.</span> <span class="nav-text">nexus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#client-python"><span class="nav-number">3.4.</span> <span class="nav-text">client(python)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#agent-node-koa"><span class="nav-number">3.5.</span> <span class="nav-text">agent(node/koa)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jenkins"><span class="nav-number">3.6.</span> <span class="nav-text">Jenkins</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wad-jenkins-lib"><span class="nav-number">3.7.</span> <span class="nav-text">wad-jenkins-lib</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis"><span class="nav-number">3.8.</span> <span class="nav-text">redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mojo-Weixin-perl"><span class="nav-number">3.9.</span> <span class="nav-text">Mojo-Weixin(perl)</span></a></li></ol></li></ol></div>
             
 
           </div>
