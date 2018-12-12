@@ -98,7 +98,6 @@
 <meta property="og:url" content="http://imlh.cn/201806/relax/index.html">
 <meta property="og:site_name" content="木鱼&#39;s Blog">
 <meta property="og:description" content="1docker run --name relax --link=mongo:mongo --net compose_default -p &quot;9001:8080&quot; -d relax/relax docker run -d \  –link=mongo:mongo \  –net compose_default \  –name reaction \  -p 3000:3000 \  -e MONGO">
-<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-06-01T15:10:31.624Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="relax">
@@ -331,8 +330,8 @@
       
 
       
-        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name relax --link=mongo:mongo --net compose_default -p <span class="string">"9001:8080"</span> -d relax/relax</span><br></pre></td></tr></table></figure>
-<p>docker run -d \<br>  –link=mongo:mongo \<br>  –net compose_default \<br>  –name reaction \<br>  -p 3000:3000 \<br>  -e MONGO_URL=”mongodb://mongo/reaction” \<br>  -e ROOT_URL=”<a href="http://dev1.daxgame.com:3000&quot;" target="_blank" rel="noopener">http://dev1.daxgame.com:3000&quot;</a> \<br>  -e REACTION_EMAIL=”<a href="mailto:you@example.com" target="_blank" rel="noopener">you@example.com</a>“ \<br>  -e REACTION_USER=”admin-username” \<br>  -e REACTION_AUTH=”admin-password” \<br>  reactioncommerce/reaction:latest</p>
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run --name relax --link=mongo:mongo --net compose_default -p <span class="string">"9001:8080"</span> -d relax/relax</div></pre></td></tr></table></figure>
+<p>docker run -d \<br>  –link=mongo:mongo \<br>  –net compose_default \<br>  –name reaction \<br>  -p 3000:3000 \<br>  -e MONGO_URL=”mongodb://mongo/reaction” \<br>  -e ROOT_URL=”<a href="http://dev1.daxgame.com:3000" target="_blank" rel="external">http://dev1.daxgame.com:3000</a>“ \<br>  -e REACTION_EMAIL=”you@example.com” \<br>  -e REACTION_USER=”admin-username” \<br>  -e REACTION_AUTH=”admin-password” \<br>  reactioncommerce/reaction:latest</p>
 
       
     </div>
@@ -439,7 +438,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -461,7 +460,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

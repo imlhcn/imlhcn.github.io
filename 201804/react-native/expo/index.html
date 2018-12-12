@@ -98,7 +98,6 @@
 <meta property="og:url" content="http://imlh.cn/201804/react-native/expo/index.html">
 <meta property="og:site_name" content="木鱼&#39;s Blog">
 <meta property="og:description" content="生成项目12expo init expiexp start 修改app.json参考  https://docs.expo.io/versions/v26.0.0/distribution/building-standalone-apps detach12cd expiexp detach pod123cd iospod install# brew upgrade libressl openssl">
-<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-10-23T10:02:48.449Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="expo">
@@ -331,17 +330,17 @@
       
 
       
-        <h3 id="生成项目"><a href="#生成项目" class="headerlink" title="生成项目"></a>生成项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">expo init expi</span><br><span class="line">exp start</span><br></pre></td></tr></table></figure>
-<h3 id="修改app-json"><a href="#修改app-json" class="headerlink" title="修改app.json"></a>修改app.json</h3><p>参考  <a href="https://docs.expo.io/versions/v26.0.0/distribution/building-standalone-apps" target="_blank" rel="noopener">https://docs.expo.io/versions/v26.0.0/distribution/building-standalone-apps</a></p>
-<h3 id="detach"><a href="#detach" class="headerlink" title="detach"></a>detach</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> expi</span><br><span class="line">exp detach</span><br></pre></td></tr></table></figure>
-<h3 id="pod"><a href="#pod" class="headerlink" title="pod"></a>pod</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ios</span><br><span class="line">pod install</span><br><span class="line"><span class="comment"># brew upgrade libressl openssl curl 如果出现下面错误时尝试更新</span></span><br></pre></td></tr></table></figure>
-<p><a href="https://docs.expo.io/versions/v26.0.0/distribution/building-standalone-apps" target="_blank" rel="noopener">https://docs.expo.io/versions/v26.0.0/distribution/building-standalone-apps</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[!] Error installing Crashlytics</span><br><span class="line">[!] /usr/bin/curl -f -L -o /var/folders/76/qw6ngcrx7cnc179pjc2ys3sh0000gn/T/d20180419-62115-1p7nohg/file.zip https://kit-downloads.fabric.io/cocoapods/crashlytics/3.10.1/crashlytics.zip --create-dirs --netrc-optional</span><br><span class="line"></span><br><span class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">  0     0    0     0    0     0      0      0 --:--:--  0:00:31 --:--:--     0</span><br><span class="line">curl: (35) LibreSSL SSL_connect: SSL_ERROR_SYSCALL <span class="keyword">in</span> connection to kit-downloads.fabric.io:443</span><br></pre></td></tr></table></figure>
+        <h3 id="生成项目"><a href="#生成项目" class="headerlink" title="生成项目"></a>生成项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">expo init expi</div><div class="line">exp start</div></pre></td></tr></table></figure>
+<h3 id="修改app-json"><a href="#修改app-json" class="headerlink" title="修改app.json"></a>修改app.json</h3><p>参考  <a href="https://docs.expo.io/versions/v26.0.0/distribution/building-standalone-apps" target="_blank" rel="external">https://docs.expo.io/versions/v26.0.0/distribution/building-standalone-apps</a></p>
+<h3 id="detach"><a href="#detach" class="headerlink" title="detach"></a>detach</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> expi</div><div class="line">exp detach</div></pre></td></tr></table></figure>
+<h3 id="pod"><a href="#pod" class="headerlink" title="pod"></a>pod</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ios</div><div class="line">pod install</div><div class="line"><span class="comment"># brew upgrade libressl openssl curl 如果出现下面错误时尝试更新</span></div></pre></td></tr></table></figure>
+<p><a href="https://docs.expo.io/versions/v26.0.0/distribution/building-standalone-apps" target="_blank" rel="external">https://docs.expo.io/versions/v26.0.0/distribution/building-standalone-apps</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[!] Error installing Crashlytics</div><div class="line">[!] /usr/bin/curl -f -L -o /var/folders/76/qw6ngcrx7cnc179pjc2ys3sh0000gn/T/d20180419-62115-1p7nohg/file.zip https://kit-downloads.fabric.io/cocoapods/crashlytics/3.10.1/crashlytics.zip --create-dirs --netrc-optional</div><div class="line"></div><div class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</div><div class="line">                                 Dload  Upload   Total   Spent    Left  Speed</div><div class="line">  0     0    0     0    0     0      0      0 --:--:--  0:00:31 --:--:--     0</div><div class="line">curl: (35) LibreSSL SSL_connect: SSL_ERROR_SYSCALL <span class="keyword">in</span> connection to kit-downloads.fabric.io:443</div></pre></td></tr></table></figure>
 <h3 id="git-也是要翻墙的"><a href="#git-也是要翻墙的" class="headerlink" title="git 也是要翻墙的"></a>git 也是要翻墙的</h3><p>Installing FBAudienceNetwork (4.99.0)</p>
-<p>[!] Error installing FBAudienceNetwork<br>[!] /usr/bin/curl -f -L -o /var/folders/76/qw6ngcrx7cnc179pjc2ys3sh0000gn/T/d20181023-59767-1ubfvhh/file.zip <a href="https://developers.facebook.com/resources/FBAudienceNetwork-4.99.0.zip" target="_blank" rel="noopener">https://developers.facebook.com/resources/FBAudienceNetwork-4.99.0.zip</a> –create-dirs –netrc-optional –retry 2</p>
+<p>[!] Error installing FBAudienceNetwork<br>[!] /usr/bin/curl -f -L -o /var/folders/76/qw6ngcrx7cnc179pjc2ys3sh0000gn/T/d20181023-59767-1ubfvhh/file.zip <a href="https://developers.facebook.com/resources/FBAudienceNetwork-4.99.0.zip" target="_blank" rel="external">https://developers.facebook.com/resources/FBAudienceNetwork-4.99.0.zip</a> –create-dirs –netrc-optional –retry 2</p>
 <p>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current<br>                                 Dload  Upload   Total   Spent    Left  Speed<br>  0     0    0     0    0     0      0      0 –:–:–  0:01:14 –:–:–     0curl: (7) Failed to connect to developers.facebook.com port 443: Operation timed out</p>
-<p><a href="https://github.com/felix-cao/Blog/issues/81" target="_blank" rel="noopener">https://github.com/felix-cao/Blog/issues/81</a></p>
-<p><a href="https://github.com/jpush/jpush-react-native/issues/104" target="_blank" rel="noopener">https://github.com/jpush/jpush-react-native/issues/104</a></p>
+<p><a href="https://github.com/felix-cao/Blog/issues/81" target="_blank" rel="external">https://github.com/felix-cao/Blog/issues/81</a></p>
+<p><a href="https://github.com/jpush/jpush-react-native/issues/104" target="_blank" rel="external">https://github.com/jpush/jpush-react-native/issues/104</a></p>
 
       
     </div>
@@ -457,7 +456,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -479,7 +478,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

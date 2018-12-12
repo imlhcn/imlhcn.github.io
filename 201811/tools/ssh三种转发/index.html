@@ -98,7 +98,6 @@
 <meta property="og:url" content="http://imlh.cn/201811/tools/ssh三种转发/index.html">
 <meta property="og:site_name" content="木鱼&#39;s Blog">
 <meta property="og:description" content="详解SSH三种端口转发SSH端口转发的好处：  利用SSH通道天然的加密特性 通过具备访问权限的第三者，突破防火墙对自己的限制，或者隐身角色定义：A. 本地服务器，想通过中间服务器B间接访问目标服务器CB. 中间服务器，类似于代理，A以B的名义去访问CC. 目标服务器，C看到的都是中间服务器B在访问自己  A Home_Computer_IP: 10.10.1.200B SSH_Forward_S">
-<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-11-20T14:37:42.518Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssh三种转发">
@@ -337,14 +336,14 @@
 <li>通过具备访问权限的第三者，突破防火墙对自己的限制，或者隐身<br>角色定义：<br>A. 本地服务器，想通过中间服务器B间接访问目标服务器C<br>B. 中间服务器，类似于代理，A以B的名义去访问C<br>C. 目标服务器，C看到的都是中间服务器B在访问自己</li>
 </ol>
 <p>A Home_Computer_IP: 10.10.1.200<br>B SSH_Forward_Server_IP1: 10.10.1.201<br>  SSH_Forward_Server_IP2: 192.168.1.201<br>C The_Tag_Server_IP: 192.168.1.224</p>
-<h2 id="1-本地端口转发"><a href="#1-本地端口转发" class="headerlink" title="1. 本地端口转发"></a>1. 本地端口转发</h2><p>命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -Nf -L [local_A_address]:local_A_port:target_C_server:target_C_port via_B_server</span><br><span class="line">ssh -Nf -p B_SSH_PORT -L 10.10.1.200:8080:192.168.1.224:80 B_User@10.10.1.201</span><br></pre></td></tr></table></figure></p>
+<h2 id="1-本地端口转发"><a href="#1-本地端口转发" class="headerlink" title="1. 本地端口转发"></a>1. 本地端口转发</h2><p>命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh -Nf -L [local_A_address]:local_A_port:target_C_server:target_C_port via_B_server</div><div class="line">ssh -Nf -p B_SSH_PORT -L 10.10.1.200:8080:192.168.1.224:80 B_User@10.10.1.201</div></pre></td></tr></table></figure></p>
 <p>参数：<br>-N,不执行命令<br>-f,后台执行<br>-L,local本地端口转发<br>local_A_address:<br>    127.0.0.1 - 默认，只能本机使用这个端口转发<br>    也可以是本机的IP地址，同时其他人可以使用这个IP来使用这个端口转发<br>via_B_server:中间服务器</p>
 <p>应用：<br>A—能访问——&gt;B——-能访问——&gt;C<br>A—不能访问—————————–&gt;C<br>A—通过本机端口,以B的名义访问–&gt;C<br>关闭：<br>直接kill -9 建立的SSH连接，下同</p>
-<h2 id="2-远程端口转发-在B上执行"><a href="#2-远程端口转发-在B上执行" class="headerlink" title="2. 远程端口转发 在B上执行"></a>2. 远程端口转发 在B上执行</h2><p>命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -Nf -R [local_A_address]:local_A_port:target_C_server:target_C_port local_A_address</span><br><span class="line">ssh -Nf -p A_SSH_PORT 10.10.1.201:8080:192.168.1.224:80 A_User@10.10.1.200</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-远程端口转发-在B上执行"><a href="#2-远程端口转发-在B上执行" class="headerlink" title="2. 远程端口转发 在B上执行"></a>2. 远程端口转发 在B上执行</h2><p>命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh -Nf -R [local_A_address]:local_A_port:target_C_server:target_C_port local_A_address</div><div class="line">ssh -Nf -p A_SSH_PORT 10.10.1.201:8080:192.168.1.224:80 A_User@10.10.1.200</div></pre></td></tr></table></figure></p>
 <p>参数：<br>-R,remote,远程端口转发<br>local_A_address,这个地址为A的IP<br>应用：<br>环境和目的 与 本地端口转发是一样的，这里只是不在本地服务器A上执行命令，而是在中间服务器B上执行；<br>为什么不直接在服务器A自己身上执行命令呢？这个场景有别于本地端口转发的地方在于A不能主动连接B但反之可以，比如A在外网，B在内网；<br>而A去访问的时候，同样都是通过自己的IP和端口，同样首先建立AB之间的SSH通道，以服务器B的名义来访问目标服务器C。</p>
-<h2 id="3-动态端口转发"><a href="#3-动态端口转发" class="headerlink" title="3. 动态端口转发"></a>3. 动态端口转发</h2><p>命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -Nf -D [local_A_address]:local_A_port via_B_server</span><br><span class="line">ssh -Nf -p B_SSH_PORT 10.10.1.200:8080 B_User@10.10.1.201</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-动态端口转发"><a href="#3-动态端口转发" class="headerlink" title="3. 动态端口转发"></a>3. 动态端口转发</h2><p>命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh -Nf -D [local_A_address]:local_A_port via_B_server</div><div class="line">ssh -Nf -p B_SSH_PORT 10.10.1.200:8080 B_User@10.10.1.201</div></pre></td></tr></table></figure></p>
 <p>参数：<br>-D,dynamic,动态端口转发<br>应用：<br>本地和远程端口转发，都限定了目标服务器以及目标服务器的端口；<br>而动态端口转发，A把B作为了自己的全权代理，不限定目标服务器及其端口；<br>这里要求在A上，做下代理设置，比如浏览器的代理设定为自己的IP:PORT；<br>本地端口转发和远程端口转发，其实都可看着是动态端口转发(代理)的子集；<br>三者和一般代理的目的和场景都一致，区别在于这里自己A和代理服务器B之前的所有连接都是基于加密的SSH。</p>
-<p>作者：功夫猫星人<br>链接：<a href="https://www.jianshu.com/p/558781768505" target="_blank" rel="noopener">https://www.jianshu.com/p/558781768505</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
+<p>作者：功夫猫星人<br>链接：<a href="https://www.jianshu.com/p/558781768505" target="_blank" rel="external">https://www.jianshu.com/p/558781768505</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
 
       
     </div>
@@ -378,6 +377,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/201812/docker/wad-devop/" rel="prev" title="wad-devop">
+                wad-devop <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -456,7 +459,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -478,7 +481,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
