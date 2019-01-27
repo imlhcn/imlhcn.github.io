@@ -76,7 +76,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="收集," />
+  <meta name="keywords" content="逆向工程," />
 
 
 
@@ -92,17 +92,17 @@
 
 
 
-<meta name="description" content="https://www.awesomes.cn/">
-<meta name="keywords" content="收集">
+<meta name="description" content="准备 越狱IOS设备一台 OSX系统或 Linux(未测试) python2(frida-ios-dump现不支持python3)  1234567891011brew install python2git clone https://github.com/AloneMonkey/frida-ios-dumpcd frida-ios-dump &amp;amp;&amp;amp; sudo pip install">
+<meta name="keywords" content="逆向工程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="大前端资料">
-<meta property="og:url" content="http://imlh.cn/201708/collection/大前端资料/index.html">
+<meta property="og:title" content="frida-ios-dump一键砸壳">
+<meta property="og:url" content="http://imlh.cn/201901/re/frida-ios-dump/index.html">
 <meta property="og:site_name" content="木鱼&#39;s Blog">
-<meta property="og:description" content="https://www.awesomes.cn/">
-<meta property="og:updated_time" content="2017-08-16T04:22:47.000Z">
+<meta property="og:description" content="准备 越狱IOS设备一台 OSX系统或 Linux(未测试) python2(frida-ios-dump现不支持python3)  1234567891011brew install python2git clone https://github.com/AloneMonkey/frida-ios-dumpcd frida-ios-dump &amp;amp;&amp;amp; sudo pip install">
+<meta property="og:updated_time" content="2019-01-27T12:35:22.093Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="大前端资料">
-<meta name="twitter:description" content="https://www.awesomes.cn/">
+<meta name="twitter:title" content="frida-ios-dump一键砸壳">
+<meta name="twitter:description" content="准备 越狱IOS设备一台 OSX系统或 Linux(未测试) python2(frida-ios-dump现不支持python3)  1234567891011brew install python2git clone https://github.com/AloneMonkey/frida-ios-dumpcd frida-ios-dump &amp;amp;&amp;amp; sudo pip install">
 
 
 
@@ -131,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://imlh.cn/201708/collection/大前端资料/"/>
+  <link rel="canonical" href="http://imlh.cn/201901/re/frida-ios-dump/"/>
 
 
 
 
 
-  <title>大前端资料 | 木鱼's Blog</title>
+  <title>frida-ios-dump一键砸壳 | 木鱼's Blog</title>
   
 
 
@@ -264,7 +264,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://imlh.cn/201708/collection/大前端资料/">
+    <link itemprop="mainEntityOfPage" href="http://imlh.cn/201901/re/frida-ios-dump/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="木鱼">
@@ -281,7 +281,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">大前端资料</h1>
+          <h1 class="post-title" itemprop="name headline">frida-ios-dump一键砸壳</h1>
         
 
         <div class="post-meta">
@@ -293,8 +293,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T21:56:52+08:00">
-                2017-08-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-27T00:02:57+08:00">
+                2019-01-27
               </time>
             
 
@@ -331,7 +331,22 @@
       
 
       
-        <p><a href="https://www.awesomes.cn/" target="_blank" rel="external">https://www.awesomes.cn/</a></p>
+        <h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><ul>
+<li>越狱IOS设备一台</li>
+<li>OSX系统或 Linux(未测试)</li>
+<li>python2(frida-ios-dump现不支持python3)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">brew install python2</div><div class="line">git <span class="built_in">clone</span> https://github.com/AloneMonkey/frida-ios-dump</div><div class="line"><span class="built_in">cd</span> frida-ios-dump &amp;&amp; sudo pip install -r requirements.txt --upgrade</div><div class="line"></div><div class="line"><span class="comment"># 测试</span></div><div class="line">frida-ps -U</div><div class="line">./dump.py -l</div><div class="line"></div><div class="line"><span class="comment"># 得到iproxy</span></div><div class="line"><span class="comment">#brew install libimobiledevice</span></div><div class="line">brew install usbmuxd</div></pre></td></tr></table></figure>
+<h1 id="手机端"><a href="#手机端" class="headerlink" title="手机端"></a>手机端</h1><h2 id="IOS-Terminal"><a href="#IOS-Terminal" class="headerlink" title="IOS Terminal"></a>IOS Terminal</h2><p>Cydia官方源搜索安装</p>
+<h2 id="Frida"><a href="#Frida" class="headerlink" title="Frida"></a>Frida</h2><p>Cydia源:<a href="http://build.frida.re/" target="_blank" rel="external">http://build.frida.re/</a></p>
+<h2 id="DropBear（IOS10-3-x不能连上OpenSSH"><a href="#DropBear（IOS10-3-x不能连上OpenSSH" class="headerlink" title="DropBear（IOS10.3.x不能连上OpenSSH)"></a>DropBear（IOS10.3.x不能连上OpenSSH)</h2><p>Cydia源:<a href="https://cydia.ichitaso.com/" target="_blank" rel="external">https://cydia.ichitaso.com/</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 用IOS Terminal 启动dropbear才能连</span></div><div class="line">/usr/<span class="built_in">local</span>/bin/dropbear -F -R -p 22</div></pre></td></tr></table></figure>
+<p>在电脑测试ssh连接  ssh root@deviceIP<br>默认密码:alpine,如果有改，需要改对应dump.py里面代码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">User = <span class="string">'root'</span></div><div class="line">Password = <span class="string">'alpine'</span></div><div class="line">Host = <span class="string">'localhost'</span></div><div class="line">Port = <span class="number">2222</span></div></pre></td></tr></table></figure></p>
+<h2 id="OpenSSH-没有这个无法回传IPA文件"><a href="#OpenSSH-没有这个无法回传IPA文件" class="headerlink" title="OpenSSH(没有这个无法回传IPA文件)"></a>OpenSSH(没有这个无法回传IPA文件)</h2><p><a href="https://github.com/AloneMonkey/frida-ios-dump/issues/18" target="_blank" rel="external">https://github.com/AloneMonkey/frida-ios-dump/issues/18</a></p>
+<h1 id="test"><a href="#test" class="headerlink" title="test"></a>test</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">iproxy 2222 22 <span class="comment">#端口和dump.py以及dropbear所开启的SSH服务端一致</span></div><div class="line">./dump.py -l</div><div class="line">./dump.py com.apple.mobilecal</div></pre></td></tr></table></figure>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ul>
+<li>IOS10.3.x以上:OpenSSH需要和DropBear共存，安装顺序会影响（端口22占用）</li>
+</ul>
 
       
     </div>
@@ -349,7 +364,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/收集/" rel="tag"># 收集</a>
+            <a href="/tags/逆向工程/" rel="tag"># 逆向工程</a>
           
         </div>
       
@@ -362,8 +377,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/201708/tools/ssh做socks5代理/" rel="next" title="ssh做socks5代理">
-                <i class="fa fa-chevron-left"></i> ssh做socks5代理
+              <a href="/201812/docker/wad-devop/" rel="next" title="在项目实战中应用到的开发运维">
+                <i class="fa fa-chevron-left"></i> 在项目实战中应用到的开发运维
               </a>
             
           </div>
@@ -371,10 +386,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/201708/nginx/nginx单域名挂多SPA/" rel="prev" title="nginx单域名挂多SPA">
-                nginx单域名挂多SPA <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -428,8 +439,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/static/img/avatar.jpg"
@@ -491,6 +511,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#手机端"><span class="nav-number">2.</span> <span class="nav-text">手机端</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IOS-Terminal"><span class="nav-number">2.1.</span> <span class="nav-text">IOS Terminal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Frida"><span class="nav-number">2.2.</span> <span class="nav-text">Frida</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DropBear（IOS10-3-x不能连上OpenSSH"><span class="nav-number">2.3.</span> <span class="nav-text">DropBear（IOS10.3.x不能连上OpenSSH)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenSSH-没有这个无法回传IPA文件"><span class="nav-number">2.4.</span> <span class="nav-text">OpenSSH(没有这个无法回传IPA文件)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#test"><span class="nav-number">3.</span> <span class="nav-text">test</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意"><span class="nav-number">4.</span> <span class="nav-text">注意</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
