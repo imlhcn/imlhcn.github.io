@@ -92,17 +92,17 @@
 
 
 
-<meta name="description" content="准备 越狱IOS设备一台 OSX系统或 Linux(未测试) python2(frida-ios-dump现不支持python3)  PC端1234567891011brew install python2git clone https://github.com/AloneMonkey/frida-ios-dumpcd frida-ios-dump &amp;amp;&amp;amp; sudo pip inst">
+<meta name="description" content="准备 越狱IOS设备一台 OSX系统或 Linux(未测试) python2/3  PC端12345678910111213brew install python2git clone https://github.com/AloneMonkey/frida-ios-dump# 如果用的是python3需要检出 3.x分支# cd frida-ios-dump &amp;amp;&amp;amp; git chec">
 <meta name="keywords" content="逆向工程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="frida-ios-dump一键砸壳">
 <meta property="og:url" content="http://imlh.cn/201901/re/frida-ios-dump/index.html">
 <meta property="og:site_name" content="木鱼&#39;s Blog">
-<meta property="og:description" content="准备 越狱IOS设备一台 OSX系统或 Linux(未测试) python2(frida-ios-dump现不支持python3)  PC端1234567891011brew install python2git clone https://github.com/AloneMonkey/frida-ios-dumpcd frida-ios-dump &amp;amp;&amp;amp; sudo pip inst">
-<meta property="og:updated_time" content="2019-01-27T12:37:47.037Z">
+<meta property="og:description" content="准备 越狱IOS设备一台 OSX系统或 Linux(未测试) python2/3  PC端12345678910111213brew install python2git clone https://github.com/AloneMonkey/frida-ios-dump# 如果用的是python3需要检出 3.x分支# cd frida-ios-dump &amp;amp;&amp;amp; git chec">
+<meta property="og:updated_time" content="2019-01-27T13:08:57.479Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="frida-ios-dump一键砸壳">
-<meta name="twitter:description" content="准备 越狱IOS设备一台 OSX系统或 Linux(未测试) python2(frida-ios-dump现不支持python3)  PC端1234567891011brew install python2git clone https://github.com/AloneMonkey/frida-ios-dumpcd frida-ios-dump &amp;amp;&amp;amp; sudo pip inst">
+<meta name="twitter:description" content="准备 越狱IOS设备一台 OSX系统或 Linux(未测试) python2/3  PC端12345678910111213brew install python2git clone https://github.com/AloneMonkey/frida-ios-dump# 如果用的是python3需要检出 3.x分支# cd frida-ios-dump &amp;amp;&amp;amp; git chec">
 
 
 
@@ -334,9 +334,9 @@
         <h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><ul>
 <li>越狱IOS设备一台</li>
 <li>OSX系统或 Linux(未测试)</li>
-<li>python2(frida-ios-dump现不支持python3)</li>
+<li>python2/3</li>
 </ul>
-<h1 id="PC端"><a href="#PC端" class="headerlink" title="PC端"></a>PC端</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">brew install python2</div><div class="line">git <span class="built_in">clone</span> https://github.com/AloneMonkey/frida-ios-dump</div><div class="line"><span class="built_in">cd</span> frida-ios-dump &amp;&amp; sudo pip install -r requirements.txt --upgrade</div><div class="line"></div><div class="line"><span class="comment"># 测试</span></div><div class="line">frida-ps -U</div><div class="line">./dump.py -l</div><div class="line"></div><div class="line"><span class="comment"># 得到iproxy</span></div><div class="line"><span class="comment">#brew install libimobiledevice</span></div><div class="line">brew install usbmuxd</div></pre></td></tr></table></figure>
+<h1 id="PC端"><a href="#PC端" class="headerlink" title="PC端"></a>PC端</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">brew install python2</div><div class="line">git <span class="built_in">clone</span> https://github.com/AloneMonkey/frida-ios-dump</div><div class="line"><span class="comment"># 如果用的是python3需要检出 3.x分支</span></div><div class="line"><span class="comment"># cd frida-ios-dump &amp;&amp; git checkout 3.x</span></div><div class="line"><span class="built_in">cd</span> frida-ios-dump &amp;&amp; sudo pip install -r requirements.txt --upgrade</div><div class="line"></div><div class="line"><span class="comment"># 测试</span></div><div class="line">frida-ps -U</div><div class="line">./dump.py -l</div><div class="line"></div><div class="line"><span class="comment"># 得到iproxy</span></div><div class="line"><span class="comment">#brew install libimobiledevice</span></div><div class="line">brew install usbmuxd</div></pre></td></tr></table></figure>
 <h1 id="手机端"><a href="#手机端" class="headerlink" title="手机端"></a>手机端</h1><h2 id="IOS-Terminal"><a href="#IOS-Terminal" class="headerlink" title="IOS Terminal"></a>IOS Terminal</h2><p>Cydia官方源搜索安装</p>
 <h2 id="Frida"><a href="#Frida" class="headerlink" title="Frida"></a>Frida</h2><p>Cydia源:<a href="http://build.frida.re/" target="_blank" rel="external">http://build.frida.re/</a></p>
 <h2 id="DropBear（IOS10-3-x不能连上OpenSSH"><a href="#DropBear（IOS10-3-x不能连上OpenSSH" class="headerlink" title="DropBear（IOS10.3.x不能连上OpenSSH)"></a>DropBear（IOS10.3.x不能连上OpenSSH)</h2><p>Cydia源:<a href="https://cydia.ichitaso.com/" target="_blank" rel="external">https://cydia.ichitaso.com/</a></p>
