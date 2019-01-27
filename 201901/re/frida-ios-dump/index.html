@@ -99,7 +99,7 @@
 <meta property="og:url" content="http://imlh.cn/201901/re/frida-ios-dump/index.html">
 <meta property="og:site_name" content="木鱼&#39;s Blog">
 <meta property="og:description" content="准备 越狱IOS设备一台 OSX系统,Linux(未测) brew 12# 如果没有brew,先安装/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;  frida-ios-dump作者庆哥的文章导读:http://www.alonemonkey.com">
-<meta property="og:updated_time" content="2019-01-27T15:32:22.827Z">
+<meta property="og:updated_time" content="2019-01-27T15:41:53.962Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="frida-ios-dump一键砸壳">
 <meta name="twitter:description" content="准备 越狱IOS设备一台 OSX系统,Linux(未测) brew 12# 如果没有brew,先安装/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;  frida-ios-dump作者庆哥的文章导读:http://www.alonemonkey.com">
@@ -347,7 +347,7 @@
 <h2 id="DropBear-IOS-Terminal"><a href="#DropBear-IOS-Terminal" class="headerlink" title="DropBear+IOS Terminal"></a>DropBear+IOS Terminal</h2><p><strong>可选,IOS10.3.x+才装,否则直接跳下一步</strong><br>DropBear Cydia源:<a href="https://cydia.ichitaso.com/" target="_blank" rel="external">https://cydia.ichitaso.com/</a><br>IOS Terminal: Cydia官方源搜索安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 用IOS Terminal 启动dropbear才能连</span></div><div class="line">/usr/<span class="built_in">local</span>/bin/dropbear -F -R -p 22</div></pre></td></tr></table></figure></p>
 <h2 id="OpenSSH"><a href="#OpenSSH" class="headerlink" title="OpenSSH"></a>OpenSSH</h2><p>没有这个无法回传IPA文件，如果只装了DropBear也不行<br><a href="https://github.com/AloneMonkey/frida-ios-dump/issues/18" target="_blank" rel="external">https://github.com/AloneMonkey/frida-ios-dump/issues/18</a></p>
 <h1 id="test"><a href="#test" class="headerlink" title="test"></a>test</h1><h2 id="ssh是否联通"><a href="#ssh是否联通" class="headerlink" title="ssh是否联通"></a>ssh是否联通</h2><p>在电脑测试ssh连接  ssh root@deviceIP</p>
-<h2 id="现在才是一键砸壳"><a href="#现在才是一键砸壳" class="headerlink" title="现在才是一键砸壳"></a>现在才是一键砸壳</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">./dump.py -l</div><div class="line">./dump.py com.apple.mobilecal</div></pre></td></tr></table></figure>
+<h2 id="现在才是一键砸壳"><a href="#现在才是一键砸壳" class="headerlink" title="现在才是一键砸壳"></a>现在才是一键砸壳</h2><p>上面的准备都是一次性的，以后随便砸了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">./dump.py -l</div><div class="line">./dump.py com.apple.mobilecal</div></pre></td></tr></table></figure></p>
 <h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ul>
 <li>IOS10.3.x以上:OpenSSH需要和DropBear共存，安装顺序会影响（端口22占用）</li>
 </ul>
