@@ -92,16 +92,17 @@
 
 
 
-<meta name="description" content="生命有限，能量守恒码农生涯，重在过程">
+<meta name="description" content="最近对接微信第三方平台解密时，发现java在OSX的AES的key长度受限，查了下，需要下载两个jar 放到$JAVA_HOME/jre/lib/security/ 看了下其实下面有个policy文件夹，感觉可以复制出来放到 security/下./policy/unlimited./policy/unlimited/local_policy.jar./policy/unlimited/US_ex">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OSX java AES解密key长度受限">
 <meta property="og:url" content="http://imlh.cn/201904/diary/OSX-java-AES解密key长度受限/index.html">
 <meta property="og:site_name" content="木鱼&#39;s Blog">
-<meta property="og:description" content="生命有限，能量守恒码农生涯，重在过程">
-<meta property="og:updated_time" content="2019-04-11T15:07:12.921Z">
+<meta property="og:description" content="最近对接微信第三方平台解密时，发现java在OSX的AES的key长度受限，查了下，需要下载两个jar 放到$JAVA_HOME/jre/lib/security/ 看了下其实下面有个policy文件夹，感觉可以复制出来放到 security/下./policy/unlimited./policy/unlimited/local_policy.jar./policy/unlimited/US_ex">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-11T15:13:23.514Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OSX java AES解密key长度受限">
-<meta name="twitter:description" content="生命有限，能量守恒码农生涯，重在过程">
+<meta name="twitter:description" content="最近对接微信第三方平台解密时，发现java在OSX的AES的key长度受限，查了下，需要下载两个jar 放到$JAVA_HOME/jre/lib/security/ 看了下其实下面有个policy文件夹，感觉可以复制出来放到 security/下./policy/unlimited./policy/unlimited/local_policy.jar./policy/unlimited/US_ex">
 
 
 
@@ -330,7 +331,10 @@
       
 
       
-        
+        <p>最近对接微信第三方平台解密时，发现java在OSX的AES的key长度受限，查了下，需要下载两个jar 放到<br>$JAVA_HOME/jre/lib/security/</p>
+<p>看了下其实下面有个policy文件夹，感觉可以复制出来放到 security/下<br>./policy/unlimited<br>./policy/unlimited/local_policy.jar<br>./policy/unlimited/US_export_policy.jar<br>./policy/limited<br>./policy/limited/local_policy.jar<br>./policy/limited/US_export_policy.jar</p>
+<p>参考：<br><a href="https://stackoverflow.com/questions/6481627/java-security-illegal-key-size-or-default-parameters" target="_blank" rel="noopener">https://stackoverflow.com/questions/6481627/java-security-illegal-key-size-or-default-parameters</a></p>
+
       
     </div>
     

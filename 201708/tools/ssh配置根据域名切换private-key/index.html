@@ -98,6 +98,7 @@
 <meta property="og:url" content="http://imlh.cn/201708/tools/ssh配置根据域名切换private-key/index.html">
 <meta property="og:site_name" content="木鱼&#39;s Blog">
 <meta property="og:description" content="可以支持不同域名用不同的private_key1234567891011121314Host git.oschina.net	HostName git.oschina.net	User git	PubkeyAuthentication yes	IdentityFile ~/.ssh/id_rsa.publish_keyHost github.*	HostName github.com	User g">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-09-02T04:37:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssh配置根据域名切换private key">
@@ -330,7 +331,7 @@
       
 
       
-        <p>可以支持不同域名用不同的private_key<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Host git.oschina.net</div><div class="line">	HostName git.oschina.net</div><div class="line">	User git</div><div class="line">	PubkeyAuthentication yes</div><div class="line">	IdentityFile ~/.ssh/id_rsa.publish_key</div><div class="line"></div><div class="line">Host github.*</div><div class="line">	HostName github.com</div><div class="line">	User git</div><div class="line">	PubkeyAuthentication yes</div><div class="line">	IdentityFile ~/.ssh/id_rsa.github</div><div class="line"></div><div class="line">Host *</div><div class="line">	PubkeyAuthentication no</div></pre></td></tr></table></figure></p>
+        <p>可以支持不同域名用不同的private_key<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Host git.oschina.net</span><br><span class="line">	HostName git.oschina.net</span><br><span class="line">	User git</span><br><span class="line">	PubkeyAuthentication yes</span><br><span class="line">	IdentityFile ~/.ssh/id_rsa.publish_key</span><br><span class="line"></span><br><span class="line">Host github.*</span><br><span class="line">	HostName github.com</span><br><span class="line">	User git</span><br><span class="line">	PubkeyAuthentication yes</span><br><span class="line">	IdentityFile ~/.ssh/id_rsa.github</span><br><span class="line"></span><br><span class="line">Host *</span><br><span class="line">	PubkeyAuthentication no</span><br></pre></td></tr></table></figure></p>
 <p>在最末尾默认禁止Public key的验证方式，也就是说，优先采用password验证。否则有些ssh server就会登录不上，因为有些ssh server优先验证public key，而我们这里有很多public key，一个一个验证失败之后就会因为验证失败次数太多从而连不上server。</p>
 
       

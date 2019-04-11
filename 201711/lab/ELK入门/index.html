@@ -99,6 +99,7 @@
 <meta property="og:url" content="http://imlh.cn/201711/lab/ELK入门/index.html">
 <meta property="og:site_name" content="木鱼&#39;s Blog">
 <meta property="og:description" content="准备下载 ELKhttps://www.elastic.co/ filebeathttps://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html 12curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-02-26T06:02:26.701Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ELK入门">
@@ -331,13 +332,13 @@
       
 
       
-        <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="下载-ELK"><a href="#下载-ELK" class="headerlink" title="下载 ELK"></a>下载 ELK</h3><p><a href="https://www.elastic.co/" target="_blank" rel="external">https://www.elastic.co/</a></p>
-<h3 id="filebeat"><a href="#filebeat" class="headerlink" title="filebeat"></a>filebeat</h3><p><a href="https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html" target="_blank" rel="external">https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.0.0-darwin-x86_64.tar.gz</div><div class="line">tar xzvf filebeat-6.0.0-darwin-x86_64.tar.gz</div></pre></td></tr></table></figure>
-<h3 id="测试-log"><a href="#测试-log" class="headerlink" title="测试 log"></a>测试 log</h3><p><a href="https://download.elastic.co/demos/logstash/gettingstarted/logstash-tutorial.log.gz" target="_blank" rel="external">https://download.elastic.co/demos/logstash/gettingstarted/logstash-tutorial.log.gz</a></p>
-<h3 id="gork-filter"><a href="#gork-filter" class="headerlink" title="gork filter"></a>gork filter</h3><p><a href="http://www.elastic.co/guide/en/logstash/6.0/plugins-filters-grok.html" target="_blank" rel="external">http://www.elastic.co/guide/en/logstash/6.0/plugins-filters-grok.html</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/logstash-plugin install logstash-filter-grok</div></pre></td></tr></table></figure>
-<h3 id="更快的体验"><a href="#更快的体验" class="headerlink" title="更快的体验"></a>更快的体验</h3><p><a href="https://github.com/sqshq/ELK-docker" target="_blank" rel="external">https://github.com/sqshq/ELK-docker</a></p>
+        <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="下载-ELK"><a href="#下载-ELK" class="headerlink" title="下载 ELK"></a>下载 ELK</h3><p><a href="https://www.elastic.co/" target="_blank" rel="noopener">https://www.elastic.co/</a></p>
+<h3 id="filebeat"><a href="#filebeat" class="headerlink" title="filebeat"></a>filebeat</h3><p><a href="https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.0.0-darwin-x86_64.tar.gz</span><br><span class="line">tar xzvf filebeat-6.0.0-darwin-x86_64.tar.gz</span><br></pre></td></tr></table></figure>
+<h3 id="测试-log"><a href="#测试-log" class="headerlink" title="测试 log"></a>测试 log</h3><p><a href="https://download.elastic.co/demos/logstash/gettingstarted/logstash-tutorial.log.gz" target="_blank" rel="noopener">https://download.elastic.co/demos/logstash/gettingstarted/logstash-tutorial.log.gz</a></p>
+<h3 id="gork-filter"><a href="#gork-filter" class="headerlink" title="gork filter"></a>gork filter</h3><p><a href="http://www.elastic.co/guide/en/logstash/6.0/plugins-filters-grok.html" target="_blank" rel="noopener">http://www.elastic.co/guide/en/logstash/6.0/plugins-filters-grok.html</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/logstash-plugin install logstash-filter-grok</span><br></pre></td></tr></table></figure>
+<h3 id="更快的体验"><a href="#更快的体验" class="headerlink" title="更快的体验"></a>更快的体验</h3><p><a href="https://github.com/sqshq/ELK-docker" target="_blank" rel="noopener">https://github.com/sqshq/ELK-docker</a></p>
 
       
     </div>
