@@ -265,6 +265,136 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://imlh.cn/201804/react-native/expo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/static/img/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木鱼's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/201804/react-native/expo/" itemprop="url">expo</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-19T17:04:29+08:00">
+                2018-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="生成项目"><a href="#生成项目" class="headerlink" title="生成项目"></a>生成项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">expo init expi</span><br><span class="line">exp start</span><br></pre></td></tr></table></figure>
+<h3 id="修改app-json"><a href="#修改app-json" class="headerlink" title="修改app.json"></a>修改app.json</h3><p>参考  <a href="https://docs.expo.io/versions/v26.0.0/distribution/building-standalone-apps" target="_blank" rel="noopener">https://docs.expo.io/versions/v26.0.0/distribution/building-standalone-apps</a></p>
+<h3 id="detach"><a href="#detach" class="headerlink" title="detach"></a>detach</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> expi</span><br><span class="line">exp detach</span><br></pre></td></tr></table></figure>
+<h3 id="pod"><a href="#pod" class="headerlink" title="pod"></a>pod</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ios</span><br><span class="line">pod install</span><br><span class="line"><span class="comment"># brew upgrade libressl openssl curl 如果出现下面错误时尝试更新</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://docs.expo.io/versions/v26.0.0/distribution/building-standalone-apps" target="_blank" rel="noopener">https://docs.expo.io/versions/v26.0.0/distribution/building-standalone-apps</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[!] Error installing Crashlytics</span><br><span class="line">[!] /usr/bin/curl -f -L -o /var/folders/76/qw6ngcrx7cnc179pjc2ys3sh0000gn/T/d20180419-62115-1p7nohg/file.zip https://kit-downloads.fabric.io/cocoapods/crashlytics/3.10.1/crashlytics.zip --create-dirs --netrc-optional</span><br><span class="line"></span><br><span class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">  0     0    0     0    0     0      0      0 --:--:--  0:00:31 --:--:--     0</span><br><span class="line">curl: (35) LibreSSL SSL_connect: SSL_ERROR_SYSCALL <span class="keyword">in</span> connection to kit-downloads.fabric.io:443</span><br></pre></td></tr></table></figure>
+<h3 id="git-也是要科学上网的"><a href="#git-也是要科学上网的" class="headerlink" title="git 也是要科学上网的"></a>git 也是要科学上网的</h3><p>Installing FBAudienceNetwork (4.99.0)</p>
+<p>[!] Error installing FBAudienceNetwork<br>[!] /usr/bin/curl -f -L -o /var/folders/76/qw6ngcrx7cnc179pjc2ys3sh0000gn/T/d20181023-59767-1ubfvhh/file.zip <a href="https://developers.facebook.com/resources/FBAudienceNetwork-4.99.0.zip" target="_blank" rel="noopener">https://developers.facebook.com/resources/FBAudienceNetwork-4.99.0.zip</a> –create-dirs –netrc-optional –retry 2</p>
+<p>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current<br>                                 Dload  Upload   Total   Spent    Left  Speed<br>  0     0    0     0    0     0      0      0 –:–:–  0:01:14 –:–:–     0curl: (7) Failed to connect to developers.facebook.com port 443: Operation timed out</p>
+<p><a href="https://github.com/felix-cao/Blog/issues/81" target="_blank" rel="noopener">https://github.com/felix-cao/Blog/issues/81</a></p>
+<p><a href="https://github.com/jpush/jpush-react-native/issues/104" target="_blank" rel="noopener">https://github.com/jpush/jpush-react-native/issues/104</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://imlh.cn/201803/learn/fabric8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1404,129 +1534,6 @@
         
           
             <h2 id="别人的成果"><a href="#别人的成果" class="headerlink" title="别人的成果"></a>别人的成果</h2><p><a href="https://gxnotes.com/article/45665.html" target="_blank" rel="noopener">https://gxnotes.com/article/45665.html</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://imlh.cn/201709/collection/java资料/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="木鱼">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/static/img/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="木鱼's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/201709/collection/java资料/" itemprop="url">java资料</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-03T16:12:45+08:00">
-                2017-09-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><p><a href="https://github.com/iluwatar/java-design-patterns" target="_blank" rel="noopener">https://github.com/iluwatar/java-design-patterns</a></p>
-<h3 id="RxJava"><a href="#RxJava" class="headerlink" title="RxJava"></a>RxJava</h3><p><a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="noopener">https://github.com/ReactiveX/RxJava</a></p>
-<h3 id="bean"><a href="#bean" class="headerlink" title="bean"></a>bean</h3><p><a href="https://github.com/mapstruct/mapstruct" target="_blank" rel="noopener">https://github.com/mapstruct/mapstruct</a><br><a href="https://github.com/modelmapper/modelmapper" target="_blank" rel="noopener">https://github.com/modelmapper/modelmapper</a></p>
-<h3 id="http"><a href="#http" class="headerlink" title="http"></a>http</h3><p><a href="http://square.github.io/retrofit/" target="_blank" rel="noopener">http://square.github.io/retrofit/</a><br><a href="http://square.github.io/okhttp/" target="_blank" rel="noopener">http://square.github.io/okhttp/</a></p>
 
           
         
