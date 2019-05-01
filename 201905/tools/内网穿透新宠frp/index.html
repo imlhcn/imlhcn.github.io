@@ -94,18 +94,18 @@
 
 
 
-  <meta name="description" content="准备下载 ELKhttps://www.elastic.co/ filebeathttps://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html 12curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.">
-<meta name="keywords" content="EKL,日志分析">
+  <meta name="description" content="frp官网https://github.com/fatedier/frp frp用来做内网穿透非常舒畅，配置也简单就不说了。本文重点是：配置了一个比较经典的方案，实现了更科学的SS上网。 服务端配置1234# frps.ini[common]token = token_stringbind_port = 1234 12# 服务器端，启动服务./frps -c ./frps.ini 服务端上的客户端">
+<meta name="keywords" content="科学上网">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ELK入门">
-<meta property="og:url" content="http://imlh.cn/201711/lab/ELK入门/index.html">
+<meta property="og:title" content="内网穿透新宠frp">
+<meta property="og:url" content="http://imlh.cn/201905/tools/内网穿透新宠frp/index.html">
 <meta property="og:site_name" content="木鱼&#39;s Blog">
-<meta property="og:description" content="准备下载 ELKhttps://www.elastic.co/ filebeathttps://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html 12curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.">
+<meta property="og:description" content="frp官网https://github.com/fatedier/frp frp用来做内网穿透非常舒畅，配置也简单就不说了。本文重点是：配置了一个比较经典的方案，实现了更科学的SS上网。 服务端配置1234# frps.ini[common]token = token_stringbind_port = 1234 12# 服务器端，启动服务./frps -c ./frps.ini 服务端上的客户端">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-01T13:49:11.567Z">
+<meta property="og:updated_time" content="2019-05-01T14:56:59.493Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ELK入门">
-<meta name="twitter:description" content="准备下载 ELKhttps://www.elastic.co/ filebeathttps://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html 12curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.">
+<meta name="twitter:title" content="内网穿透新宠frp">
+<meta name="twitter:description" content="frp官网https://github.com/fatedier/frp frp用来做内网穿透非常舒畅，配置也简单就不说了。本文重点是：配置了一个比较经典的方案，实现了更科学的SS上网。 服务端配置1234# frps.ini[common]token = token_stringbind_port = 1234 12# 服务器端，启动服务./frps -c ./frps.ini 服务端上的客户端">
 
 
 
@@ -113,7 +113,7 @@
 
   
   
-  <link rel="canonical" href="http://imlh.cn/201711/lab/ELK入门/">
+  <link rel="canonical" href="http://imlh.cn/201905/tools/内网穿透新宠frp/">
 
 
 
@@ -123,7 +123,7 @@
   };
 </script>
 
-  <title>ELK入门 | 木鱼's Blog</title>
+  <title>内网穿透新宠frp | 木鱼's Blog</title>
   
 
 
@@ -326,7 +326,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://imlh.cn/201711/lab/ELK入门/">
+    <link itemprop="mainEntityOfPage" href="http://imlh.cn/201905/tools/内网穿透新宠frp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="木鱼">
@@ -343,7 +343,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ELK入门
+          <h1 class="post-title" itemprop="name headline">内网穿透新宠frp
 
               
             
@@ -369,24 +369,12 @@
                 
               
 
-              <time title="Created: 2017-11-30 16:35:23" itemprop="dateCreated datePublished" datetime="2017-11-30T16:35:23+08:00">2017-11-30</time>
+              <time title="Created: 2019-05-01 22:33:26 / Modified: 22:56:59" itemprop="dateCreated datePublished" datetime="2019-05-01T22:33:26+08:00">2019-05-01</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-05-01 21:49:11" itemprop="dateModified" datetime="2019-05-01T21:49:11+08:00">2019-05-01</time>
               
             
           </span>
@@ -404,8 +392,8 @@
                 </span>
             
                 <span class="post-meta-item-text">Comments: </span>
-                <a href="/201711/lab/ELK入门/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="201711/lab/ELK入门/" itemprop="commentCount"></span>
+                <a href="/201905/tools/内网穿透新宠frp/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="201905/tools/内网穿透新宠frp/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -433,13 +421,19 @@
       
 
       
-        <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="下载-ELK"><a href="#下载-ELK" class="headerlink" title="下载 ELK"></a>下载 ELK</h3><p><a href="https://www.elastic.co/" target="_blank" rel="noopener">https://www.elastic.co/</a></p>
-<h3 id="filebeat"><a href="#filebeat" class="headerlink" title="filebeat"></a>filebeat</h3><p><a href="https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.0.0-darwin-x86_64.tar.gz</span><br><span class="line">tar xzvf filebeat-6.0.0-darwin-x86_64.tar.gz</span><br></pre></td></tr></table></figure>
-<h3 id="测试-log"><a href="#测试-log" class="headerlink" title="测试 log"></a>测试 log</h3><p><a href="https://download.elastic.co/demos/logstash/gettingstarted/logstash-tutorial.log.gz" target="_blank" rel="noopener">https://download.elastic.co/demos/logstash/gettingstarted/logstash-tutorial.log.gz</a></p>
-<h3 id="gork-filter"><a href="#gork-filter" class="headerlink" title="gork filter"></a>gork filter</h3><p><a href="http://www.elastic.co/guide/en/logstash/6.0/plugins-filters-grok.html" target="_blank" rel="noopener">http://www.elastic.co/guide/en/logstash/6.0/plugins-filters-grok.html</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/logstash-plugin install logstash-filter-grok</span><br></pre></td></tr></table></figure>
-<h3 id="更快的体验"><a href="#更快的体验" class="headerlink" title="更快的体验"></a>更快的体验</h3><p><a href="https://github.com/sqshq/ELK-docker" target="_blank" rel="noopener">https://github.com/sqshq/ELK-docker</a></p>
+        <h2 id="frp官网"><a href="#frp官网" class="headerlink" title="frp官网"></a>frp官网</h2><p><a href="https://github.com/fatedier/frp" target="_blank" rel="noopener">https://github.com/fatedier/frp</a></p>
+<p>frp用来做内网穿透非常舒畅，配置也简单就不说了。<br>本文重点是：配置了一个比较经典的方案，实现了更科学的SS上网。</p>
+<h2 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># frps.ini</span></span><br><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="attr">token</span> = token_string</span><br><span class="line"><span class="attr">bind_port</span> = <span class="number">1234</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 服务器端，启动服务</span></span><br><span class="line">./frps -c ./frps.ini</span><br></pre></td></tr></table></figure>
+<h2 id="服务端上的客户端（用于提供stcp加密）"><a href="#服务端上的客户端（用于提供stcp加密）" class="headerlink" title="服务端上的客户端（用于提供stcp加密）"></a>服务端上的<code>客户端</code>（用于提供stcp加密）</h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># frpc_stcp.ini</span></span><br><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="attr">token</span> = token_string</span><br><span class="line"><span class="attr">server_addr</span> = <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="attr">server_port</span> = <span class="number">1234</span></span><br><span class="line"><span class="attr">tls_enable</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="section">[secret_ss]</span></span><br><span class="line"><span class="attr">type</span> = stcp</span><br><span class="line"><span class="comment"># 只有 sk 一致的用户才能访问到此服务</span></span><br><span class="line"><span class="attr">sk</span> = &#123;&#123;sk&#125;</span><br><span class="line"><span class="attr">local_ip</span> = <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="attr">local_port</span> = <span class="number">4321</span></span><br><span class="line"><span class="attr">use_compression</span> = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 服务器端,启动一个frpc来响应stcp连接</span></span><br><span class="line">./frpc -c frpc_stcp.ini</span><br></pre></td></tr></table></figure>
+<h2 id="客户端配置-用于对ss用-stcp进行再次加密传输"><a href="#客户端配置-用于对ss用-stcp进行再次加密传输" class="headerlink" title="客户端配置 (用于对ss用 stcp进行再次加密传输)"></a>客户端配置 (用于对ss用 stcp进行再次加密传输)</h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="attr">server_addr</span> = imlh.cn</span><br><span class="line"><span class="attr">server_port</span> = <span class="number">1234</span></span><br><span class="line"><span class="attr">token</span> = token_string</span><br><span class="line"><span class="attr">tls_enable</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="section">[secret_ss_visitor]</span></span><br><span class="line"><span class="attr">type</span> = stcp</span><br><span class="line"><span class="attr">role</span> = visitor</span><br><span class="line"><span class="attr">server_name</span> = secret_ss</span><br><span class="line"><span class="attr">sk</span> = token_string</span><br><span class="line"><span class="attr">bind_addr</span> = <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="attr">bind_port</span> = <span class="number">4321</span></span><br><span class="line"><span class="attr">use_compression</span> = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 客户端，本地机器</span></span><br><span class="line">./frpc -c frpc.ini</span><br></pre></td></tr></table></figure>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li>访问本地的4321端口，也就通过[1234],互通了服务器的4321端口</li>
+<li>如果服务端的4321用于SS的端口，那么，即时4321被墙，仍然可以通过上述方案，访问本地的4321，实现对SS的加密</li>
+<li>拿国内云主机作为二次代理，一般会被自动封杀，但是经过此方案，目前测试正常稳定</li>
+</ul>
 
       
     </div>
@@ -463,9 +457,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/EKL/" rel="tag"># EKL</a>
-          
-            <a href="/tags/日志分析/" rel="tag"># 日志分析</a>
+            <a href="/tags/科学上网/" rel="tag"># 科学上网</a>
           
         </div>
       
@@ -478,8 +470,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/201711/kotlin/kotlin与spring-boot/" rel="next" title="kotlin与spring-boot">
-                <i class="fa fa-chevron-left"></i> kotlin与spring-boot
+              <a href="/201904/nginx/nginx单域名挂多SPA(新)/" rel="next" title="nginx单域名挂多SPA(新)">
+                <i class="fa fa-chevron-left"></i> nginx单域名挂多SPA(新)
               </a>
             
           </div>
@@ -487,10 +479,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/201712/gradle/Gradle入坑记录/" rel="prev" title="Gradle入坑记录">
-                Gradle入坑记录 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -674,7 +662,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载-ELK"><span class="nav-number">1.1.</span> <span class="nav-text">下载 ELK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filebeat"><span class="nav-number">1.2.</span> <span class="nav-text">filebeat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试-log"><span class="nav-number">1.3.</span> <span class="nav-text">测试 log</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gork-filter"><span class="nav-number">1.4.</span> <span class="nav-text">gork filter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更快的体验"><span class="nav-number">1.5.</span> <span class="nav-text">更快的体验</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#frp官网"><span class="nav-number">1.</span> <span class="nav-text">frp官网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端配置"><span class="nav-number">2.</span> <span class="nav-text">服务端配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端上的客户端（用于提供stcp加密）"><span class="nav-number">3.</span> <span class="nav-text">服务端上的客户端（用于提供stcp加密）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端配置-用于对ss用-stcp进行再次加密传输"><span class="nav-number">4.</span> <span class="nav-text">客户端配置 (用于对ss用 stcp进行再次加密传输)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">5.</span> <span class="nav-text">说明</span></a></li></ol></div>
             
 
           </div>
@@ -835,9 +823,9 @@
 
 <script>
   var disqus_config = function() {
-    this.page.url = "http://imlh.cn/201711/lab/ELK入门/";
-    this.page.identifier = "201711/lab/ELK入门/";
-    this.page.title = 'ELK入门';
+    this.page.url = "http://imlh.cn/201905/tools/内网穿透新宠frp/";
+    this.page.identifier = "201905/tools/内网穿透新宠frp/";
+    this.page.title = '内网穿透新宠frp';
     };
   function loadComments() {
     var d = document, s = d.createElement('script');

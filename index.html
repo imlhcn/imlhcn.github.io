@@ -325,6 +325,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://imlh.cn/201905/tools/内网穿透新宠frp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="生命有限，能量守恒<br>码农生涯，重在过程<br>">
+      <meta itemprop="image" content="/static/img/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木鱼's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/201905/tools/内网穿透新宠frp/" class="post-title-link" itemprop="url">内网穿透新宠frp</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-01 22:33:26 / Modified: 22:56:59" itemprop="dateCreated datePublished" datetime="2019-05-01T22:33:26+08:00">2019-05-01</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/201905/tools/内网穿透新宠frp/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="201905/tools/内网穿透新宠frp/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="frp官网"><a href="#frp官网" class="headerlink" title="frp官网"></a>frp官网</h2><p><a href="https://github.com/fatedier/frp" target="_blank" rel="noopener">https://github.com/fatedier/frp</a></p>
+<p>frp用来做内网穿透非常舒畅，配置也简单就不说了。<br>本文重点是：配置了一个比较经典的方案，实现了更科学的SS上网。</p>
+<h2 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># frps.ini</span></span><br><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="attr">token</span> = token_string</span><br><span class="line"><span class="attr">bind_port</span> = <span class="number">1234</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 服务器端，启动服务</span></span><br><span class="line">./frps -c ./frps.ini</span><br></pre></td></tr></table></figure>
+<h2 id="服务端上的客户端（用于提供stcp加密）"><a href="#服务端上的客户端（用于提供stcp加密）" class="headerlink" title="服务端上的客户端（用于提供stcp加密）"></a>服务端上的<code>客户端</code>（用于提供stcp加密）</h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># frpc_stcp.ini</span></span><br><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="attr">token</span> = token_string</span><br><span class="line"><span class="attr">server_addr</span> = <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="attr">server_port</span> = <span class="number">1234</span></span><br><span class="line"><span class="attr">tls_enable</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="section">[secret_ss]</span></span><br><span class="line"><span class="attr">type</span> = stcp</span><br><span class="line"><span class="comment"># 只有 sk 一致的用户才能访问到此服务</span></span><br><span class="line"><span class="attr">sk</span> = &#123;&#123;sk&#125;</span><br><span class="line"><span class="attr">local_ip</span> = <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="attr">local_port</span> = <span class="number">4321</span></span><br><span class="line"><span class="attr">use_compression</span> = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 服务器端,启动一个frpc来响应stcp连接</span></span><br><span class="line">./frpc -c frpc_stcp.ini</span><br></pre></td></tr></table></figure>
+<h2 id="客户端配置-用于对ss用-stcp进行再次加密传输"><a href="#客户端配置-用于对ss用-stcp进行再次加密传输" class="headerlink" title="客户端配置 (用于对ss用 stcp进行再次加密传输)"></a>客户端配置 (用于对ss用 stcp进行再次加密传输)</h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="attr">server_addr</span> = imlh.cn</span><br><span class="line"><span class="attr">server_port</span> = <span class="number">1234</span></span><br><span class="line"><span class="attr">token</span> = token_string</span><br><span class="line"><span class="attr">tls_enable</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="section">[secret_ss_visitor]</span></span><br><span class="line"><span class="attr">type</span> = stcp</span><br><span class="line"><span class="attr">role</span> = visitor</span><br><span class="line"><span class="attr">server_name</span> = secret_ss</span><br><span class="line"><span class="attr">sk</span> = token_string</span><br><span class="line"><span class="attr">bind_addr</span> = <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="attr">bind_port</span> = <span class="number">4321</span></span><br><span class="line"><span class="attr">use_compression</span> = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 客户端，本地机器</span></span><br><span class="line">./frpc -c frpc.ini</span><br></pre></td></tr></table></figure>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li>访问本地的4321端口，也就通过[1234],互通了服务器的4321端口</li>
+<li>如果服务端的4321用于SS的端口，那么，即时4321被墙，仍然可以通过上述方案，访问本地的4321，实现对SS的加密</li>
+<li>拿国内云主机作为二次代理，一般会被自动封杀，但是经过此方案，目前测试正常稳定</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://imlh.cn/201904/nginx/nginx单域名挂多SPA(新)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1932,180 +2100,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://imlh.cn/201806/relax/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="木鱼">
-      <meta itemprop="description" content="生命有限，能量守恒<br>码农生涯，重在过程<br>">
-      <meta itemprop="image" content="/static/img/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="木鱼's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/201806/relax/" class="post-title-link" itemprop="url">relax</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-06-01 23:00:57" itemprop="dateCreated datePublished" datetime="2018-06-01T23:00:57+08:00">2018-06-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-05-01 21:49:11" itemprop="dateModified" datetime="2019-05-01T21:49:11+08:00">2019-05-01</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">Comments: </span>
-                <a href="/201806/relax/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="201806/relax/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name relax --link=mongo:mongo --net compose_default -p <span class="string">"9001:8080"</span> -d relax/relax</span><br></pre></td></tr></table></figure>
-<p>docker run -d \<br>  –link=mongo:mongo \<br>  –net compose_default \<br>  –name reaction \<br>  -p 3000:3000 \<br>  -e MONGO_URL=”mongodb://mongo/reaction” \<br>  -e ROOT_URL=”<a href="http://dev1.daxgame.com:3000&quot;" target="_blank" rel="noopener">http://dev1.daxgame.com:3000&quot;</a> \<br>  -e REACTION_EMAIL=”<a href="mailto:you@example.com" target="_blank" rel="noopener">you@example.com</a>“ \<br>  -e REACTION_USER=”admin-username” \<br>  -e REACTION_AUTH=”admin-password” \<br>  reactioncommerce/reaction:latest</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2149,7 +2148,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-count">41</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
